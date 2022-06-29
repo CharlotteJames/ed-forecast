@@ -2,7 +2,10 @@
 title: Forecasting long-term ED demand
 author: Charlotte James
 execute:
-  execute_notebooks: force
+  execute_notebooks: auto
+
+launch_buttons:
+  colab_url: https://colab.research.google.com
 
 # Add a bibtex file so that we can create citations
 #bibtex_bibfiles:

@@ -103,7 +103,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
+                <a class="reference internal" href="index.html">
                     Forecasting Long Term ED Demand
                 </a>
             </li>
@@ -249,7 +249,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/paper_ensemble.ipynb"
+        <a href="https://mybinder.org/v2/gh/CharlotteJames/ed-forecast/master?urlpath=tree/pages/paper_ensemble.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -262,6 +262,24 @@ title="Launch on Binder"
     <img src="_static/images/logo_binder.svg">
   </span>
 <span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/CharlotteJames/ed-forecast/blob/master/pages/paper_ensemble.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
 </a>
 
       </li>
@@ -283,6 +301,19 @@ title="Fullscreen mode"
   </span>
 
 </button>
+<a href="https://github.com/CharlotteJames/ed-forecast"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
 
 <div class="menu-dropdown menu-dropdown-download-buttons">
   <button class="headerbtn menu-dropdown__trigger"
@@ -639,7 +670,8 @@ title="Print to PDF"
 <h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/master_scaled.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled.csv&#39;</span><span class="p">,</span>
+                  <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -777,38 +809,38 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.322130</td>
-      <td>0.906824</td>
+      <td>0.324762</td>
+      <td>0.907468</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.069696</td>
-      <td>0.003302</td>
+      <td>0.064132</td>
+      <td>0.002994</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.194441</td>
-      <td>0.901193</td>
+      <td>0.208251</td>
+      <td>0.901499</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.276673</td>
-      <td>0.904595</td>
+      <td>0.291511</td>
+      <td>0.905286</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.306864</td>
-      <td>0.906745</td>
+      <td>0.303804</td>
+      <td>0.907710</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.363652</td>
-      <td>0.909827</td>
+      <td>0.361086</td>
+      <td>0.910103</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.430799</td>
-      <td>0.912196</td>
+      <td>0.432379</td>
+      <td>0.911869</td>
     </tr>
   </tbody>
 </table>
@@ -866,59 +898,59 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.365801</td>
-      <td>0.170317</td>
-      <td>0.197221</td>
-      <td>0.089667</td>
-      <td>0.176993</td>
+      <td>0.365773</td>
+      <td>0.170940</td>
+      <td>0.200011</td>
+      <td>0.088689</td>
+      <td>0.174587</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.008997</td>
-      <td>0.027994</td>
-      <td>0.020464</td>
-      <td>0.004874</td>
-      <td>0.026938</td>
+      <td>0.008972</td>
+      <td>0.023524</td>
+      <td>0.018880</td>
+      <td>0.004248</td>
+      <td>0.021818</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.346552</td>
-      <td>0.107991</td>
-      <td>0.160373</td>
-      <td>0.079188</td>
-      <td>0.133565</td>
+      <td>0.347411</td>
+      <td>0.121029</td>
+      <td>0.166410</td>
+      <td>0.081457</td>
+      <td>0.142955</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.360525</td>
-      <td>0.151561</td>
-      <td>0.180527</td>
-      <td>0.086168</td>
-      <td>0.158953</td>
+      <td>0.362229</td>
+      <td>0.156753</td>
+      <td>0.192181</td>
+      <td>0.085454</td>
+      <td>0.157728</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.364814</td>
-      <td>0.177633</td>
-      <td>0.199804</td>
-      <td>0.091123</td>
-      <td>0.174052</td>
+      <td>0.364850</td>
+      <td>0.175761</td>
+      <td>0.203854</td>
+      <td>0.088883</td>
+      <td>0.171979</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.373580</td>
-      <td>0.192863</td>
-      <td>0.209531</td>
-      <td>0.092345</td>
-      <td>0.189550</td>
+      <td>0.370063</td>
+      <td>0.186688</td>
+      <td>0.211012</td>
+      <td>0.091690</td>
+      <td>0.184947</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.380157</td>
-      <td>0.204971</td>
-      <td>0.237596</td>
-      <td>0.099505</td>
-      <td>0.256822</td>
+      <td>0.383784</td>
+      <td>0.209970</td>
+      <td>0.236253</td>
+      <td>0.095648</td>
+      <td>0.226292</td>
     </tr>
   </tbody>
 </table>
@@ -984,37 +1016,37 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.180580</td>
+      <td>0.181270</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.086218</td>
+      <td>0.089126</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.017548</td>
+      <td>-0.016106</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.121401</td>
+      <td>0.134570</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.178484</td>
+      <td>0.182712</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.233753</td>
+      <td>0.256230</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.325149</td>
+      <td>0.323334</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1073,59 +1105,59 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.401077</td>
-      <td>0.111543</td>
-      <td>0.204442</td>
-      <td>0.084349</td>
-      <td>0.198588</td>
+      <td>0.400862</td>
+      <td>0.110527</td>
+      <td>0.203609</td>
+      <td>0.085571</td>
+      <td>0.199431</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.010982</td>
-      <td>0.005765</td>
-      <td>0.008996</td>
-      <td>0.003703</td>
-      <td>0.008380</td>
+      <td>0.010486</td>
+      <td>0.005662</td>
+      <td>0.008414</td>
+      <td>0.003544</td>
+      <td>0.009410</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.376985</td>
-      <td>0.102404</td>
-      <td>0.183928</td>
-      <td>0.078453</td>
-      <td>0.178813</td>
+      <td>0.382725</td>
+      <td>0.100678</td>
+      <td>0.184311</td>
+      <td>0.079812</td>
+      <td>0.176018</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.393297</td>
-      <td>0.108543</td>
-      <td>0.199357</td>
-      <td>0.081903</td>
-      <td>0.193795</td>
+      <td>0.395243</td>
+      <td>0.107284</td>
+      <td>0.200119</td>
+      <td>0.083040</td>
+      <td>0.192893</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.401494</td>
-      <td>0.110739</td>
-      <td>0.204724</td>
-      <td>0.084302</td>
-      <td>0.198238</td>
+      <td>0.401709</td>
+      <td>0.109121</td>
+      <td>0.203551</td>
+      <td>0.085468</td>
+      <td>0.199367</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.409686</td>
-      <td>0.115256</td>
-      <td>0.208711</td>
-      <td>0.085843</td>
-      <td>0.202454</td>
+      <td>0.409566</td>
+      <td>0.114000</td>
+      <td>0.208703</td>
+      <td>0.086824</td>
+      <td>0.205095</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.419369</td>
-      <td>0.128184</td>
-      <td>0.224908</td>
-      <td>0.095649</td>
-      <td>0.221311</td>
+      <td>0.417902</td>
+      <td>0.123473</td>
+      <td>0.219799</td>
+      <td>0.095966</td>
+      <td>0.219684</td>
     </tr>
   </tbody>
 </table>
@@ -1191,37 +1223,37 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.416063</td>
+      <td>0.416127</td>
       <td>0.575241</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.040780</td>
+      <td>0.040620</td>
       <td>0.009842</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.349796</td>
+      <td>0.349148</td>
       <td>0.552126</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.388200</td>
+      <td>0.387715</td>
       <td>0.569903</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.415620</td>
+      <td>0.416008</td>
       <td>0.577257</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.435762</td>
+      <td>0.435916</td>
       <td>0.581159</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.492270</td>
+      <td>0.492091</td>
       <td>0.594571</td>
     </tr>
   </tbody>
@@ -1280,59 +1312,59 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.194661</td>
-      <td>0.246862</td>
-      <td>0.338653</td>
-      <td>0.049311</td>
-      <td>0.170514</td>
+      <td>0.194433</td>
+      <td>0.245585</td>
+      <td>0.336100</td>
+      <td>0.050868</td>
+      <td>0.173014</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.016680</td>
-      <td>0.066562</td>
-      <td>0.032743</td>
-      <td>0.008849</td>
-      <td>0.054057</td>
+      <td>0.016621</td>
+      <td>0.063267</td>
+      <td>0.037359</td>
+      <td>0.007163</td>
+      <td>0.057482</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.151387</td>
-      <td>0.115634</td>
-      <td>0.279380</td>
-      <td>0.036155</td>
-      <td>0.110274</td>
+      <td>0.152058</td>
+      <td>0.120599</td>
+      <td>0.284277</td>
+      <td>0.037708</td>
+      <td>0.095619</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.182196</td>
-      <td>0.185143</td>
-      <td>0.315717</td>
-      <td>0.043269</td>
-      <td>0.133716</td>
+      <td>0.182080</td>
+      <td>0.190266</td>
+      <td>0.304731</td>
+      <td>0.043793</td>
+      <td>0.137058</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.195259</td>
-      <td>0.259116</td>
-      <td>0.340024</td>
-      <td>0.048502</td>
-      <td>0.154130</td>
+      <td>0.195305</td>
+      <td>0.259788</td>
+      <td>0.333779</td>
+      <td>0.051726</td>
+      <td>0.160047</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.210448</td>
-      <td>0.301260</td>
-      <td>0.361358</td>
-      <td>0.053114</td>
-      <td>0.184405</td>
+      <td>0.210149</td>
+      <td>0.304632</td>
+      <td>0.355069</td>
+      <td>0.056263</td>
+      <td>0.188793</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.221528</td>
-      <td>0.328437</td>
-      <td>0.399541</td>
-      <td>0.069876</td>
-      <td>0.333344</td>
+      <td>0.221817</td>
+      <td>0.319060</td>
+      <td>0.424729</td>
+      <td>0.064012</td>
+      <td>0.344550</td>
     </tr>
   </tbody>
 </table>
@@ -1398,38 +1430,38 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.355121</td>
-      <td>0.396363</td>
+      <td>0.355176</td>
+      <td>0.394621</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.052863</td>
-      <td>0.015194</td>
+      <td>0.046545</td>
+      <td>0.019368</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.242488</td>
-      <td>0.368210</td>
+      <td>0.251157</td>
+      <td>0.349177</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.319202</td>
-      <td>0.388169</td>
+      <td>0.326613</td>
+      <td>0.384017</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.363843</td>
-      <td>0.396308</td>
+      <td>0.348698</td>
+      <td>0.396547</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.399936</td>
-      <td>0.400460</td>
+      <td>0.390514</td>
+      <td>0.406161</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.450772</td>
-      <td>0.426606</td>
+      <td>0.439704</td>
+      <td>0.427985</td>
     </tr>
   </tbody>
 </table>
@@ -1487,59 +1519,59 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.134264</td>
-      <td>0.181060</td>
-      <td>0.446667</td>
-      <td>0.038971</td>
-      <td>0.199039</td>
+      <td>0.136654</td>
+      <td>0.182902</td>
+      <td>0.441398</td>
+      <td>0.032996</td>
+      <td>0.206050</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.013269</td>
-      <td>0.058352</td>
-      <td>0.108582</td>
-      <td>0.023754</td>
-      <td>0.102021</td>
+      <td>0.019698</td>
+      <td>0.043528</td>
+      <td>0.103850</td>
+      <td>0.018875</td>
+      <td>0.095447</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.111301</td>
-      <td>0.039253</td>
-      <td>0.282089</td>
-      <td>0.011200</td>
-      <td>0.025824</td>
+      <td>0.101992</td>
+      <td>0.085822</td>
+      <td>0.216400</td>
+      <td>0.007941</td>
+      <td>0.064226</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.123832</td>
-      <td>0.142141</td>
-      <td>0.354968</td>
-      <td>0.022755</td>
-      <td>0.151555</td>
+      <td>0.118742</td>
+      <td>0.152490</td>
+      <td>0.389911</td>
+      <td>0.018885</td>
+      <td>0.147064</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.133015</td>
-      <td>0.188871</td>
-      <td>0.413903</td>
-      <td>0.033434</td>
-      <td>0.208024</td>
+      <td>0.136631</td>
+      <td>0.195218</td>
+      <td>0.466300</td>
+      <td>0.031307</td>
+      <td>0.199013</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.144088</td>
-      <td>0.219480</td>
-      <td>0.515295</td>
-      <td>0.045226</td>
-      <td>0.271256</td>
+      <td>0.152005</td>
+      <td>0.207350</td>
+      <td>0.516622</td>
+      <td>0.046199</td>
+      <td>0.250300</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.154627</td>
-      <td>0.306544</td>
-      <td>0.685616</td>
-      <td>0.105090</td>
-      <td>0.463545</td>
+      <td>0.170367</td>
+      <td>0.252095</td>
+      <td>0.624084</td>
+      <td>0.086178</td>
+      <td>0.493023</td>
     </tr>
   </tbody>
 </table>

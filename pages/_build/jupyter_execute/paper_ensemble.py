@@ -49,7 +49,8 @@ from sklearn.model_selection import RepeatedKFold
 # In[3]:
 
 
-dta = pd.read_csv('../data/master_scaled.csv', index_col=0)
+dta = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled.csv',
+                  index_col=0)
 
 
 # In[4]:

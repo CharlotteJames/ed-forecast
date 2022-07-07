@@ -50,7 +50,8 @@ plt.style.use('ggplot')
 # In[3]:
 
 
-dta = pd.read_csv('../data/master_scaled.csv', index_col=0)
+dta = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled.csv',
+                  index_col=0)
 
 
 # In[4]:
@@ -63,18 +64,12 @@ dta.columns = ['_'.join([c.split('/')[0],c.split('/')[-1]])
 # In[5]:
 
 
-dta.head()
-
-
-# In[6]:
-
-
 dta.shape
 
 
 # ### Add random feature
 
-# In[7]:
+# In[6]:
 
 
 # Adding random features
@@ -84,7 +79,7 @@ rand_var = rng.rand(dta.shape[0])
 dta['rand1'] = rand_var
 
 
-# In[8]:
+# In[7]:
 
 
 dta.shape
@@ -100,7 +95,7 @@ dta.shape
 
 # ### Pair plot 
 
-# In[9]:
+# In[8]:
 
 
 fig = sns.pairplot(dta[['gp_appt_available',
@@ -118,7 +113,7 @@ fig = sns.pairplot(dta[['gp_appt_available',
 
 # ### Linear regression 
 
-# In[10]:
+# In[9]:
 
 
 model = LinearRegression()
@@ -148,7 +143,7 @@ for train_index, test_index in cv.split(X, y):
 
 # #### Performance 
 
-# In[11]:
+# In[10]:
 
 
 results=pd.DataFrame()
@@ -156,7 +151,7 @@ results['train'] = scores_train
 results['test'] = scores_test
 
 
-# In[12]:
+# In[11]:
 
 
 results.describe()
@@ -164,7 +159,7 @@ results.describe()
 
 # #### Feature Importance 
 
-# In[13]:
+# In[12]:
 
 
 feat_imp = pd.DataFrame()
@@ -178,7 +173,7 @@ feat_imp.describe()
 
 # ### Random forest 
 
-# In[14]:
+# In[13]:
 
 
 model = RandomForestRegressor(max_depth=5, n_estimators=5,
@@ -210,7 +205,7 @@ for train_index, test_index in cv.split(X, y):
 
 # #### Performance 
 
-# In[15]:
+# In[14]:
 
 
 results=pd.DataFrame()
@@ -218,7 +213,7 @@ results['train'] = scores_train
 results['test'] = scores_test
 
 
-# In[16]:
+# In[15]:
 
 
 results.describe()
@@ -226,7 +221,7 @@ results.describe()
 
 # #### Feature importance 
 
-# In[17]:
+# In[16]:
 
 
 feat_imp = pd.DataFrame()
@@ -240,7 +235,7 @@ feat_imp.describe()
 
 # ### Gradient boosted tress
 
-# In[18]:
+# In[17]:
 
 
 model = GradientBoostingRegressor(max_depth=5, n_estimators=5, 
@@ -271,7 +266,7 @@ for train_index, test_index in cv.split(X, y):
 
 # #### Performance 
 
-# In[19]:
+# In[18]:
 
 
 results=pd.DataFrame()
@@ -279,7 +274,7 @@ results['train'] = scores_train
 results['test'] = scores_test
 
 
-# In[20]:
+# In[19]:
 
 
 results.describe()
@@ -287,7 +282,7 @@ results.describe()
 
 # #### Feature Importance 
 
-# In[21]:
+# In[20]:
 
 
 feat_imp = pd.DataFrame()
@@ -326,7 +321,7 @@ feat_imp.describe()
 
 # ### Maximum depth
 
-# In[22]:
+# In[21]:
 
 
 d = [1,2,3,4,5,6,7]
@@ -361,7 +356,7 @@ for depth in d:
 
 # #### Plot 
 
-# In[23]:
+# In[22]:
 
 
 fig,ax = plt.subplots(figsize=(8,5))
@@ -387,7 +382,7 @@ plt.show()
 
 # ### Number of trees
 
-# In[24]:
+# In[23]:
 
 
 n = [1,2,3,4,5,6,7]
@@ -422,7 +417,7 @@ for est in n:
 
 # #### Plot 
 
-# In[25]:
+# In[24]:
 
 
 fig,ax = plt.subplots(figsize=(8,5))
@@ -451,7 +446,7 @@ plt.show()
 
 # Fit the Random forest with optimal parameters
 
-# In[26]:
+# In[25]:
 
 
 model = RandomForestRegressor(max_depth=5, n_estimators=6,
@@ -482,7 +477,7 @@ for train_index, test_index in cv.split(X, y):
 
 # ### Performance 
 
-# In[27]:
+# In[26]:
 
 
 results=pd.DataFrame()
@@ -490,7 +485,7 @@ results['train'] = scores_train
 results['test'] = scores_test
 
 
-# In[28]:
+# In[27]:
 
 
 results.describe()
@@ -498,7 +493,7 @@ results.describe()
 
 # ### Feature Importance
 
-# In[29]:
+# In[28]:
 
 
 feat_imp = pd.DataFrame()

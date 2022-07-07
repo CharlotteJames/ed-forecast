@@ -103,7 +103,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
+                <a class="reference internal" href="index.html">
                     Forecasting Long Term ED Demand
                 </a>
             </li>
@@ -249,7 +249,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/stacked_forecast.ipynb"
+        <a href="https://mybinder.org/v2/gh/CharlotteJames/ed-forecast/master?urlpath=tree/pages/stacked_forecast.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -262,6 +262,24 @@ title="Launch on Binder"
     <img src="_static/images/logo_binder.svg">
   </span>
 <span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/CharlotteJames/ed-forecast/blob/master/pages/stacked_forecast.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
 </a>
 
       </li>
@@ -283,6 +301,19 @@ title="Fullscreen mode"
   </span>
 
 </button>
+<a href="https://github.com/CharlotteJames/ed-forecast"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
 
 <div class="menu-dropdown menu-dropdown-download-buttons">
   <button class="headerbtn menu-dropdown__trigger"
@@ -580,12 +611,40 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p><strong>NB</strong> if running notebook on colab the above code wont work.
+Instead, run the following cell:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> stacked_model.ipynb
+
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">rf1</span><span class="p">,</span><span class="n">rf2</span><span class="p">,</span><span class="n">final</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.343321511524463
+0.32630536112390485
+0.6857359625576978
+0.715432777083205
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1465, 14)
+</pre></div>
+</div>
+<img alt="_images/stacked_forecast_9_2.png" src="_images/stacked_forecast_9_2.png" />
+<img alt="_images/stacked_forecast_9_3.png" src="_images/stacked_forecast_9_3.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined training score: 0.7935722670846808
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="import-population-forecasts">
 <h2>Import population forecasts<a class="headerlink" href="#import-population-forecasts" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/pop_forecasts_scaled.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/pop_forecasts_scaled.csv&#39;</span><span class="p">,</span>
+                  <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -913,7 +972,8 @@ title="Print to PDF"
 <h2>Import 2019 data as baseline<a class="headerlink" href="#import-2019-data-as-baseline" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseline</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/master_scaled_2019.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseline</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_2019.csv&#39;</span><span class="p">,</span>
+                  <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1262,7 +1322,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/stacked_forecast_26_0.png" src="_images/stacked_forecast_26_0.png" />
+<img alt="_images/stacked_forecast_28_0.png" src="_images/stacked_forecast_28_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1308,7 +1368,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/stacked_forecast_30_0.png" src="_images/stacked_forecast_30_0.png" />
+<img alt="_images/stacked_forecast_32_0.png" src="_images/stacked_forecast_32_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1354,7 +1414,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/stacked_forecast_34_0.png" src="_images/stacked_forecast_34_0.png" />
+<img alt="_images/stacked_forecast_36_0.png" src="_images/stacked_forecast_36_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1400,7 +1460,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/stacked_forecast_38_0.png" src="_images/stacked_forecast_38_0.png" />
+<img alt="_images/stacked_forecast_40_0.png" src="_images/stacked_forecast_40_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1449,7 +1509,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/stacked_forecast_42_0.png" src="_images/stacked_forecast_42_0.png" />
+<img alt="_images/stacked_forecast_44_0.png" src="_images/stacked_forecast_44_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1504,7 +1564,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/stacked_forecast_45_0.png" src="_images/stacked_forecast_45_0.png" />
+<img alt="_images/stacked_forecast_47_0.png" src="_images/stacked_forecast_47_0.png" />
 </div>
 </div>
 </section>

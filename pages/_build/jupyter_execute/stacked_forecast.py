@@ -52,15 +52,27 @@ with open('stacked_model_scaled.pkl','rb') as f:
     models, m1_features, m2_features = pkl.load(f)
 
 
-# ## Import population forecasts 
+# **NB** if running notebook on colab the above code wont work. 
+# Instead, run the following cell: 
 
 # In[4]:
 
 
-population = pd.read_csv('../data/pop_forecasts_scaled.csv', index_col=0)
+get_ipython().run_line_magic('run', 'stacked_model.ipynb')
 
+models = [rf1,rf2,final]
+
+
+# ## Import population forecasts 
 
 # In[5]:
+
+
+population = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/pop_forecasts_scaled.csv',
+                  index_col=0)
+
+
+# In[6]:
 
 
 population
@@ -68,20 +80,21 @@ population
 
 # ## Import 2019 data as baseline 
 
-# In[6]:
-
-
-baseline = pd.read_csv('../data/master_scaled_2019.csv', index_col=0)
-
-
 # In[7]:
+
+
+baseline = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_2019.csv',
+                  index_col=0)
+
+
+# In[8]:
 
 
 baseline.columns = ['_'.join([c.split('/')[0],c.split('/')[-1]]) 
                     if '/' in c else c for c in baseline.columns]
 
 
-# In[8]:
+# In[9]:
 
 
 baseline
@@ -93,7 +106,7 @@ baseline
 # 
 # To forecast raw numbers, need to multiply predicted value by population/10,000
 
-# In[9]:
+# In[10]:
 
 
 def stacked_predict(X, models, m1_features, m2_features):
@@ -111,7 +124,7 @@ def stacked_predict(X, models, m1_features, m2_features):
     return preds
 
 
-# In[10]:
+# In[11]:
 
 
 def forecast(data, pop, year, models, m1_features, m2_features):
@@ -132,7 +145,7 @@ def forecast(data, pop, year, models, m1_features, m2_features):
     return preds
 
 
-# In[11]:
+# In[12]:
 
 
 def sum_by_month(results):
@@ -159,7 +172,7 @@ def sum_by_month(results):
 
 # ### List to store scenario results 
 
-# In[12]:
+# In[13]:
 
 
 scenario_results = []
@@ -167,7 +180,7 @@ scenario_results = []
 
 # ### Scaling factor for capacity increase 
 
-# In[13]:
+# In[14]:
 
 
 F=1.1
@@ -175,7 +188,7 @@ F=1.1
 
 # ## Scenario 1: do nothing 
 
-# In[14]:
+# In[15]:
 
 
 results = pd.DataFrame()
@@ -190,7 +203,7 @@ for year in np.arange(2020,2028):
     results[str(year)] = preds
 
 
-# In[15]:
+# In[16]:
 
 
 points = sum_by_month(results)
@@ -202,7 +215,7 @@ plt.plot(points[2:])
 plt.show()
 
 
-# In[16]:
+# In[17]:
 
 
 scenario_results.append(results)
@@ -210,7 +223,7 @@ scenario_results.append(results)
 
 # ## Scenario 2: increase 111 capacity
 
-# In[17]:
+# In[18]:
 
 
 results = pd.DataFrame()
@@ -229,7 +242,7 @@ for year in np.arange(2020,2028):
     results[str(year)] = preds
 
 
-# In[18]:
+# In[19]:
 
 
 points = sum_by_month(results)
@@ -241,7 +254,7 @@ plt.plot(points[2:])
 plt.show()
 
 
-# In[19]:
+# In[20]:
 
 
 scenario_results.append(results)
@@ -249,7 +262,7 @@ scenario_results.append(results)
 
 # ## Scenario 3: increase 999 capacity
 
-# In[20]:
+# In[21]:
 
 
 results = pd.DataFrame()
@@ -268,7 +281,7 @@ for year in np.arange(2020,2028):
     results[str(year)] = preds
 
 
-# In[21]:
+# In[22]:
 
 
 points = sum_by_month(results)
@@ -280,7 +293,7 @@ plt.plot(points[2:])
 plt.show()
 
 
-# In[22]:
+# In[23]:
 
 
 scenario_results.append(results)
@@ -288,7 +301,7 @@ scenario_results.append(results)
 
 # ## Scenario 4: increase GP capacity
 
-# In[23]:
+# In[24]:
 
 
 results = pd.DataFrame()
@@ -307,7 +320,7 @@ for year in np.arange(2020,2028):
     results[str(year)] = preds
 
 
-# In[24]:
+# In[25]:
 
 
 points = sum_by_month(results)
@@ -319,7 +332,7 @@ plt.plot(points[2:])
 plt.show()
 
 
-# In[25]:
+# In[26]:
 
 
 scenario_results.append(results)
@@ -327,7 +340,7 @@ scenario_results.append(results)
 
 # ## Scenario 5: health of population at 2019
 
-# In[26]:
+# In[27]:
 
 
 results = pd.DataFrame()
@@ -349,7 +362,7 @@ for year in np.arange(2020,2028):
     results[str(year)] = preds
 
 
-# In[27]:
+# In[28]:
 
 
 points = sum_by_month(results)
@@ -361,7 +374,7 @@ plt.plot(points[2:])
 plt.show()
 
 
-# In[28]:
+# In[29]:
 
 
 scenario_results.append(results)
@@ -369,7 +382,7 @@ scenario_results.append(results)
 
 # ## Plot 
 
-# In[29]:
+# In[30]:
 
 
 fig,ax = plt.subplots(figsize=(8,5))

@@ -50,7 +50,8 @@ plt.style.use('ggplot')
 # In[3]:
 
 
-dta = pd.read_csv('../data/master_scaled.csv', index_col=0)
+dta = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled.csv',
+                  index_col=0)
 
 
 # In[4]:
@@ -63,18 +64,12 @@ dta.columns = ['_'.join([c.split('/')[0],c.split('/')[-1]])
 # In[5]:
 
 
-dta.head()
-
-
-# In[6]:
-
-
 dta.shape
 
 
 # ## Function to group data 
 
-# In[7]:
+# In[6]:
 
 
 def group_data(data, features):
@@ -110,7 +105,7 @@ def group_data(data, features):
 
 # ## Fit Predict Population Health model
 
-# In[8]:
+# In[7]:
 
 
 model = RandomForestRegressor(max_depth=4, n_estimators=2, 
@@ -142,7 +137,7 @@ for train_index, test_index in cv.split(X, y):
     results = results.append(test, ignore_index=True)
 
 
-# In[9]:
+# In[8]:
 
 
 results
@@ -150,21 +145,15 @@ results
 
 # ### Merge with data set 
 
-# In[10]:
+# In[9]:
 
 
 dta = dta.merge(results[['population','ae_predicted']],                left_on='population', right_on='population')
 
 
-# In[11]:
-
-
-dta
-
-
 # ## Combined model 
 
-# In[12]:
+# In[10]:
 
 
 #capacity utility model
@@ -208,7 +197,7 @@ print(rf1.score(train_1[capacity_features],
 y_pred_ph = train_1['ae_predicted']
 
 
-# In[13]:
+# In[11]:
 
 
 X_f = np.vstack([y_pred_cu, y_pred_ph]).T
@@ -221,7 +210,7 @@ final.score(X_f,y_f)
 
 # ### Check performance on held out data 
 
-# In[14]:
+# In[12]:
 
 
 from sklearn.metrics import r2_score as r2
@@ -247,7 +236,7 @@ print(final.score(np.vstack([y_pred_cu, y_pred_ph]).T,
 
 # ### Coefficients 
 
-# In[15]:
+# In[13]:
 
 
 final.coef_
@@ -255,7 +244,7 @@ final.coef_
 
 # ## Combined model with optimised parameters 
 
-# In[16]:
+# In[14]:
 
 
 def fit_ph(dta, features, model):
@@ -291,7 +280,7 @@ def fit_ph(dta, features, model):
     return dta
 
 
-# In[17]:
+# In[15]:
 
 
 def fit_capacity(dta, features, model):
@@ -304,7 +293,7 @@ def fit_capacity(dta, features, model):
     return model
 
 
-# In[18]:
+# In[16]:
 
 
 def fit_combined(train, rf1, m1_features, train_size=7/8):
@@ -340,7 +329,7 @@ def fit_combined(train, rf1, m1_features, train_size=7/8):
     return rf1,final        
 
 
-# In[19]:
+# In[17]:
 
 
 def cv_combined(dta, rf1, rf2):
@@ -410,7 +399,7 @@ def cv_combined(dta, rf1, rf2):
     return scores_final, scores_rf1, scores_rf2, dta_pred, coefs
 
 
-# In[20]:
+# In[18]:
 
 
 #capacity model
@@ -424,7 +413,7 @@ scores_final, scores_rf1, scores_rf2, dta_pred, coefs = cv_combined(dta, rf1, rf
 
 # ### Results for paper
 
-# In[21]:
+# In[19]:
 
 
 results=pd.DataFrame()
@@ -434,7 +423,7 @@ results['capacity'] = scores_rf1
 results['population_health'] = scores_rf2
 
 
-# In[22]:
+# In[20]:
 
 
 results.describe()
@@ -444,7 +433,7 @@ results.describe()
 
 # #### Mean 
 
-# In[23]:
+# In[21]:
 
 
 np.mean(coefs, axis=0)
@@ -452,7 +441,7 @@ np.mean(coefs, axis=0)
 
 # #### Std 
 
-# In[24]:
+# In[22]:
 
 
 np.std(coefs, axis=0)
@@ -460,7 +449,7 @@ np.std(coefs, axis=0)
 
 # ### Plot 
 
-# In[25]:
+# In[23]:
 
 
 fig,ax = plt.subplots(figsize=(8,5))
@@ -485,7 +474,7 @@ plt.show()
 
 # ## Permutation Feature Importance 
 
-# In[26]:
+# In[24]:
 
 
 def fit_ph_shuffle(dta, features,f, model):
@@ -526,7 +515,7 @@ def fit_ph_shuffle(dta, features,f, model):
     return dta
 
 
-# In[27]:
+# In[25]:
 
 
 def permeate_feature(dta, f,rf1, rf2):
@@ -604,7 +593,7 @@ def permeate_feature(dta, f,rf1, rf2):
     return true_score, shuffled_score       
 
 
-# In[28]:
+# In[26]:
 
 
 def feature_importance_combined(dta, rf1, rf2):
@@ -638,7 +627,7 @@ def feature_importance_combined(dta, rf1, rf2):
     return importances
 
 
-# In[29]:
+# In[27]:
 
 
 #set random seed to make results reproducible
@@ -647,13 +636,13 @@ np.random.seed(4)
 importances = feature_importance_combined(dta, rf1, rf2)
 
 
-# In[30]:
+# In[28]:
 
 
 importances.describe()
 
 
-# In[31]:
+# In[29]:
 
 
 fig,ax = plt.subplots(figsize=(8,5))
@@ -673,7 +662,7 @@ plt.show()
 
 # ## Train final model on all data and save for forecasting 
 
-# In[32]:
+# In[30]:
 
 
 def fit_final(dta, rf1, rf2, m1_features, m2_features):
@@ -714,7 +703,7 @@ def fit_final(dta, rf1, rf2, m1_features, m2_features):
     return rf1,rf2, final        
 
 
-# In[33]:
+# In[31]:
 
 
 m1_features = capacity_features
@@ -723,7 +712,7 @@ m2_features = pophealth_features
 rf1,rf2,final = fit_final(dta, rf1, rf2, m1_features, m2_features)
 
 
-# In[34]:
+# In[32]:
 
 
 with open('stacked_model_scaled.pkl','wb') as f:

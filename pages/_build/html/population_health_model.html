@@ -105,7 +105,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
+                <a class="reference internal" href="index.html">
                     Forecasting Long Term ED Demand
                 </a>
             </li>
@@ -251,7 +251,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/population_health_model.ipynb"
+        <a href="https://mybinder.org/v2/gh/CharlotteJames/ed-forecast/master?urlpath=tree/pages/population_health_model.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -264,6 +264,24 @@ title="Launch on Binder"
     <img src="_static/images/logo_binder.svg">
   </span>
 <span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/CharlotteJames/ed-forecast/blob/master/pages/population_health_model.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
 </a>
 
       </li>
@@ -285,6 +303,19 @@ title="Fullscreen mode"
   </span>
 
 </button>
+<a href="https://github.com/CharlotteJames/ed-forecast"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
 
 <div class="menu-dropdown menu-dropdown-download-buttons">
   <button class="headerbtn menu-dropdown__trigger"
@@ -717,7 +748,8 @@ title="Print to PDF"
 <h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/master_scaled.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled.csv&#39;</span><span class="p">,</span>
+                  <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -729,131 +761,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ccg</th>
-      <th>month</th>
-      <th>111_111_offered</th>
-      <th>111_111_answered</th>
-      <th>amb_sys_made</th>
-      <th>amb_sys_answered</th>
-      <th>gp_appt_available</th>
-      <th>ae_attendances_attendances</th>
-      <th>population</th>
-      <th>People</th>
-      <th>Places</th>
-      <th>Lives</th>
-      <th>year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>00Q</td>
-      <td>Jan</td>
-      <td>406.655830</td>
-      <td>308.945095</td>
-      <td>310.561801</td>
-      <td>234.716187</td>
-      <td>4568.019766</td>
-      <td>1179.855246</td>
-      <td>14.8942</td>
-      <td>97.2</td>
-      <td>99.7</td>
-      <td>94.4</td>
-      <td>2018</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>00Q</td>
-      <td>Feb</td>
-      <td>349.933603</td>
-      <td>256.872981</td>
-      <td>261.756435</td>
-      <td>205.298797</td>
-      <td>3910.918344</td>
-      <td>1075.452189</td>
-      <td>14.8942</td>
-      <td>97.2</td>
-      <td>99.7</td>
-      <td>94.4</td>
-      <td>2018</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>00Q</td>
-      <td>Mar</td>
-      <td>413.247659</td>
-      <td>300.690725</td>
-      <td>303.676215</td>
-      <td>234.716187</td>
-      <td>4051.778545</td>
-      <td>1210.874032</td>
-      <td>14.8942</td>
-      <td>97.2</td>
-      <td>99.7</td>
-      <td>94.4</td>
-      <td>2018</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>00Q</td>
-      <td>Apr</td>
-      <td>349.608595</td>
-      <td>278.140171</td>
-      <td>264.973181</td>
-      <td>203.677924</td>
-      <td>3974.433001</td>
-      <td>1186.166427</td>
-      <td>14.8942</td>
-      <td>97.2</td>
-      <td>99.7</td>
-      <td>94.4</td>
-      <td>2018</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>00Q</td>
-      <td>May</td>
-      <td>361.100544</td>
-      <td>284.419492</td>
-      <td>294.361403</td>
-      <td>227.926437</td>
-      <td>4232.385761</td>
-      <td>1299.297713</td>
-      <td>14.8942</td>
-      <td>97.2</td>
-      <td>99.7</td>
-      <td>94.4</td>
-      <td>2018</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -957,7 +864,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/population_health_model_19_0.png" src="_images/population_health_model_19_0.png" />
+<img alt="_images/population_health_model_18_0.png" src="_images/population_health_model_18_0.png" />
 </div>
 </div>
 </section>
@@ -1733,7 +1640,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/population_health_model_48_0.png" src="_images/population_health_model_48_0.png" />
+<img alt="_images/population_health_model_47_0.png" src="_images/population_health_model_47_0.png" />
 </div>
 </div>
 <p>A depth of 4 is optimal. After this, there is no improvement in performance on unseen data (test, red dashed line) and performance continues to increase in the training data (blue dashed line) suggesting overfitting.</p>
@@ -1801,7 +1708,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/population_health_model_53_0.png" src="_images/population_health_model_53_0.png" />
+<img alt="_images/population_health_model_52_0.png" src="_images/population_health_model_52_0.png" />
 </div>
 </div>
 <p>The optimal number of trees is 2, beyond which there is no improvement in the training or test set.</p>

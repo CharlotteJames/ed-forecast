@@ -105,7 +105,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
+                <a class="reference internal" href="index.html">
                     Forecasting Long Term ED Demand
                 </a>
             </li>
@@ -251,7 +251,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/model_comparison.ipynb"
+        <a href="https://mybinder.org/v2/gh/CharlotteJames/ed-forecast/master?urlpath=tree/pages/model_comparison.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -264,6 +264,24 @@ title="Launch on Binder"
     <img src="_static/images/logo_binder.svg">
   </span>
 <span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/CharlotteJames/ed-forecast/blob/master/pages/model_comparison.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
 </a>
 
       </li>
@@ -285,6 +303,19 @@ title="Fullscreen mode"
   </span>
 
 </button>
+<a href="https://github.com/CharlotteJames/ed-forecast"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
 
 <div class="menu-dropdown menu-dropdown-download-buttons">
   <button class="headerbtn menu-dropdown__trigger"
@@ -780,7 +811,8 @@ title="Print to PDF"
 <h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/master_scaled.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled.csv&#39;</span><span class="p">,</span>
+                  <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1717,19 +1749,19 @@ model score on testing data: 0.5297111469989744
   <tbody>
     <tr>
       <th>111_111_offered</th>
-      <td>0.467010</td>
+      <td>0.469575</td>
     </tr>
     <tr>
       <th>111_111_answered</th>
-      <td>0.407518</td>
+      <td>0.409401</td>
     </tr>
     <tr>
       <th>amb_sys_made</th>
-      <td>0.568078</td>
+      <td>0.567767</td>
     </tr>
     <tr>
       <th>amb_sys_answered</th>
-      <td>0.660371</td>
+      <td>0.659067</td>
     </tr>
     <tr>
       <th>gp_appt_available</th>
@@ -1737,19 +1769,19 @@ model score on testing data: 0.5297111469989744
     </tr>
     <tr>
       <th>population</th>
-      <td>1.411858</td>
+      <td>1.411216</td>
     </tr>
     <tr>
       <th>People</th>
-      <td>1.279674</td>
+      <td>1.275478</td>
     </tr>
     <tr>
       <th>Places</th>
-      <td>1.374464</td>
+      <td>1.373391</td>
     </tr>
     <tr>
       <th>Lives</th>
-      <td>1.364897</td>
+      <td>1.369417</td>
     </tr>
     <tr>
       <th>year</th>
@@ -1799,7 +1831,7 @@ model score on testing data: 0.5297111469989744
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;1 0.114 (0.065)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;2 0.312 (0.167)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;2 0.326 (0.166)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;3 0.493 (0.031)
@@ -1899,35 +1931,35 @@ model score on testing data: 0.5297111469989744
   <tbody>
     <tr>
       <th>population</th>
-      <td>1.515145</td>
+      <td>1.515610</td>
     </tr>
     <tr>
       <th>Lives</th>
-      <td>1.498531</td>
+      <td>1.499197</td>
     </tr>
     <tr>
       <th>Places</th>
-      <td>1.495922</td>
+      <td>1.496323</td>
     </tr>
     <tr>
       <th>People</th>
-      <td>1.441469</td>
+      <td>1.443932</td>
     </tr>
     <tr>
       <th>amb_sys_answered</th>
-      <td>0.680023</td>
+      <td>0.680561</td>
     </tr>
     <tr>
       <th>amb_sys_made</th>
-      <td>0.590274</td>
+      <td>0.589813</td>
     </tr>
     <tr>
       <th>111_111_offered</th>
-      <td>0.447172</td>
+      <td>0.445919</td>
     </tr>
     <tr>
       <th>111_111_answered</th>
-      <td>0.371758</td>
+      <td>0.372861</td>
     </tr>
     <tr>
       <th>gp_appt_available</th>

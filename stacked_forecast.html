@@ -1,0 +1,1579 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Forecasting Future ED Demand &#8212; Forecasting Long Term ED Demand</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Future demand at CCG level" href="ccg_forecast.html" />
+    <link rel="prev" title="Combined Population Health and Service Capacity Model" href="stacked_model.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Forecasting Long Term ED Demand</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Forecasting Long Term ED Demand
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_sources.html">
+   Data Sources
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exploration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_comparison.html">
+   Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_level_model.html">
+   Mixed Linear Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paper_ensemble.html">
+   Tree-based models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capacity_vs_utility.html">
+   Seperating Capacity and Utility
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Model Development
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacked_model_description.html">
+   Stacked Architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capacity_model.html">
+   Developing the Capacity Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="population_health_model.html">
+   Developing the Population Health Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacked_model.html">
+   Combined Population Health and Service Capacity Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Forecasting Future ED Demand
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Forecasting Future ED Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ccg_forecast.html">
+   Future demand at CCG level
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/stacked_forecast.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/stacked_forecast.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-libraries">
+   Import libraries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-trained-models">
+   Import trained models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-population-forecasts">
+   Import population forecasts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-2019-data-as-baseline">
+   Import 2019 data as baseline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#list-to-store-scenario-results">
+     List to store scenario results
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scaling-factor-for-capacity-increase">
+     Scaling factor for capacity increase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scenario-1-do-nothing">
+   Scenario 1: do nothing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scenario-2-increase-111-capacity">
+   Scenario 2: increase 111 capacity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scenario-3-increase-999-capacity">
+   Scenario 3: increase 999 capacity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scenario-4-increase-gp-capacity">
+   Scenario 4: increase GP capacity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scenario-5-health-of-population-at-2019">
+   Scenario 5: health of population at 2019
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot">
+   Plot
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Forecasting Future ED Demand</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-libraries">
+   Import libraries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-trained-models">
+   Import trained models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-population-forecasts">
+   Import population forecasts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-2019-data-as-baseline">
+   Import 2019 data as baseline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#list-to-store-scenario-results">
+     List to store scenario results
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scaling-factor-for-capacity-increase">
+     Scaling factor for capacity increase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scenario-1-do-nothing">
+   Scenario 1: do nothing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scenario-2-increase-111-capacity">
+   Scenario 2: increase 111 capacity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scenario-3-increase-999-capacity">
+   Scenario 3: increase 999 capacity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scenario-4-increase-gp-capacity">
+   Scenario 4: increase GP capacity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scenario-5-health-of-population-at-2019">
+   Scenario 5: health of population at 2019
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot">
+   Plot
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="forecasting-future-ed-demand">
+<h1>Forecasting Future ED Demand<a class="headerlink" href="#forecasting-future-ed-demand" title="Permalink to this headline">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<p>This notebook contains the code to forecast future ED demand under 4 different scenarios:</p>
+<ol class="simple">
+<li><p>‘do nothing’: population grows but population health and health service capacity reamin unchanged</p></li>
+<li><p>Increase 111 capacity by 10% in 2020</p></li>
+<li><p>Increase 999 capacity by 10% in 2020</p></li>
+<li><p>Increase GP capacity by 10% in 2020</p></li>
+<li><p>If population health measures (People, Places, Lives) are less than the 2019 average, increase them by 1 point per year until they reach the 2019 average.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#turn warnings off to keep notebook tidy</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="import-libraries">
+<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pickle</span> <span class="k">as</span> <span class="nn">pkl</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
+
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="import-trained-models">
+<h2>Import trained models<a class="headerlink" href="#import-trained-models" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;stacked_model_scaled.pkl&#39;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    
+    <span class="n">models</span><span class="p">,</span> <span class="n">m1_features</span><span class="p">,</span> <span class="n">m2_features</span> <span class="o">=</span> <span class="n">pkl</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="import-population-forecasts">
+<h2>Import population forecasts<a class="headerlink" href="#import-population-forecasts" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/pop_forecasts_scaled.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>2025</th>
+      <th>2026</th>
+      <th>2027</th>
+      <th>...</th>
+      <th>2035</th>
+      <th>2036</th>
+      <th>2037</th>
+      <th>2038</th>
+      <th>2039</th>
+      <th>2040</th>
+      <th>2041</th>
+      <th>2042</th>
+      <th>2043</th>
+      <th>ccg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>200.8447</td>
+      <td>202.9265</td>
+      <td>204.7996</td>
+      <td>206.5125</td>
+      <td>208.0446</td>
+      <td>209.3943</td>
+      <td>210.5565</td>
+      <td>211.5642</td>
+      <td>212.5387</td>
+      <td>213.4931</td>
+      <td>...</td>
+      <td>221.2491</td>
+      <td>222.2393</td>
+      <td>223.2383</td>
+      <td>224.2422</td>
+      <td>225.2318</td>
+      <td>226.1957</td>
+      <td>227.1281</td>
+      <td>228.0246</td>
+      <td>228.8859</td>
+      <td>A3A8R</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>209.5479</td>
+      <td>210.8074</td>
+      <td>211.8850</td>
+      <td>212.8265</td>
+      <td>213.6216</td>
+      <td>214.2545</td>
+      <td>214.7215</td>
+      <td>215.0593</td>
+      <td>215.4030</td>
+      <td>215.7479</td>
+      <td>...</td>
+      <td>219.0375</td>
+      <td>219.4856</td>
+      <td>219.9439</td>
+      <td>220.4162</td>
+      <td>220.8884</td>
+      <td>221.3468</td>
+      <td>221.7894</td>
+      <td>222.2189</td>
+      <td>222.6387</td>
+      <td>W2U3Z</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>149.4905</td>
+      <td>150.2535</td>
+      <td>150.9484</td>
+      <td>151.6046</td>
+      <td>152.1883</td>
+      <td>152.6870</td>
+      <td>153.1002</td>
+      <td>153.4384</td>
+      <td>153.7346</td>
+      <td>154.0150</td>
+      <td>...</td>
+      <td>156.6288</td>
+      <td>157.0287</td>
+      <td>157.4507</td>
+      <td>157.8919</td>
+      <td>158.3365</td>
+      <td>158.7785</td>
+      <td>159.2128</td>
+      <td>159.6398</td>
+      <td>160.0604</td>
+      <td>36L</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>181.1249</td>
+      <td>182.6084</td>
+      <td>183.9507</td>
+      <td>185.1905</td>
+      <td>186.3272</td>
+      <td>187.3571</td>
+      <td>188.2697</td>
+      <td>189.0749</td>
+      <td>189.8431</td>
+      <td>190.5932</td>
+      <td>...</td>
+      <td>197.0201</td>
+      <td>197.8779</td>
+      <td>198.7388</td>
+      <td>199.6013</td>
+      <td>200.4489</td>
+      <td>201.2717</td>
+      <td>202.0611</td>
+      <td>202.8162</td>
+      <td>203.5407</td>
+      <td>72Q</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>149.8001</td>
+      <td>151.1457</td>
+      <td>152.3376</td>
+      <td>153.3887</td>
+      <td>154.3113</td>
+      <td>155.1054</td>
+      <td>155.7686</td>
+      <td>156.3214</td>
+      <td>156.8646</td>
+      <td>157.4020</td>
+      <td>...</td>
+      <td>161.9110</td>
+      <td>162.4828</td>
+      <td>163.0498</td>
+      <td>163.6149</td>
+      <td>164.1693</td>
+      <td>164.7041</td>
+      <td>165.2164</td>
+      <td>165.7083</td>
+      <td>166.1828</td>
+      <td>93C</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>91.8428</td>
+      <td>92.7598</td>
+      <td>93.7442</td>
+      <td>94.3253</td>
+      <td>94.8851</td>
+      <td>95.4291</td>
+      <td>95.9496</td>
+      <td>96.4521</td>
+      <td>96.9386</td>
+      <td>97.4023</td>
+      <td>...</td>
+      <td>100.5223</td>
+      <td>100.8696</td>
+      <td>101.2136</td>
+      <td>101.5608</td>
+      <td>101.9113</td>
+      <td>102.2636</td>
+      <td>102.6157</td>
+      <td>102.9692</td>
+      <td>103.3211</td>
+      <td>92G</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>95.9968</td>
+      <td>96.9439</td>
+      <td>97.7795</td>
+      <td>98.5484</td>
+      <td>99.2871</td>
+      <td>100.0138</td>
+      <td>100.7402</td>
+      <td>101.4557</td>
+      <td>102.1754</td>
+      <td>102.8963</td>
+      <td>...</td>
+      <td>108.4232</td>
+      <td>109.0868</td>
+      <td>109.7408</td>
+      <td>110.3780</td>
+      <td>111.0131</td>
+      <td>111.6475</td>
+      <td>112.2762</td>
+      <td>112.8970</td>
+      <td>113.5074</td>
+      <td>15C</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>119.4166</td>
+      <td>120.3720</td>
+      <td>121.2834</td>
+      <td>122.1533</td>
+      <td>122.9974</td>
+      <td>123.8400</td>
+      <td>124.6744</td>
+      <td>125.4918</td>
+      <td>126.2953</td>
+      <td>127.0828</td>
+      <td>...</td>
+      <td>132.2403</td>
+      <td>132.7838</td>
+      <td>133.3138</td>
+      <td>133.8270</td>
+      <td>134.3426</td>
+      <td>134.8642</td>
+      <td>135.3892</td>
+      <td>135.9138</td>
+      <td>136.4359</td>
+      <td>15N</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>56.8210</td>
+      <td>57.4154</td>
+      <td>57.9778</td>
+      <td>58.5240</td>
+      <td>59.0612</td>
+      <td>59.5859</td>
+      <td>60.1019</td>
+      <td>60.6047</td>
+      <td>61.0936</td>
+      <td>61.5704</td>
+      <td>...</td>
+      <td>64.7377</td>
+      <td>65.0715</td>
+      <td>65.3987</td>
+      <td>65.7217</td>
+      <td>66.0425</td>
+      <td>66.3625</td>
+      <td>66.6815</td>
+      <td>66.9986</td>
+      <td>67.3133</td>
+      <td>11N</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>55.9399</td>
+      <td>56.3600</td>
+      <td>56.7726</td>
+      <td>57.1821</td>
+      <td>57.5799</td>
+      <td>57.9658</td>
+      <td>58.3368</td>
+      <td>58.6904</td>
+      <td>59.0312</td>
+      <td>59.3577</td>
+      <td>...</td>
+      <td>61.6103</td>
+      <td>61.8668</td>
+      <td>62.1228</td>
+      <td>62.3799</td>
+      <td>62.6334</td>
+      <td>62.8819</td>
+      <td>63.1262</td>
+      <td>63.3669</td>
+      <td>63.6048</td>
+      <td>11X</td>
+    </tr>
+  </tbody>
+</table>
+<p>75 rows × 27 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="import-2019-data-as-baseline">
+<h2>Import 2019 data as baseline<a class="headerlink" href="#import-2019-data-as-baseline" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseline</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/master_scaled_2019.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseline</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span> 
+                    <span class="k">if</span> <span class="s1">&#39;/&#39;</span> <span class="ow">in</span> <span class="n">c</span> <span class="k">else</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">baseline</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseline</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ccg</th>
+      <th>month</th>
+      <th>111_111_offered</th>
+      <th>111_111_answered</th>
+      <th>amb_sys_made</th>
+      <th>amb_sys_answered</th>
+      <th>gp_appt_available</th>
+      <th>ae_attendances_attendances</th>
+      <th>population</th>
+      <th>People</th>
+      <th>Places</th>
+      <th>Lives</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00Q</td>
+      <td>Jan</td>
+      <td>370.420188</td>
+      <td>293.334289</td>
+      <td>276.797526</td>
+      <td>223.661852</td>
+      <td>4665.289367</td>
+      <td>1044.377666</td>
+      <td>14.9084</td>
+      <td>96.0</td>
+      <td>99.5</td>
+      <td>94.6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>00Q</td>
+      <td>Feb</td>
+      <td>332.505217</td>
+      <td>270.219297</td>
+      <td>247.201714</td>
+      <td>198.606966</td>
+      <td>4060.932092</td>
+      <td>972.136514</td>
+      <td>14.9084</td>
+      <td>96.0</td>
+      <td>99.5</td>
+      <td>94.6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00Q</td>
+      <td>Mar</td>
+      <td>338.934223</td>
+      <td>296.084545</td>
+      <td>259.446256</td>
+      <td>208.037004</td>
+      <td>4191.127150</td>
+      <td>1056.317244</td>
+      <td>14.9084</td>
+      <td>96.0</td>
+      <td>99.5</td>
+      <td>94.6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00Q</td>
+      <td>Apr</td>
+      <td>348.233692</td>
+      <td>305.800593</td>
+      <td>261.284595</td>
+      <td>207.529233</td>
+      <td>3765.259854</td>
+      <td>1068.458050</td>
+      <td>14.9084</td>
+      <td>96.0</td>
+      <td>99.5</td>
+      <td>94.6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>00Q</td>
+      <td>May</td>
+      <td>353.122804</td>
+      <td>306.380903</td>
+      <td>263.684592</td>
+      <td>207.844258</td>
+      <td>3888.881436</td>
+      <td>1085.294197</td>
+      <td>14.9084</td>
+      <td>96.0</td>
+      <td>99.5</td>
+      <td>94.6</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>895</th>
+      <td>X2C4Y</td>
+      <td>Aug</td>
+      <td>281.008273</td>
+      <td>253.093792</td>
+      <td>459.652700</td>
+      <td>306.843650</td>
+      <td>3982.517935</td>
+      <td>390.405530</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+    </tr>
+    <tr>
+      <th>896</th>
+      <td>X2C4Y</td>
+      <td>Sep</td>
+      <td>263.936917</td>
+      <td>240.868701</td>
+      <td>453.078703</td>
+      <td>305.262399</td>
+      <td>4598.750502</td>
+      <td>388.679580</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+    </tr>
+    <tr>
+      <th>897</th>
+      <td>X2C4Y</td>
+      <td>Oct</td>
+      <td>286.454848</td>
+      <td>254.680032</td>
+      <td>488.348051</td>
+      <td>327.202669</td>
+      <td>5225.611293</td>
+      <td>391.268506</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+    </tr>
+    <tr>
+      <th>898</th>
+      <td>X2C4Y</td>
+      <td>Nov</td>
+      <td>326.984206</td>
+      <td>276.374619</td>
+      <td>499.497654</td>
+      <td>306.953594</td>
+      <td>4606.948769</td>
+      <td>389.542555</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+    </tr>
+    <tr>
+      <th>899</th>
+      <td>X2C4Y</td>
+      <td>Dec</td>
+      <td>365.414559</td>
+      <td>334.346359</td>
+      <td>532.917357</td>
+      <td>311.645611</td>
+      <td>4160.472547</td>
+      <td>404.531075</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+    </tr>
+  </tbody>
+</table>
+<p>784 rows × 12 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
+<p>Model predicts monthly ED attendances per 10,000 people</p>
+<p>To forecast raw numbers, need to multiply predicted value by population/10,000</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">stacked_predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">m1_features</span><span class="p">,</span> <span class="n">m2_features</span><span class="p">):</span>
+    
+    <span class="n">rf1</span><span class="p">,</span><span class="n">rf2</span><span class="p">,</span><span class="n">final</span> <span class="o">=</span> <span class="n">models</span>
+    
+    <span class="n">y_pred_1</span> <span class="o">=</span> <span class="n">rf1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">m1_features</span><span class="p">])</span>
+
+    <span class="n">y_pred_2</span> <span class="o">=</span> <span class="n">rf2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">m2_features</span><span class="p">])</span>
+
+    <span class="n">X_f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">y_pred_1</span><span class="p">,</span> <span class="n">y_pred_2</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">final</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_f</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">preds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">forecast</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">m1_features</span><span class="p">,</span> <span class="n">m2_features</span><span class="p">):</span>
+    
+    <span class="c1"># model = reg</span>
+    
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pop</span><span class="p">[[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span><span class="s1">&#39;ccg&#39;</span><span class="p">]],</span> 
+                      <span class="n">left_on</span> <span class="o">=</span> <span class="s1">&#39;ccg&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;ccg&#39;</span><span class="p">)</span>
+    
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span><span class="c1">#*10000</span>
+    
+    <span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">,</span><span class="s1">&#39;ccg&#39;</span><span class="p">,</span>\
+                   <span class="s1">&#39;month&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span><span class="s1">&#39;ccg&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">stacked_predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">m1_features</span><span class="p">,</span> <span class="n">m2_features</span><span class="p">)</span>
+    
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">preds</span><span class="o">*</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    
+    <span class="k">return</span> <span class="n">preds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_by_month</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+
+    <span class="n">to_plot</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">months</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Jan&#39;</span><span class="p">,</span><span class="s1">&#39;Feb&#39;</span><span class="p">,</span><span class="s1">&#39;Mar&#39;</span><span class="p">,</span><span class="s1">&#39;Apr&#39;</span><span class="p">,</span><span class="s1">&#39;May&#39;</span><span class="p">,</span><span class="s1">&#39;Jun&#39;</span><span class="p">,</span>\
+              <span class="s1">&#39;Jul&#39;</span><span class="p">,</span><span class="s1">&#39;Aug&#39;</span><span class="p">,</span><span class="s1">&#39;Sep&#39;</span><span class="p">,</span><span class="s1">&#39;Oct&#39;</span><span class="p">,</span><span class="s1">&#39;Nov&#39;</span><span class="p">,</span><span class="s1">&#39;Dec&#39;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">months</span><span class="p">:</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">results</span><span class="o">.</span><span class="n">month</span><span class="o">==</span><span class="n">month</span><span class="p">]</span>
+        <span class="n">to_plot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">:]]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">to_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">to_plot</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">to_plot</span><span class="p">:</span>
+
+        <span class="n">points</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">points</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="list-to-store-scenario-results">
+<h3>List to store scenario results<a class="headerlink" href="#list-to-store-scenario-results" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenario_results</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="scaling-factor-for-capacity-increase">
+<h3>Scaling factor for capacity increase<a class="headerlink" href="#scaling-factor-for-capacity-increase" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="o">=</span><span class="mf">1.1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="scenario-1-do-nothing">
+<h2>Scenario 1: do nothing<a class="headerlink" href="#scenario-1-do-nothing" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;ccg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;ccg&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;2019&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">2028</span><span class="p">):</span>
+
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">baseline</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
+    
+    <span class="n">results</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span> <span class="o">=</span> <span class="n">preds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">sum_by_month</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/stacked_forecast_26_0.png" src="_images/stacked_forecast_26_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenario_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="scenario-2-increase-111-capacity">
+<h2>Scenario 2: increase 111 capacity<a class="headerlink" href="#scenario-2-increase-111-capacity" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;ccg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;ccg&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;2019&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span>
+
+<span class="n">dta</span> <span class="o">=</span> <span class="n">baseline</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">2028</span><span class="p">):</span>
+
+    <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;111_111_offered&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;111_111_offered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">*</span><span class="n">F</span>
+
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
+    
+    <span class="n">results</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span> <span class="o">=</span> <span class="n">preds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">sum_by_month</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/stacked_forecast_30_0.png" src="_images/stacked_forecast_30_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenario_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="scenario-3-increase-999-capacity">
+<h2>Scenario 3: increase 999 capacity<a class="headerlink" href="#scenario-3-increase-999-capacity" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;ccg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;ccg&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;2019&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span>
+
+<span class="n">dta</span> <span class="o">=</span> <span class="n">baseline</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">2028</span><span class="p">):</span>
+    
+    <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;amb_sys_answered&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;amb_sys_answered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">*</span><span class="n">F</span>
+
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
+    
+    <span class="n">results</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span> <span class="o">=</span> <span class="n">preds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">sum_by_month</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/stacked_forecast_34_0.png" src="_images/stacked_forecast_34_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenario_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="scenario-4-increase-gp-capacity">
+<h2>Scenario 4: increase GP capacity<a class="headerlink" href="#scenario-4-increase-gp-capacity" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;ccg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;ccg&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;2019&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span>
+
+<span class="n">dta</span> <span class="o">=</span> <span class="n">baseline</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">2028</span><span class="p">):</span>
+    
+    <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;gp_appt_available&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;gp_appt_available&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">*</span><span class="n">F</span>
+
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
+    
+    <span class="n">results</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span> <span class="o">=</span> <span class="n">preds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">sum_by_month</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/stacked_forecast_38_0.png" src="_images/stacked_forecast_38_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenario_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="scenario-5-health-of-population-at-2019">
+<h2>Scenario 5: health of population at 2019<a class="headerlink" href="#scenario-5-health-of-population-at-2019" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;ccg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;ccg&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;2019&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span>
+
+<span class="n">dta</span> <span class="o">=</span> <span class="n">baseline</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">2028</span><span class="p">):</span>
+    
+    <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;People&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span> <span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">baseline</span><span class="o">.</span><span class="n">People</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">else</span> <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dta</span><span class="o">.</span><span class="n">People</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+    <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;Places&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span> <span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">baseline</span><span class="o">.</span><span class="n">Places</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">else</span> <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dta</span><span class="o">.</span><span class="n">Places</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+    <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;Lives&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span> <span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">baseline</span><span class="o">.</span><span class="n">Lives</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">else</span> <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dta</span><span class="o">.</span><span class="n">Lives</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
+    
+    <span class="n">results</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span> <span class="o">=</span> <span class="n">preds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">sum_by_month</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/stacked_forecast_42_0.png" src="_images/stacked_forecast_42_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenario_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot">
+<h2>Plot<a class="headerlink" href="#plot" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">scenarios</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Population growth&#39;</span><span class="p">,</span><span class="s1">&#39;111 capacity increase&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Ambulance capacity increase&#39;</span><span class="p">,</span><span class="s1">&#39;GP capacity increase&#39;</span><span class="p">,</span> <span class="s1">&#39;Health of 2019&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">results</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scenario_results</span><span class="p">):</span>
+    
+    <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        
+        <span class="k">continue</span>
+    
+    <span class="n">points</span> <span class="o">=</span> <span class="n">sum_by_month</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    
+    <span class="n">points_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    
+<span class="n">points</span> <span class="o">=</span> <span class="n">sum_by_month</span><span class="p">(</span><span class="n">scenario_results</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">points_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span> <span class="s1">&#39;g--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">23500</span><span class="p">,</span><span class="mi">28000</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)),</span><span class="n">y</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mean monthly ED attendances by CCG&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months since January 2019&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">24000</span><span class="p">,</span><span class="mi">27000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;forecast_scaled.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/stacked_forecast_45_0.png" src="_images/stacked_forecast_45_0.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="stacked_model.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Combined Population Health and Service Capacity Model</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ccg_forecast.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Future demand at CCG level</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Charlotte James<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

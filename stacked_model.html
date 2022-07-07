@@ -1,0 +1,2136 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Combined Population Health and Service Capacity Model &#8212; Forecasting Long Term ED Demand</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Forecasting Future ED Demand" href="stacked_forecast.html" />
+    <link rel="prev" title="Developing the Population Health Model" href="population_health_model.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Forecasting Long Term ED Demand</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Forecasting Long Term ED Demand
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_sources.html">
+   Data Sources
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exploration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_comparison.html">
+   Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_level_model.html">
+   Mixed Linear Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paper_ensemble.html">
+   Tree-based models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capacity_vs_utility.html">
+   Seperating Capacity and Utility
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Model Development
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacked_model_description.html">
+   Stacked Architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capacity_model.html">
+   Developing the Capacity Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="population_health_model.html">
+   Developing the Population Health Model
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Combined Population Health and Service Capacity Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Forecasting Future ED Demand
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacked_forecast.html">
+   Forecasting Future ED Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ccg_forecast.html">
+   Future demand at CCG level
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/stacked_model.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/stacked_model.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-libraries">
+   Import libraries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-data">
+   Import data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function-to-group-data">
+   Function to group data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fit-predict-population-health-model">
+   Fit Predict Population Health model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#merge-with-data-set">
+     Merge with data set
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combined-model">
+   Combined model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#check-performance-on-held-out-data">
+     Check performance on held out data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coefficients">
+     Coefficients
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combined-model-with-optimised-parameters">
+   Combined model with optimised parameters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results-for-paper">
+     Results for paper
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coefficient-importances">
+     Coefficient importances
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean">
+       Mean
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#std">
+       Std
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot">
+     Plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#permutation-feature-importance">
+   Permutation Feature Importance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-final-model-on-all-data-and-save-for-forecasting">
+   Train final model on all data and save for forecasting
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Combined Population Health and Service Capacity Model</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-libraries">
+   Import libraries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-data">
+   Import data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function-to-group-data">
+   Function to group data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fit-predict-population-health-model">
+   Fit Predict Population Health model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#merge-with-data-set">
+     Merge with data set
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combined-model">
+   Combined model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#check-performance-on-held-out-data">
+     Check performance on held out data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coefficients">
+     Coefficients
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combined-model-with-optimised-parameters">
+   Combined model with optimised parameters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results-for-paper">
+     Results for paper
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coefficient-importances">
+     Coefficient importances
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean">
+       Mean
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#std">
+       Std
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot">
+     Plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#permutation-feature-importance">
+   Permutation Feature Importance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-final-model-on-all-data-and-save-for-forecasting">
+   Train final model on all data and save for forecasting
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="combined-population-health-and-service-capacity-model">
+<h1>Combined Population Health and Service Capacity Model<a class="headerlink" href="#combined-population-health-and-service-capacity-model" title="Permalink to this headline">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<p>This notebook contains the code to develop and test the combined model.</p>
+<p>Further details on the development of the population health model can be found <a class="reference internal" href="population_health_model.html"><span class="doc std std-doc">here</span></a>, and the service capacity model can be found <a class="reference internal" href="capacity_model.html"><span class="doc std std-doc">here</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#turn warnings off to keep notebook tidy</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="import-libraries">
+<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pickle</span> <span class="k">as</span> <span class="nn">pkl</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
+
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RepeatedKFold</span>
+
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="import-data">
+<h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/master_scaled.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+               <span class="k">if</span> <span class="s1">&#39;/&#39;</span> <span class="ow">in</span> <span class="n">c</span> <span class="k">else</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">dta</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ccg</th>
+      <th>month</th>
+      <th>111_111_offered</th>
+      <th>111_111_answered</th>
+      <th>amb_sys_made</th>
+      <th>amb_sys_answered</th>
+      <th>gp_appt_available</th>
+      <th>ae_attendances_attendances</th>
+      <th>population</th>
+      <th>People</th>
+      <th>Places</th>
+      <th>Lives</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00Q</td>
+      <td>Jan</td>
+      <td>406.655830</td>
+      <td>308.945095</td>
+      <td>310.561801</td>
+      <td>234.716187</td>
+      <td>4568.019766</td>
+      <td>1179.855246</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>00Q</td>
+      <td>Feb</td>
+      <td>349.933603</td>
+      <td>256.872981</td>
+      <td>261.756435</td>
+      <td>205.298797</td>
+      <td>3910.918344</td>
+      <td>1075.452189</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00Q</td>
+      <td>Mar</td>
+      <td>413.247659</td>
+      <td>300.690725</td>
+      <td>303.676215</td>
+      <td>234.716187</td>
+      <td>4051.778545</td>
+      <td>1210.874032</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00Q</td>
+      <td>Apr</td>
+      <td>349.608595</td>
+      <td>278.140171</td>
+      <td>264.973181</td>
+      <td>203.677924</td>
+      <td>3974.433001</td>
+      <td>1186.166427</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>00Q</td>
+      <td>May</td>
+      <td>361.100544</td>
+      <td>284.419492</td>
+      <td>294.361403</td>
+      <td>227.926437</td>
+      <td>4232.385761</td>
+      <td>1299.297713</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1465, 13)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="function-to-group-data">
+<h2>Function to group data<a class="headerlink" href="#function-to-group-data" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">group_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+
+    <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
+
+
+    <span class="c1">#ensure no identical points in train and test</span>
+
+    <span class="n">grouped</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">pop</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">):</span>
+
+        <span class="c1">#if len(group.lives.unique())&gt;1:</span>
+
+            <span class="c1">#print(&#39;multiple CCG with same population&#39;)</span>
+
+        <span class="n">ccg_year</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+
+            <span class="n">ccg_year</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">ccg_year</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>\
+        <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">ae_attendances_attendances</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        
+
+        <span class="n">grouped</span> <span class="o">=</span> <span class="n">grouped</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ccg_year</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">grouped</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fit-predict-population-health-model">
+<h2>Fit Predict Population Health model<a class="headerlink" href="#fit-predict-population-health-model" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                              <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">pophealth_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span> <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
+
+<span class="n">grouped</span> <span class="o">=</span> <span class="n">group_data</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">pophealth_features</span><span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="n">pophealth_features</span><span class="p">]</span>
+
+<span class="n">cv</span> <span class="o">=</span> <span class="n">RepeatedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+<span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+
+<span class="n">scores_train</span><span class="p">,</span> <span class="n">scores_test</span><span class="p">,</span> <span class="n">feat</span> <span class="o">=</span> <span class="p">[],[],[]</span>
+    
+<span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">])</span>
+        
+    <span class="n">test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">])</span>
+    
+    <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>population</th>
+      <th>People</th>
+      <th>Places</th>
+      <th>Lives</th>
+      <th>ae_predicted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>14.8942</td>
+      <td>97.200000</td>
+      <td>99.700000</td>
+      <td>94.400000</td>
+      <td>951.730426</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>14.9084</td>
+      <td>96.000000</td>
+      <td>99.500000</td>
+      <td>94.600000</td>
+      <td>951.730426</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>20.9547</td>
+      <td>101.100000</td>
+      <td>101.600000</td>
+      <td>101.300000</td>
+      <td>536.982536</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>21.0108</td>
+      <td>98.700000</td>
+      <td>102.100000</td>
+      <td>103.000000</td>
+      <td>772.797845</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>28.5372</td>
+      <td>95.200000</td>
+      <td>100.100000</td>
+      <td>96.600000</td>
+      <td>459.182148</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>96.9439</td>
+      <td>97.566667</td>
+      <td>100.366667</td>
+      <td>104.633333</td>
+      <td>336.330076</td>
+    </tr>
+    <tr>
+      <th>128</th>
+      <td>102.5758</td>
+      <td>102.007692</td>
+      <td>103.261538</td>
+      <td>104.907692</td>
+      <td>336.330076</td>
+    </tr>
+    <tr>
+      <th>129</th>
+      <td>103.7356</td>
+      <td>101.088889</td>
+      <td>100.327778</td>
+      <td>103.508333</td>
+      <td>336.330076</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>160.3009</td>
+      <td>104.361111</td>
+      <td>99.211111</td>
+      <td>104.519444</td>
+      <td>422.525438</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>161.1687</td>
+      <td>100.930556</td>
+      <td>100.861111</td>
+      <td>104.850000</td>
+      <td>422.525438</td>
+    </tr>
+  </tbody>
+</table>
+<p>132 rows × 5 columns</p>
+</div></div></div>
+</div>
+<section id="merge-with-data-set">
+<h3>Merge with data set<a class="headerlink" href="#merge-with-data-set" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">dta</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">results</span><span class="p">[[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]],</span>\
+                <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ccg</th>
+      <th>month</th>
+      <th>111_111_offered</th>
+      <th>111_111_answered</th>
+      <th>amb_sys_made</th>
+      <th>amb_sys_answered</th>
+      <th>gp_appt_available</th>
+      <th>ae_attendances_attendances</th>
+      <th>population</th>
+      <th>People</th>
+      <th>Places</th>
+      <th>Lives</th>
+      <th>year</th>
+      <th>ae_predicted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00Q</td>
+      <td>Jan</td>
+      <td>406.655830</td>
+      <td>308.945095</td>
+      <td>310.561801</td>
+      <td>234.716187</td>
+      <td>4568.019766</td>
+      <td>1179.855246</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+      <td>951.730426</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>00Q</td>
+      <td>Feb</td>
+      <td>349.933603</td>
+      <td>256.872981</td>
+      <td>261.756435</td>
+      <td>205.298797</td>
+      <td>3910.918344</td>
+      <td>1075.452189</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+      <td>951.730426</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00Q</td>
+      <td>Mar</td>
+      <td>413.247659</td>
+      <td>300.690725</td>
+      <td>303.676215</td>
+      <td>234.716187</td>
+      <td>4051.778545</td>
+      <td>1210.874032</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+      <td>951.730426</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00Q</td>
+      <td>Apr</td>
+      <td>349.608595</td>
+      <td>278.140171</td>
+      <td>264.973181</td>
+      <td>203.677924</td>
+      <td>3974.433001</td>
+      <td>1186.166427</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+      <td>951.730426</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>00Q</td>
+      <td>May</td>
+      <td>361.100544</td>
+      <td>284.419492</td>
+      <td>294.361403</td>
+      <td>227.926437</td>
+      <td>4232.385761</td>
+      <td>1299.297713</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+      <td>951.730426</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1460</th>
+      <td>X2C4Y</td>
+      <td>Aug</td>
+      <td>281.008273</td>
+      <td>253.093792</td>
+      <td>459.652700</td>
+      <td>306.843650</td>
+      <td>3982.517935</td>
+      <td>390.405530</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+      <td>2019</td>
+      <td>475.096038</td>
+    </tr>
+    <tr>
+      <th>1461</th>
+      <td>X2C4Y</td>
+      <td>Sep</td>
+      <td>263.936917</td>
+      <td>240.868701</td>
+      <td>453.078703</td>
+      <td>305.262399</td>
+      <td>4598.750502</td>
+      <td>388.679580</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+      <td>2019</td>
+      <td>475.096038</td>
+    </tr>
+    <tr>
+      <th>1462</th>
+      <td>X2C4Y</td>
+      <td>Oct</td>
+      <td>286.454848</td>
+      <td>254.680032</td>
+      <td>488.348051</td>
+      <td>327.202669</td>
+      <td>5225.611293</td>
+      <td>391.268506</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+      <td>2019</td>
+      <td>475.096038</td>
+    </tr>
+    <tr>
+      <th>1463</th>
+      <td>X2C4Y</td>
+      <td>Nov</td>
+      <td>326.984206</td>
+      <td>276.374619</td>
+      <td>499.497654</td>
+      <td>306.953594</td>
+      <td>4606.948769</td>
+      <td>389.542555</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+      <td>2019</td>
+      <td>475.096038</td>
+    </tr>
+    <tr>
+      <th>1464</th>
+      <td>X2C4Y</td>
+      <td>Dec</td>
+      <td>365.414559</td>
+      <td>334.346359</td>
+      <td>532.917357</td>
+      <td>311.645611</td>
+      <td>4160.472547</td>
+      <td>404.531075</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+      <td>2019</td>
+      <td>475.096038</td>
+    </tr>
+  </tbody>
+</table>
+<p>1465 rows × 14 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="combined-model">
+<h2>Combined model<a class="headerlink" href="#combined-model" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#capacity utility model</span>
+<span class="n">rf1</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> 
+                            <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#combinator</span>
+<span class="n">final</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">29</span><span class="p">)</span>
+
+<span class="c1">#split training data into two sets</span>
+<span class="n">train_0</span><span class="p">,</span> <span class="n">train_1</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> 
+                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">29</span><span class="p">)</span>
+
+
+
+<span class="c1">#capacity utility</span>
+<span class="n">capacity_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gp_appt_available&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;111_111_offered&#39;</span><span class="p">,</span> <span class="s1">&#39;amb_sys_answered&#39;</span><span class="p">]</span>
+<span class="c1">#            &#39;111_111_answered&#39;, &#39;amb_sys_made&#39;]</span>
+
+<span class="n">pophealth_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span> <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
+
+<span class="c1">#train capacity modeel</span>
+
+<span class="n">y_0</span> <span class="o">=</span> <span class="n">train_0</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>
+<span class="n">X_0</span> <span class="o">=</span> <span class="n">train_0</span><span class="p">[</span><span class="n">capacity_features</span><span class="p">]</span>
+
+<span class="n">rf1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_0</span><span class="p">,</span><span class="n">y_0</span><span class="p">)</span>
+
+
+<span class="c1">#predict</span>
+
+<span class="n">y_pred_cu</span> <span class="o">=</span> <span class="n">rf1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_1</span><span class="p">[</span><span class="n">capacity_features</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">rf1</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">train_1</span><span class="p">[</span><span class="n">capacity_features</span><span class="p">],</span> 
+                <span class="n">train_1</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]))</span>
+
+<span class="n">y_pred_ph</span> <span class="o">=</span> <span class="n">train_1</span><span class="p">[</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.343321511524463
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">y_pred_cu</span><span class="p">,</span> <span class="n">y_pred_ph</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">y_f</span> <span class="o">=</span> <span class="n">train_1</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>
+
+<span class="n">final</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_f</span><span class="p">,</span><span class="n">y_f</span><span class="p">)</span>
+
+<span class="n">final</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_f</span><span class="p">,</span><span class="n">y_f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7354179625284982
+</pre></div>
+</div>
+</div>
+</div>
+<section id="check-performance-on-held-out-data">
+<h3>Check performance on held out data<a class="headerlink" href="#check-performance-on-held-out-data" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span> <span class="k">as</span> <span class="n">r2</span>
+
+<span class="n">y_pred_cu</span> <span class="o">=</span> <span class="n">rf1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">capacity_features</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">rf1</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">capacity_features</span><span class="p">],</span> 
+                <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]))</span>
+
+<span class="c1">#y_pred_ph = rf2.predict(test[pophealth_features])</span>
+
+<span class="n">y_pred_ph</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">r2</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]))</span>
+
+<span class="n">y_pred_final</span> <span class="o">=</span> <span class="n">final</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">y_pred_cu</span><span class="p">,</span> <span class="n">y_pred_ph</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1">#print(r2_score(test[&#39;ae_attendances_attendances&#39;], y_pred_final))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">final</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">y_pred_cu</span><span class="p">,</span> <span class="n">y_pred_ph</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+                  <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.32630536112390485
+0.6857359625576978
+0.715432777083205
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="coefficients">
+<h3>Coefficients<a class="headerlink" href="#coefficients" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.40449924, 0.80083723])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="combined-model-with-optimised-parameters">
+<h2>Combined model with optimised parameters<a class="headerlink" href="#combined-model-with-optimised-parameters" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit_ph</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    
+    <span class="k">if</span> <span class="s1">&#39;ae_predicted&#39;</span> <span class="ow">in</span> <span class="n">dta</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        
+        <span class="n">dta</span> <span class="o">=</span> <span class="n">dta</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">grouped</span> <span class="o">=</span> <span class="n">group_data</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span>
+    
+    <span class="n">y</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+
+    <span class="c1"># dont set random state so that function can be used in overall cv</span>
+    <span class="n">cv</span> <span class="o">=</span> <span class="n">RepeatedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">])</span>
+        
+        <span class="n">test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        
+        <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">])</span>
+    
+        <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+    <span class="n">dta</span> <span class="o">=</span> <span class="n">dta</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">results</span><span class="p">[[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]],</span>
+                    <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">dta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit_capacity</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    
+    <span class="n">y</span> <span class="o">=</span> <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">dta</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit_combined</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">m1_features</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mi">7</span><span class="o">/</span><span class="mi">8</span><span class="p">):</span>
+    
+    <span class="n">final</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+    <span class="c1">#split training data into two sets</span>
+    <span class="n">train_0</span><span class="p">,</span> <span class="n">train_1</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> 
+                                        <span class="n">train_size</span><span class="o">=</span><span class="n">train_size</span><span class="p">,</span> 
+                                        <span class="n">random_state</span><span class="o">=</span><span class="mi">29</span><span class="p">)</span>
+
+    <span class="c1">#train capactiy model</span>
+    
+    <span class="n">rf1</span> <span class="o">=</span> <span class="n">fit_capacity</span><span class="p">(</span><span class="n">train_0</span><span class="p">,</span> <span class="n">m1_features</span><span class="p">,</span> <span class="n">rf1</span><span class="p">)</span>
+    
+
+    <span class="c1">#predict monthly attendances</span>
+
+    <span class="n">y_pred_1</span> <span class="o">=</span> <span class="n">rf1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_1</span><span class="p">[</span><span class="n">m1_features</span><span class="p">])</span>
+
+    
+    <span class="c1">#use pre-predicted average attendances</span>
+    
+    <span class="n">y_pred_2</span> <span class="o">=</span> <span class="n">train_1</span><span class="p">[</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]</span>
+        
+    <span class="c1">#final</span>
+        
+    <span class="n">X_f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">y_pred_1</span><span class="p">,</span> <span class="n">y_pred_2</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">y_f</span> <span class="o">=</span> <span class="n">train_1</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>
+
+    <span class="n">final</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_f</span><span class="p">,</span><span class="n">y_f</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">rf1</span><span class="p">,</span><span class="n">final</span>        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cv_combined</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">):</span>
+    
+    <span class="c1"># splitter for cross validation </span>
+    
+    <span class="n">cv</span> <span class="o">=</span> <span class="n">RepeatedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">scores_final</span><span class="p">,</span> <span class="n">scores_rf1</span><span class="p">,</span> <span class="n">scores_rf2</span><span class="p">,</span> <span class="n">coefs</span> <span class="o">=</span> <span class="p">[],[],[],[]</span>
+    
+    <span class="n">k</span><span class="o">=</span><span class="mi">1</span>
+    
+    <span class="n">capacity_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gp_appt_available&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;111_111_offered&#39;</span><span class="p">,</span> <span class="s1">&#39;amb_sys_answered&#39;</span><span class="p">]</span>
+
+    <span class="n">pophealth_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span> <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
+    
+    <span class="n">dta_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    
+    <span class="c1">#fit population health independently to avoid data leakage</span>
+    
+    <span class="n">dta</span> <span class="o">=</span> <span class="n">fit_ph</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">pophealth_features</span><span class="p">,</span> <span class="n">rf2</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">dta</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">dta</span><span class="p">):</span>
+        
+        <span class="c1">#print(f&#39;\n Split {k} \n&#39;)</span>
+        
+        <span class="n">train</span> <span class="o">=</span> <span class="n">dta</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span>
+        <span class="n">test</span> <span class="o">=</span> <span class="n">dta</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
+
+        <span class="c1">#final models</span>
+        <span class="n">rf1</span><span class="p">,</span> <span class="n">final</span> <span class="o">=</span> <span class="n">fit_combined</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">capacity_features</span><span class="p">)</span>
+        
+        <span class="n">coefs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">final</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+        
+        <span class="c1">#predict on test data</span>
+        
+        <span class="n">y_pred_cu</span> <span class="o">=</span> <span class="n">rf1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">capacity_features</span><span class="p">])</span>
+
+        <span class="n">scores_rf1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rf1</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">capacity_features</span><span class="p">],</span>
+                                    <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]))</span>
+
+        <span class="n">y_pred_ph</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]</span>
+
+        <span class="n">scores_rf2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r2</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">],</span>
+                             <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]))</span>
+        
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">final</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">y_pred_cu</span><span class="p">,</span> <span class="n">y_pred_ph</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+        <span class="n">scores_final</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">final</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">y_pred_cu</span><span class="p">,</span> <span class="n">y_pred_ph</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+                                        <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]))</span>
+        
+        <span class="n">test_pred</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">test_pred</span><span class="p">[</span><span class="s1">&#39;predicted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">preds</span>
+        <span class="n">test_pred</span><span class="p">[</span><span class="s1">&#39;true&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        
+        <span class="n">test_pred</span><span class="p">[</span><span class="s1">&#39;iter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">test_pred</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+        
+        <span class="n">dta_pred</span> <span class="o">=</span> <span class="n">dta_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_pred</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+        
+        <span class="n">k</span><span class="o">+=</span><span class="mi">1</span>
+        
+    <span class="k">return</span> <span class="n">scores_final</span><span class="p">,</span> <span class="n">scores_rf1</span><span class="p">,</span> <span class="n">scores_rf2</span><span class="p">,</span> <span class="n">dta_pred</span><span class="p">,</span> <span class="n">coefs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#capacity model</span>
+<span class="n">rf1</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#population health model</span>
+<span class="n">rf2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">scores_final</span><span class="p">,</span> <span class="n">scores_rf1</span><span class="p">,</span> <span class="n">scores_rf2</span><span class="p">,</span> \
+<span class="n">dta_pred</span><span class="p">,</span> <span class="n">coefs</span> <span class="o">=</span> <span class="n">cv_combined</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1465, 14)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="results-for-paper">
+<h3>Results for paper<a class="headerlink" href="#results-for-paper" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;final&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scores_final</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;capacity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scores_rf1</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;population_health&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scores_rf2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>final</th>
+      <th>capacity</th>
+      <th>population_health</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.712527</td>
+      <td>0.396978</td>
+      <td>0.658971</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.022141</td>
+      <td>0.053012</td>
+      <td>0.023460</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.664053</td>
+      <td>0.264904</td>
+      <td>0.616893</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.696290</td>
+      <td>0.356941</td>
+      <td>0.644474</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.712380</td>
+      <td>0.399261</td>
+      <td>0.654565</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.725122</td>
+      <td>0.434240</td>
+      <td>0.676644</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.753902</td>
+      <td>0.495170</td>
+      <td>0.694800</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="coefficient-importances">
+<h3>Coefficient importances<a class="headerlink" href="#coefficient-importances" title="Permalink to this headline">#</a></h3>
+<section id="mean">
+<h4>Mean<a class="headerlink" href="#mean" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">coefs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.36678442, 0.76288664])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="std">
+<h4>Std<a class="headerlink" href="#std" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">coefs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.10534984, 0.04842211])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="plot">
+<h3>Plot<a class="headerlink" href="#plot" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">mean_pred</span><span class="p">,</span> <span class="n">true</span> <span class="o">=</span> <span class="p">[],[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dta_pred</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    
+    <span class="n">mean_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dta_pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;predicted&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+    <span class="n">true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dta_pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;true&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">mean_pred</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">dta_pred</span><span class="p">[</span><span class="s1">&#39;true&#39;</span><span class="p">]),</span><span class="nb">max</span><span class="p">(</span><span class="n">dta_pred</span><span class="p">[</span><span class="s1">&#39;true&#39;</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">xx</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;True monthly ED attendances per 10,000 people&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted monthly ED attendances per 10,000 people&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;true_predicted_combined.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/stacked_model_40_0.png" src="_images/stacked_model_40_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="permutation-feature-importance">
+<h2>Permutation Feature Importance<a class="headerlink" href="#permutation-feature-importance" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit_ph_shuffle</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span><span class="n">f</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    
+    <span class="k">if</span> <span class="s1">&#39;ae_predicted&#39;</span> <span class="ow">in</span> <span class="n">dta</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        
+        <span class="n">dta</span> <span class="o">=</span> <span class="n">dta</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">grouped</span> <span class="o">=</span> <span class="n">group_data</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span>
+    
+    <span class="n">y</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+    
+    <span class="n">X_shuffled</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="n">X_shuffled</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    
+    
+    <span class="c1"># dont set random state so that function can be used in overall cv</span>
+    <span class="n">cv</span> <span class="o">=</span> <span class="n">RepeatedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">])</span>
+        
+        <span class="n">test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        
+        <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_shuffled</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">])</span>
+    
+        <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+    <span class="n">dta</span> <span class="o">=</span> <span class="n">dta</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">results</span><span class="p">[[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]],</span>
+                    <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">dta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permeate_feature</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span><span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">):</span>
+    
+    
+    <span class="n">shuffled</span> <span class="o">=</span> <span class="n">dta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">capacity_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gp_appt_available&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;111_111_offered&#39;</span><span class="p">,</span> <span class="s1">&#39;amb_sys_answered&#39;</span><span class="p">]</span>
+<span class="c1">#            &#39;111_111_answered&#39;, &#39;amb_sys_made&#39;]</span>
+
+    <span class="n">pophealth_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span> <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">capacity_features</span><span class="p">:</span>
+    
+        <span class="n">shuffled</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">dta</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    
+    <span class="k">else</span><span class="p">:</span>
+        
+        <span class="n">shuffled</span> <span class="o">=</span> <span class="n">fit_ph_shuffle</span><span class="p">(</span><span class="n">shuffled</span><span class="p">,</span> <span class="n">pophealth_features</span><span class="p">,</span><span class="n">f</span><span class="p">,</span> <span class="n">rf2</span><span class="p">)</span>
+        
+    
+    <span class="n">dta</span> <span class="o">=</span> <span class="n">fit_ph</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">pophealth_features</span><span class="p">,</span> <span class="n">rf2</span><span class="p">)</span>
+    
+    <span class="c1"># splitter for cross validation</span>
+    <span class="n">cv</span> <span class="o">=</span> <span class="n">RepeatedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1">#importances = pd.DataFrame()</span>
+    
+    <span class="n">shuffled_score</span><span class="p">,</span> <span class="n">true_score</span>  <span class="o">=</span> <span class="p">[],[]</span>
+    
+    <span class="c1">#print(f&#39;running for {f} \n&#39;)</span>
+    
+    <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">dta</span><span class="p">):</span>
+        
+        <span class="n">test_shuffled</span> <span class="o">=</span> <span class="n">shuffled</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
+        
+        <span class="n">train</span> <span class="o">=</span> <span class="n">dta</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span>
+        <span class="n">test</span> <span class="o">=</span> <span class="n">dta</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
+        
+        
+        <span class="c1">#final models</span>
+        <span class="n">rf1</span><span class="p">,</span> <span class="n">final</span> <span class="o">=</span> <span class="n">fit_combined</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">capacity_features</span><span class="p">)</span>
+
+        
+        
+        <span class="c1">#predict on test data</span>
+        
+        <span class="n">y_pred_cu</span> <span class="o">=</span> <span class="n">rf1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">capacity_features</span><span class="p">])</span>
+
+        <span class="n">y_pred_ph</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]</span>
+        
+        <span class="n">y_pred_cus</span> <span class="o">=</span> <span class="n">rf1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_shuffled</span><span class="p">[</span><span class="n">capacity_features</span><span class="p">])</span>
+        
+        <span class="k">if</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">capacity_features</span><span class="p">:</span>
+
+            <span class="n">y_pred_phs</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            
+            <span class="n">y_pred_phs</span> <span class="o">=</span> <span class="n">test_shuffled</span><span class="p">[</span><span class="s1">&#39;ae_predicted&#39;</span><span class="p">]</span>
+            
+        
+        <span class="n">true_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">final</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">y_pred_cu</span><span class="p">,</span> <span class="n">y_pred_ph</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>\
+                                                <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]))</span>
+        
+        <span class="n">shuffled_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">true_score</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">final</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">y_pred_cus</span><span class="p">,</span> <span class="n">y_pred_phs</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>\
+                                            <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]))</span>
+        
+    <span class="c1">#print(f&#39;{f} complete\n&#39;)</span>
+    
+    <span class="k">return</span> <span class="n">true_score</span><span class="p">,</span> <span class="n">shuffled_score</span>       
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">feature_importance_combined</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">):</span>
+    
+    <span class="n">importances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    
+    <span class="n">capacity_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gp_appt_available&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;111_111_offered&#39;</span><span class="p">,</span> <span class="s1">&#39;amb_sys_answered&#39;</span><span class="p">]</span>
+    <span class="c1">#            &#39;111_111_answered&#39;, &#39;amb_sys_made&#39;]</span>
+
+    <span class="n">pophealth_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span> <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
+    
+    
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">capacity_features</span> <span class="o">+</span> <span class="n">pophealth_features</span><span class="p">:</span>
+        
+        
+        <span class="n">true_score</span><span class="p">,</span> <span class="n">shuffled_score</span> <span class="o">=</span> <span class="n">permeate_feature</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span><span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="s1">&#39;score&#39;</span> <span class="ow">in</span> <span class="n">importances</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        
+            <span class="n">importances</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">importances</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">true_score</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            
+            <span class="n">importances</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">true_score</span>
+            
+        <span class="n">importances</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">shuffled_score</span>
+  
+
+    <span class="k">return</span> <span class="n">importances</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#set random seed to make results reproducible</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">importances</span> <span class="o">=</span> <span class="n">feature_importance_combined</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">importances</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>score</th>
+      <th>gp_appt_available</th>
+      <th>111_111_offered</th>
+      <th>amb_sys_answered</th>
+      <th>population</th>
+      <th>People</th>
+      <th>Places</th>
+      <th>Lives</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.712527</td>
+      <td>0.013235</td>
+      <td>0.063915</td>
+      <td>0.068951</td>
+      <td>0.349971</td>
+      <td>0.097549</td>
+      <td>0.014294</td>
+      <td>0.140716</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.022141</td>
+      <td>0.009803</td>
+      <td>0.027243</td>
+      <td>0.039107</td>
+      <td>0.056355</td>
+      <td>0.038902</td>
+      <td>0.006521</td>
+      <td>0.030197</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.664053</td>
+      <td>-0.005824</td>
+      <td>0.020377</td>
+      <td>0.016285</td>
+      <td>0.256957</td>
+      <td>0.010919</td>
+      <td>0.000351</td>
+      <td>0.096899</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.696290</td>
+      <td>0.007920</td>
+      <td>0.045883</td>
+      <td>0.046681</td>
+      <td>0.313557</td>
+      <td>0.069662</td>
+      <td>0.010273</td>
+      <td>0.116949</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.712380</td>
+      <td>0.012245</td>
+      <td>0.060437</td>
+      <td>0.055817</td>
+      <td>0.337457</td>
+      <td>0.103614</td>
+      <td>0.014528</td>
+      <td>0.141273</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.725122</td>
+      <td>0.017571</td>
+      <td>0.074977</td>
+      <td>0.077036</td>
+      <td>0.390045</td>
+      <td>0.122522</td>
+      <td>0.018829</td>
+      <td>0.160813</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.753902</td>
+      <td>0.042093</td>
+      <td>0.116276</td>
+      <td>0.181854</td>
+      <td>0.460101</td>
+      <td>0.170926</td>
+      <td>0.025635</td>
+      <td>0.207033</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">importances</span><span class="p">[</span><span class="n">importances</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> \
+            <span class="n">yerr</span> <span class="o">=</span> <span class="n">importances</span><span class="p">[</span><span class="n">importances</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">],</span>\
+                            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Permutation Importance&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">tick_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GP capacity&#39;</span><span class="p">,</span><span class="s1">&#39;111 capacity&#39;</span><span class="p">,</span> <span class="s1">&#39;Ambulance capacity&#39;</span><span class="p">,</span>\
+               <span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span> <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">tick_labels</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;importance.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/stacked_model_47_0.png" src="_images/stacked_model_47_0.png" />
+</div>
+</div>
+</section>
+<section id="train-final-model-on-all-data-and-save-for-forecasting">
+<h2>Train final model on all data and save for forecasting<a class="headerlink" href="#train-final-model-on-all-data-and-save-for-forecasting" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit_final</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">,</span> <span class="n">m1_features</span><span class="p">,</span> <span class="n">m2_features</span><span class="p">):</span>
+    
+    
+    <span class="n">final</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+
+    <span class="c1">#train capactiy model</span>
+    
+    <span class="n">rf1</span> <span class="o">=</span> <span class="n">fit_capacity</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">m1_features</span><span class="p">,</span> <span class="n">rf1</span><span class="p">)</span>
+    
+
+    <span class="c1">#predict monthly attendances</span>
+
+    <span class="n">y_pred_1</span> <span class="o">=</span> <span class="n">rf1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">dta</span><span class="p">[</span><span class="n">m1_features</span><span class="p">])</span>
+
+    
+    
+    <span class="n">grouped</span> <span class="o">=</span> <span class="n">group_data</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">m2_features</span><span class="p">)</span>
+    
+    <span class="n">y</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="n">m2_features</span><span class="p">]</span>
+
+    <span class="n">rf2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    
+    <span class="n">y_pred_2</span> <span class="o">=</span> <span class="n">rf2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">dta</span><span class="p">[</span><span class="n">m2_features</span><span class="p">])</span>
+        
+        
+    <span class="n">X_f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">y_pred_1</span><span class="p">,</span> <span class="n">y_pred_2</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">y_f</span> <span class="o">=</span> <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>
+
+    <span class="n">final</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_f</span><span class="p">,</span><span class="n">y_f</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Combined training score:&#39;</span><span class="p">,</span><span class="n">final</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_f</span><span class="p">,</span><span class="n">y_f</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">rf1</span><span class="p">,</span><span class="n">rf2</span><span class="p">,</span> <span class="n">final</span>        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1_features</span> <span class="o">=</span> <span class="n">capacity_features</span>
+<span class="n">m2_features</span> <span class="o">=</span> <span class="n">pophealth_features</span>
+
+<span class="n">rf1</span><span class="p">,</span><span class="n">rf2</span><span class="p">,</span><span class="n">final</span> <span class="o">=</span> <span class="n">fit_final</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">,</span> <span class="n">m1_features</span><span class="p">,</span> <span class="n">m2_features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined training score: 0.7935722670846808
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;stacked_model_scaled.pkl&#39;</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    
+    <span class="n">pkl</span><span class="o">.</span><span class="n">dump</span><span class="p">([[</span><span class="n">rf1</span><span class="p">,</span><span class="n">rf2</span><span class="p">,</span><span class="n">final</span><span class="p">],</span> <span class="n">m1_features</span><span class="p">,</span> <span class="n">m2_features</span><span class="p">],</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="population_health_model.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Developing the Population Health Model</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="stacked_forecast.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Forecasting Future ED Demand</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Charlotte James<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

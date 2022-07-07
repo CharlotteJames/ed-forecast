@@ -113,7 +113,7 @@ def group_data(data, features):
 # In[8]:
 
 
-model = RandomForestRegressor(max_depth=3, n_estimators=2, 
+model = RandomForestRegressor(max_depth=4, n_estimators=2, 
                               random_state=0)
 
 pophealth_features = ['population',
@@ -168,7 +168,7 @@ dta
 
 
 #capacity utility model
-rf1 = RandomForestRegressor(max_depth=5, n_estimators=4, 
+rf1 = RandomForestRegressor(max_depth=5, n_estimators=6, 
                             random_state=0)
 
 #combinator
@@ -414,13 +414,15 @@ def cv_combined(dta, rf1, rf2):
 
 
 #capacity model
-rf1 = RandomForestRegressor(max_depth=5, n_estimators=4, random_state=0)
+rf1 = RandomForestRegressor(max_depth=5, n_estimators=6, random_state=0)
 
 #population health model
-rf2 = RandomForestRegressor(max_depth=3, n_estimators=2, random_state=0)
+rf2 = RandomForestRegressor(max_depth=4, n_estimators=2, random_state=0)
 
 scores_final, scores_rf1, scores_rf2, dta_pred, coefs = cv_combined(dta, rf1, rf2)
 
+
+# ### Results for paper
 
 # In[21]:
 
@@ -438,9 +440,27 @@ results['population_health'] = scores_rf2
 results.describe()
 
 
-# ### Plot 
+# ### Coefficient importances 
+
+# #### Mean 
 
 # In[23]:
+
+
+np.mean(coefs, axis=0)
+
+
+# #### Std 
+
+# In[24]:
+
+
+np.std(coefs, axis=0)
+
+
+# ### Plot 
+
+# In[25]:
 
 
 fig,ax = plt.subplots(figsize=(8,5))
@@ -456,8 +476,6 @@ plt.plot(true, mean_pred, 'o', alpha=0.5)
 
 xx = np.arange(min(dta_pred['true']),max(dta_pred['true']))
 plt.plot(xx,xx,'k--')
-plt.plot(xx, xx-450, 'b--')
-plt.plot(xx, xx+450, 'b--')
 
 plt.xlabel('True monthly ED attendances per 10,000 people')
 plt.ylabel('Predicted monthly ED attendances per 10,000 people')
@@ -467,7 +485,7 @@ plt.show()
 
 # ## Permutation Feature Importance 
 
-# In[24]:
+# In[26]:
 
 
 def fit_ph_shuffle(dta, features,f, model):
@@ -508,7 +526,7 @@ def fit_ph_shuffle(dta, features,f, model):
     return dta
 
 
-# In[25]:
+# In[27]:
 
 
 def permeate_feature(dta, f,rf1, rf2):
@@ -586,7 +604,7 @@ def permeate_feature(dta, f,rf1, rf2):
     return true_score, shuffled_score       
 
 
-# In[26]:
+# In[28]:
 
 
 def feature_importance_combined(dta, rf1, rf2):
@@ -620,22 +638,22 @@ def feature_importance_combined(dta, rf1, rf2):
     return importances
 
 
-# In[27]:
+# In[29]:
 
 
 #set random seed to make results reproducible
-numpy.random.seed(0)
+np.random.seed(4)
 
 importances = feature_importance_combined(dta, rf1, rf2)
 
 
-# In[28]:
+# In[30]:
 
 
 importances.describe()
 
 
-# In[29]:
+# In[31]:
 
 
 fig,ax = plt.subplots(figsize=(8,5))
@@ -655,7 +673,7 @@ plt.show()
 
 # ## Train final model on all data and save for forecasting 
 
-# In[30]:
+# In[32]:
 
 
 def fit_final(dta, rf1, rf2, m1_features, m2_features):
@@ -696,7 +714,7 @@ def fit_final(dta, rf1, rf2, m1_features, m2_features):
     return rf1,rf2, final        
 
 
-# In[31]:
+# In[33]:
 
 
 m1_features = capacity_features
@@ -705,7 +723,7 @@ m2_features = pophealth_features
 rf1,rf2,final = fit_final(dta, rf1, rf2, m1_features, m2_features)
 
 
-# In[32]:
+# In[34]:
 
 
 with open('stacked_model_scaled.pkl','wb') as f:

@@ -1,0 +1,2096 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Seperating Capacity and Utility &#8212; Forecasting Long Term ED Demand</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Stacked Architecture" href="stacked_model_description.html" />
+    <link rel="prev" title="Tree-based models" href="paper_ensemble.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Forecasting Long Term ED Demand</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Forecasting Long Term ED Demand
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_sources.html">
+   Data Sources
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exploration
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_comparison.html">
+   Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_level_model.html">
+   Mixed Linear Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paper_ensemble.html">
+   Tree-based models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Seperating Capacity and Utility
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Model Development
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacked_model_description.html">
+   Stacked Architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capacity_model.html">
+   Developing the Capacity Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="population_health_model.html">
+   Developing the Population Health Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacked_model.html">
+   Combined Population Health and Service Capacity Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Forecasting Future ED Demand
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacked_forecast.html">
+   Forecasting Future ED Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ccg_forecast.html">
+   Future demand at CCG level
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/capacity_vs_utility.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/capacity_vs_utility.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-libraries">
+   Import libraries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-data">
+   Import data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-correlations">
+   Feature correlations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-random-feature">
+   Add random feature
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fitting-function">
+   Fitting function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#utility-model">
+   Utility Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-regression">
+     Linear Regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#performance">
+       Performance
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#coefficients">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-forest">
+     Random Forest
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Performance
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gradient-boosted-trees">
+     Gradient Boosted Trees
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Performance
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary">
+     Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#capacity-model">
+   Capacity Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Linear Regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       Performance
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Random Forest
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       Performance
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     Gradient Boosted Trees
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       Performance
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Seperating Capacity and Utility</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-libraries">
+   Import libraries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-data">
+   Import data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-correlations">
+   Feature correlations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-random-feature">
+   Add random feature
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fitting-function">
+   Fitting function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#utility-model">
+   Utility Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-regression">
+     Linear Regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#performance">
+       Performance
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#coefficients">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-forest">
+     Random Forest
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Performance
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gradient-boosted-trees">
+     Gradient Boosted Trees
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Performance
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary">
+     Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#capacity-model">
+   Capacity Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Linear Regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       Performance
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Random Forest
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       Performance
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     Gradient Boosted Trees
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       Performance
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="seperating-capacity-and-utility">
+<h1>Seperating Capacity and Utility<a class="headerlink" href="#seperating-capacity-and-utility" title="Permalink to this headline">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<p>The capacity and utility features are highly correlated (see below). This can affect overall model performance and feature importances.</p>
+<p>To understand the extent of this effect we fit seperate models to capacity and utility features, and compare performance.</p>
+<ul class="simple">
+<li><p>Capacity features: 111 calls offered, Ambulance answered, GP appointments available</p></li>
+<li><p>Utility features: 111 calls answered, Ambulance made</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#turn warnings off to keep notebook tidy</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="import-libraries">
+<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RepeatedKFold</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="import-data">
+<h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/master_scaled.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span> 
+               <span class="k">if</span> <span class="s1">&#39;/&#39;</span> <span class="ow">in</span> <span class="n">c</span> <span class="k">else</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">dta</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span><span class="o">.</span><span class="n">ccg</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(73,)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="feature-correlations">
+<h2>Feature correlations<a class="headerlink" href="#feature-correlations" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax_list</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">140</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ax_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dta</span><span class="p">[</span><span class="s1">&#39;111_111_answered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;111_111_offered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;111 Utility&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;111 Capacity&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">xx</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ax_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dta</span><span class="p">[</span><span class="s1">&#39;amb_sys_made&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;amb_sys_answered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Ambulance Utility&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Ambulance Capacity&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">xx</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/capacity_vs_utility_11_0.png" src="_images/capacity_vs_utility_11_0.png" />
+</div>
+</div>
+</section>
+<section id="add-random-feature">
+<h2>Add random feature<a class="headerlink" href="#add-random-feature" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Adding random features</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rand_var</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">dta</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">dta</span><span class="p">[</span><span class="s1">&#39;rand1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand_var</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1465, 14)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fitting-function">
+<h2>Fitting function<a class="headerlink" href="#fitting-function" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit_model</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+    
+    
+    <span class="n">y</span> <span class="o">=</span> <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">dta</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+    
+    <span class="c1">#cross validate to get errors on performance and coefficients</span>
+    <span class="n">cv_model</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> 
+                            <span class="n">cv</span><span class="o">=</span><span class="n">RepeatedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                             <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                            <span class="n">return_estimator</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                              <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    
+    <span class="k">return</span> <span class="n">cv_model</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="utility-model">
+<h2>Utility Model<a class="headerlink" href="#utility-model" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;111_111_answered&#39;</span><span class="p">,</span> <span class="s1">&#39;amb_sys_made&#39;</span><span class="p">,</span> <span class="s1">&#39;rand1&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="linear-regression">
+<h3>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">fit_model</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="performance">
+<h4>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">res</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span>
+<span class="n">res</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span>
+
+<span class="n">res</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.088987</td>
+      <td>0.095958</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.019748</td>
+      <td>0.005173</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.048798</td>
+      <td>0.087471</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.078996</td>
+      <td>0.092178</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.081917</td>
+      <td>0.097625</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.098685</td>
+      <td>0.099210</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.127353</td>
+      <td>0.108243</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="coefficients">
+<h4>Coefficients<a class="headerlink" href="#coefficients" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coefs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+   <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
+    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">]],</span>
+   <span class="n">columns</span><span class="o">=</span><span class="n">features</span>
+<span class="p">)</span>
+
+<span class="n">coefs</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>111_111_answered</th>
+      <th>amb_sys_made</th>
+      <th>rand1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.326815</td>
+      <td>-0.152859</td>
+      <td>33.553221</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.019739</td>
+      <td>0.006087</td>
+      <td>12.074646</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.287791</td>
+      <td>-0.164263</td>
+      <td>16.134779</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.314448</td>
+      <td>-0.157228</td>
+      <td>22.961364</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.328274</td>
+      <td>-0.152665</td>
+      <td>35.276867</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.340023</td>
+      <td>-0.149892</td>
+      <td>40.139995</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.379046</td>
+      <td>-0.137929</td>
+      <td>56.286215</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="random-forest">
+<h3>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">fit_model</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h4>Performance<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">res</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span>
+<span class="n">res</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span>
+
+<span class="n">res</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.180956</td>
+      <td>0.887552</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.076250</td>
+      <td>0.004360</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.018668</td>
+      <td>0.877748</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.127987</td>
+      <td>0.884489</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.172079</td>
+      <td>0.888036</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.233887</td>
+      <td>0.891298</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.307451</td>
+      <td>0.893712</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="id2">
+<h4>Coefficients<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coefs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+   <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">feature_importances_</span>
+    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">]],</span>
+   <span class="n">columns</span><span class="o">=</span><span class="n">features</span>
+<span class="p">)</span>
+
+<span class="n">coefs</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>111_111_answered</th>
+      <th>amb_sys_made</th>
+      <th>rand1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.209072</td>
+      <td>0.425938</td>
+      <td>0.364989</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.006667</td>
+      <td>0.007486</td>
+      <td>0.007768</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.194457</td>
+      <td>0.414495</td>
+      <td>0.350553</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.204345</td>
+      <td>0.420271</td>
+      <td>0.360622</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.209826</td>
+      <td>0.423752</td>
+      <td>0.366040</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.213656</td>
+      <td>0.433245</td>
+      <td>0.369577</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.221878</td>
+      <td>0.438982</td>
+      <td>0.380412</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="gradient-boosted-trees">
+<h3>Gradient Boosted Trees<a class="headerlink" href="#gradient-boosted-trees" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">GradientBoostingRegressor</span><span class="p">()</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">fit_model</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h4>Performance<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">res</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span>
+<span class="n">res</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span>
+
+<span class="n">res</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.319840</td>
+      <td>0.496186</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.035725</td>
+      <td>0.009335</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.233674</td>
+      <td>0.481747</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.300252</td>
+      <td>0.490776</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.329703</td>
+      <td>0.494394</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.345900</td>
+      <td>0.499322</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.364015</td>
+      <td>0.516133</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="id4">
+<h4>Coefficients<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coefs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+   <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">feature_importances_</span>
+    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">]],</span>
+   <span class="n">columns</span><span class="o">=</span><span class="n">features</span>
+<span class="p">)</span>
+
+<span class="n">coefs</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>111_111_answered</th>
+      <th>amb_sys_made</th>
+      <th>rand1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.207279</td>
+      <td>0.652081</td>
+      <td>0.140640</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.009818</td>
+      <td>0.011102</td>
+      <td>0.012972</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.189990</td>
+      <td>0.622233</td>
+      <td>0.111711</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.198432</td>
+      <td>0.643370</td>
+      <td>0.132216</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.210430</td>
+      <td>0.654659</td>
+      <td>0.138294</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.216567</td>
+      <td>0.660391</td>
+      <td>0.149611</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.222796</td>
+      <td>0.668872</td>
+      <td>0.163144</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
+<p>Linear regression performs poorly, with an <span class="math notranslate nohighlight">\(R^2\)</span> &lt; 0.1</p>
+<p>Random Forest overfits to the training data, and the random variable is comparatively important</p>
+<p>Gradient boosted trees performs best and does not overfit. The random variable is ranked lowest.</p>
+</section>
+</section>
+<section id="capacity-model">
+<h2>Capacity Model<a class="headerlink" href="#capacity-model" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gp_appt_available&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;111_111_offered&#39;</span><span class="p">,</span> <span class="s1">&#39;amb_sys_answered&#39;</span><span class="p">,</span> <span class="s1">&#39;rand1&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id5">
+<h3>Linear Regression<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">fit_model</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id6">
+<h4>Performance<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">res</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span>
+<span class="n">res</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span>
+
+<span class="n">res</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.104485</td>
+      <td>0.112303</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.021369</td>
+      <td>0.005553</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.064282</td>
+      <td>0.102830</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.091363</td>
+      <td>0.108904</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.098609</td>
+      <td>0.113295</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.118014</td>
+      <td>0.115696</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.142532</td>
+      <td>0.125342</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="id7">
+<h4>Coefficients<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coefs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+   <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
+    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">]],</span>
+   <span class="n">columns</span><span class="o">=</span><span class="n">features</span>
+<span class="p">)</span>
+
+<span class="n">coefs</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gp_appt_available</th>
+      <th>111_111_offered</th>
+      <th>amb_sys_answered</th>
+      <th>rand1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.014926</td>
+      <td>0.406422</td>
+      <td>-0.131261</td>
+      <td>28.604220</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.004327</td>
+      <td>0.013028</td>
+      <td>0.006844</td>
+      <td>11.985975</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.004248</td>
+      <td>0.372576</td>
+      <td>-0.143010</td>
+      <td>10.642999</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.011283</td>
+      <td>0.399254</td>
+      <td>-0.134870</td>
+      <td>16.718126</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.015775</td>
+      <td>0.408695</td>
+      <td>-0.132449</td>
+      <td>30.552794</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.016698</td>
+      <td>0.414500</td>
+      <td>-0.127081</td>
+      <td>36.331556</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.022426</td>
+      <td>0.429938</td>
+      <td>-0.116957</td>
+      <td>53.013319</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="id8">
+<h3>Random Forest<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">fit_model</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id9">
+<h4>Performance<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">res</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span>
+<span class="n">res</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span>
+
+<span class="n">res</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.363934</td>
+      <td>0.911185</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.053220</td>
+      <td>0.003223</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.226848</td>
+      <td>0.904456</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.341011</td>
+      <td>0.909475</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.372914</td>
+      <td>0.910668</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.403277</td>
+      <td>0.912884</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.443941</td>
+      <td>0.919048</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="id10">
+<h4>Coefficients<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coefs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+   <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">feature_importances_</span>
+    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">]],</span>
+   <span class="n">columns</span><span class="o">=</span><span class="n">features</span>
+<span class="p">)</span>
+
+<span class="n">coefs</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gp_appt_available</th>
+      <th>111_111_offered</th>
+      <th>amb_sys_answered</th>
+      <th>rand1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.252627</td>
+      <td>0.241191</td>
+      <td>0.340715</td>
+      <td>0.165467</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.007478</td>
+      <td>0.025869</td>
+      <td>0.026501</td>
+      <td>0.006809</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.236310</td>
+      <td>0.186377</td>
+      <td>0.284930</td>
+      <td>0.150718</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.245910</td>
+      <td>0.222655</td>
+      <td>0.321147</td>
+      <td>0.162447</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.254227</td>
+      <td>0.242012</td>
+      <td>0.339128</td>
+      <td>0.164964</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.258445</td>
+      <td>0.260235</td>
+      <td>0.355215</td>
+      <td>0.170528</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.262859</td>
+      <td>0.287090</td>
+      <td>0.391416</td>
+      <td>0.182207</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="id11">
+<h3>Gradient Boosted Trees<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">GradientBoostingRegressor</span><span class="p">()</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">fit_model</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id12">
+<h4>Performance<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">res</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span>
+<span class="n">res</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span>
+
+<span class="n">res</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.406041</td>
+      <td>0.579198</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.034688</td>
+      <td>0.010241</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.338678</td>
+      <td>0.563322</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.382965</td>
+      <td>0.571524</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.404315</td>
+      <td>0.580027</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.424658</td>
+      <td>0.586004</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.478113</td>
+      <td>0.596500</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="id13">
+<h4>Coefficients<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coefs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+   <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">feature_importances_</span>
+    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">]],</span>
+   <span class="n">columns</span><span class="o">=</span><span class="n">features</span>
+<span class="p">)</span>
+
+<span class="n">coefs</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gp_appt_available</th>
+      <th>111_111_offered</th>
+      <th>amb_sys_answered</th>
+      <th>rand1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.167919</td>
+      <td>0.286482</td>
+      <td>0.490023</td>
+      <td>0.055575</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.019162</td>
+      <td>0.061533</td>
+      <td>0.060613</td>
+      <td>0.007247</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.133028</td>
+      <td>0.170488</td>
+      <td>0.407372</td>
+      <td>0.044977</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.157067</td>
+      <td>0.232628</td>
+      <td>0.443739</td>
+      <td>0.049274</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.166601</td>
+      <td>0.307925</td>
+      <td>0.471523</td>
+      <td>0.056173</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.176723</td>
+      <td>0.335142</td>
+      <td>0.539409</td>
+      <td>0.061672</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.201915</td>
+      <td>0.362488</td>
+      <td>0.608163</td>
+      <td>0.067795</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="id14">
+<h3>Summary<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h3>
+<p>Linear regression again performs poorly.</p>
+<p>Random Forest overfits to the training data, but the random variable is ranked lowest.</p>
+<p>Gradient boosted trees performs best and does not overfit. The random variable is ranked lowest.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="paper_ensemble.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tree-based models</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="stacked_model_description.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Stacked Architecture</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Charlotte James<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

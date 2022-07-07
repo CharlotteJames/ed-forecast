@@ -414,7 +414,7 @@ plt.ylabel('Model performance')
 plt.show()
 
 
-# A depth of 3 is optimal. After this, there is no improvement in performance on unseen data (test, red dashed line) and performance continues to increase in the training data (blue dashed line) suggesting overfitting.
+# A depth of 4 is optimal. After this, there is no improvement in performance on unseen data (test, red dashed line) and performance continues to increase in the training data (blue dashed line) suggesting overfitting.
 
 # ### Number of Trees
 
@@ -427,7 +427,7 @@ res_train,res_test = [],[]
 
 for est in n:
     
-    model = RandomForestRegressor(max_depth=3, n_estimators=est,
+    model = RandomForestRegressor(max_depth=4, n_estimators=est,
                                   random_state=0)
 
     y = grouped['ae_attendances_attendances']
@@ -478,14 +478,14 @@ plt.show()
 
 # The optimal number of trees is 2, beyond which there is no improvement in the training or test set.
 
-# ## Final Model
+# ## Final Model for paper
 
 # Fit the Random forest with optimal parameters
 
 # In[27]:
 
 
-model = RandomForestRegressor(max_depth=3, n_estimators=2,
+model = RandomForestRegressor(max_depth=4, n_estimators=2,
                               random_state=0)
 
 y = grouped['ae_attendances_attendances']
@@ -524,9 +524,15 @@ results['test'] = scores_test
 results.describe()
 
 
-# ### Feature Importance 
-
 # In[30]:
+
+
+X.shape
+
+
+# ### Feature Importance
+
+# In[31]:
 
 
 feat_imp = pd.DataFrame()
@@ -536,4 +542,10 @@ for i,f in enumerate(features):
     feat_imp[f] = np.array(feats)[:,i]
 
 feat_imp.describe()
+
+
+# In[ ]:
+
+
+
 

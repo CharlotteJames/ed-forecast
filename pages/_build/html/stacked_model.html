@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Combined Population Health and Service Capacity Model &#8212; Forecasting long-term ED demand</title>
+    <title>Combined Population Health and Service Capacity Model &#8212; Forecasting Long Term ED Demand</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -92,7 +92,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <h1 class="site-logo" id="site-title">Forecasting long-term ED demand</h1>
+      <h1 class="site-logo" id="site-title">Forecasting Long Term ED Demand</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -110,10 +110,54 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Data
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_sources.html">
+   Data Sources
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exploration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_comparison.html">
+   Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_level_model.html">
+   Mixed Linear Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paper_ensemble.html">
+   Tree-based models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capacity_vs_utility.html">
+   Seperating Capacity and Utility
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Model Development
  </span>
 </p>
 <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacked_model_description.html">
+   Stacked Architecture
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="capacity_model.html">
    Developing the Capacity Model
@@ -139,6 +183,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="stacked_forecast.html">
    Forecasting Future ED Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ccg_forecast.html">
+   Future demand at CCG level
   </a>
  </li>
 </ul>
@@ -213,24 +262,6 @@ title="Launch on Binder"
     <img src="_static/images/logo_binder.svg">
   </span>
 <span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/stacked_model.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_colab.png">
-  </span>
-<span class="headerbtn__text-container">Colab</span>
 </a>
 
       </li>
@@ -375,6 +406,28 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results-for-paper">
+     Results for paper
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coefficient-importances">
+     Coefficient importances
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean">
+       Mean
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#std">
+       Std
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plot">
      Plot
     </a>
@@ -464,6 +517,28 @@ title="Print to PDF"
    Combined model with optimised parameters
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results-for-paper">
+     Results for paper
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coefficient-importances">
+     Coefficient importances
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean">
+       Mean
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#std">
+       Std
+      </a>
+     </li>
+    </ul>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plot">
      Plot
@@ -591,6 +666,7 @@ title="Print to PDF"
       <th>People</th>
       <th>Places</th>
       <th>Lives</th>
+      <th>year</th>
     </tr>
   </thead>
   <tbody>
@@ -608,6 +684,7 @@ title="Print to PDF"
       <td>97.2</td>
       <td>99.7</td>
       <td>94.4</td>
+      <td>2018</td>
     </tr>
     <tr>
       <th>1</th>
@@ -623,6 +700,7 @@ title="Print to PDF"
       <td>97.2</td>
       <td>99.7</td>
       <td>94.4</td>
+      <td>2018</td>
     </tr>
     <tr>
       <th>2</th>
@@ -638,6 +716,7 @@ title="Print to PDF"
       <td>97.2</td>
       <td>99.7</td>
       <td>94.4</td>
+      <td>2018</td>
     </tr>
     <tr>
       <th>3</th>
@@ -653,6 +732,7 @@ title="Print to PDF"
       <td>97.2</td>
       <td>99.7</td>
       <td>94.4</td>
+      <td>2018</td>
     </tr>
     <tr>
       <th>4</th>
@@ -668,6 +748,7 @@ title="Print to PDF"
       <td>97.2</td>
       <td>99.7</td>
       <td>94.4</td>
+      <td>2018</td>
     </tr>
   </tbody>
 </table>
@@ -680,7 +761,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1425, 12)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1465, 13)
 </pre></div>
 </div>
 </div>
@@ -729,7 +810,7 @@ title="Print to PDF"
 <h2>Fit Predict Population Health model<a class="headerlink" href="#fit-predict-population-health-model" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
                               <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">pophealth_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
@@ -795,43 +876,43 @@ title="Print to PDF"
   <tbody>
     <tr>
       <th>0</th>
-      <td>13.9240</td>
-      <td>84.800000</td>
-      <td>98.500000</td>
-      <td>88.500000</td>
-      <td>1270.932902</td>
-    </tr>
-    <tr>
-      <th>1</th>
       <td>14.8942</td>
       <td>97.200000</td>
       <td>99.700000</td>
       <td>94.400000</td>
-      <td>1051.002273</td>
+      <td>951.730426</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>14.9084</td>
+      <td>96.000000</td>
+      <td>99.500000</td>
+      <td>94.600000</td>
+      <td>951.730426</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>26.5294</td>
-      <td>97.850000</td>
-      <td>102.100000</td>
-      <td>99.500000</td>
-      <td>472.715590</td>
+      <td>20.9547</td>
+      <td>101.100000</td>
+      <td>101.600000</td>
+      <td>101.300000</td>
+      <td>536.982536</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>21.0108</td>
+      <td>98.700000</td>
+      <td>102.100000</td>
+      <td>103.000000</td>
+      <td>772.797845</td>
+    </tr>
+    <tr>
+      <th>4</th>
       <td>28.5372</td>
       <td>95.200000</td>
       <td>100.100000</td>
       <td>96.600000</td>
-      <td>472.715590</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>29.1775</td>
-      <td>100.200000</td>
-      <td>104.400000</td>
-      <td>104.200000</td>
-      <td>381.722990</td>
+      <td>459.182148</td>
     </tr>
     <tr>
       <th>...</th>
@@ -842,48 +923,48 @@ title="Print to PDF"
       <td>...</td>
     </tr>
     <tr>
-      <th>123</th>
-      <td>58.6485</td>
-      <td>94.200000</td>
-      <td>99.200000</td>
-      <td>99.000000</td>
-      <td>385.192306</td>
-    </tr>
-    <tr>
-      <th>124</th>
-      <td>63.3558</td>
-      <td>106.166667</td>
-      <td>101.866667</td>
-      <td>107.616667</td>
-      <td>332.828873</td>
-    </tr>
-    <tr>
-      <th>125</th>
-      <td>92.7598</td>
-      <td>101.800000</td>
-      <td>101.733333</td>
-      <td>107.750000</td>
-      <td>332.828873</td>
-    </tr>
-    <tr>
-      <th>126</th>
-      <td>102.1991</td>
-      <td>103.040000</td>
-      <td>99.660000</td>
-      <td>103.696667</td>
-      <td>385.192306</td>
-    </tr>
-    <tr>
       <th>127</th>
+      <td>96.9439</td>
+      <td>97.566667</td>
+      <td>100.366667</td>
+      <td>104.633333</td>
+      <td>336.330076</td>
+    </tr>
+    <tr>
+      <th>128</th>
+      <td>102.5758</td>
+      <td>102.007692</td>
+      <td>103.261538</td>
+      <td>104.907692</td>
+      <td>336.330076</td>
+    </tr>
+    <tr>
+      <th>129</th>
       <td>103.7356</td>
       <td>101.088889</td>
       <td>100.327778</td>
       <td>103.508333</td>
-      <td>385.192306</td>
+      <td>336.330076</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>160.3009</td>
+      <td>104.361111</td>
+      <td>99.211111</td>
+      <td>104.519444</td>
+      <td>422.525438</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>161.1687</td>
+      <td>100.930556</td>
+      <td>100.861111</td>
+      <td>104.850000</td>
+      <td>422.525438</td>
     </tr>
   </tbody>
 </table>
-<p>128 rows × 5 columns</p>
+<p>132 rows × 5 columns</p>
 </div></div></div>
 </div>
 <section id="merge-with-data-set">
@@ -933,6 +1014,7 @@ title="Print to PDF"
       <th>People</th>
       <th>Places</th>
       <th>Lives</th>
+      <th>year</th>
       <th>ae_predicted</th>
     </tr>
   </thead>
@@ -951,7 +1033,8 @@ title="Print to PDF"
       <td>97.2</td>
       <td>99.7</td>
       <td>94.4</td>
-      <td>1051.002273</td>
+      <td>2018</td>
+      <td>951.730426</td>
     </tr>
     <tr>
       <th>1</th>
@@ -967,7 +1050,8 @@ title="Print to PDF"
       <td>97.2</td>
       <td>99.7</td>
       <td>94.4</td>
-      <td>1051.002273</td>
+      <td>2018</td>
+      <td>951.730426</td>
     </tr>
     <tr>
       <th>2</th>
@@ -983,7 +1067,8 @@ title="Print to PDF"
       <td>97.2</td>
       <td>99.7</td>
       <td>94.4</td>
-      <td>1051.002273</td>
+      <td>2018</td>
+      <td>951.730426</td>
     </tr>
     <tr>
       <th>3</th>
@@ -999,7 +1084,8 @@ title="Print to PDF"
       <td>97.2</td>
       <td>99.7</td>
       <td>94.4</td>
-      <td>1051.002273</td>
+      <td>2018</td>
+      <td>951.730426</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1015,7 +1101,8 @@ title="Print to PDF"
       <td>97.2</td>
       <td>99.7</td>
       <td>94.4</td>
-      <td>1051.002273</td>
+      <td>2018</td>
+      <td>951.730426</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1032,9 +1119,10 @@ title="Print to PDF"
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>1420</th>
+      <th>1460</th>
       <td>X2C4Y</td>
       <td>Aug</td>
       <td>281.008273</td>
@@ -1047,10 +1135,11 @@ title="Print to PDF"
       <td>93.3</td>
       <td>98.3</td>
       <td>97.6</td>
-      <td>515.867172</td>
+      <td>2019</td>
+      <td>475.096038</td>
     </tr>
     <tr>
-      <th>1421</th>
+      <th>1461</th>
       <td>X2C4Y</td>
       <td>Sep</td>
       <td>263.936917</td>
@@ -1063,10 +1152,11 @@ title="Print to PDF"
       <td>93.3</td>
       <td>98.3</td>
       <td>97.6</td>
-      <td>515.867172</td>
+      <td>2019</td>
+      <td>475.096038</td>
     </tr>
     <tr>
-      <th>1422</th>
+      <th>1462</th>
       <td>X2C4Y</td>
       <td>Oct</td>
       <td>286.454848</td>
@@ -1079,10 +1169,11 @@ title="Print to PDF"
       <td>93.3</td>
       <td>98.3</td>
       <td>97.6</td>
-      <td>515.867172</td>
+      <td>2019</td>
+      <td>475.096038</td>
     </tr>
     <tr>
-      <th>1423</th>
+      <th>1463</th>
       <td>X2C4Y</td>
       <td>Nov</td>
       <td>326.984206</td>
@@ -1095,10 +1186,11 @@ title="Print to PDF"
       <td>93.3</td>
       <td>98.3</td>
       <td>97.6</td>
-      <td>515.867172</td>
+      <td>2019</td>
+      <td>475.096038</td>
     </tr>
     <tr>
-      <th>1424</th>
+      <th>1464</th>
       <td>X2C4Y</td>
       <td>Dec</td>
       <td>365.414559</td>
@@ -1111,11 +1203,12 @@ title="Print to PDF"
       <td>93.3</td>
       <td>98.3</td>
       <td>97.6</td>
-      <td>515.867172</td>
+      <td>2019</td>
+      <td>475.096038</td>
     </tr>
   </tbody>
 </table>
-<p>1425 rows × 13 columns</p>
+<p>1465 rows × 14 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -1125,7 +1218,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#capacity utility model</span>
-<span class="n">rf1</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> 
+<span class="n">rf1</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> 
                             <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1">#combinator</span>
@@ -1167,7 +1260,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.40477370122358636
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.343321511524463
 </pre></div>
 </div>
 </div>
@@ -1184,7 +1277,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6223340990025038
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7354179625284982
 </pre></div>
 </div>
 </div>
@@ -1216,9 +1309,9 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.441254188439128
-0.5452611564926692
-0.6355467401718082
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.32630536112390485
+0.6857359625576978
+0.715432777083205
 </pre></div>
 </div>
 </div>
@@ -1233,7 +1326,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.5192824 , 0.62027602])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.40449924, 0.80083723])
 </pre></div>
 </div>
 </div>
@@ -1404,10 +1497,10 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#capacity model</span>
-<span class="n">rf1</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rf1</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1">#population health model</span>
-<span class="n">rf2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rf2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">scores_final</span><span class="p">,</span> <span class="n">scores_rf1</span><span class="p">,</span> <span class="n">scores_rf2</span><span class="p">,</span> \
 <span class="n">dta_pred</span><span class="p">,</span> <span class="n">coefs</span> <span class="o">=</span> <span class="n">cv_combined</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">)</span>
@@ -1415,11 +1508,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1425, 13)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1465, 14)
 </pre></div>
 </div>
 </div>
 </div>
+<section id="results-for-paper">
+<h3>Results for paper<a class="headerlink" href="#results-for-paper" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -1470,50 +1565,84 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.652897</td>
-      <td>0.397873</td>
-      <td>0.581512</td>
+      <td>0.712527</td>
+      <td>0.396978</td>
+      <td>0.658971</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.042571</td>
-      <td>0.051272</td>
-      <td>0.050794</td>
+      <td>0.022141</td>
+      <td>0.053012</td>
+      <td>0.023460</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.561164</td>
-      <td>0.287035</td>
-      <td>0.460972</td>
+      <td>0.664053</td>
+      <td>0.264904</td>
+      <td>0.616893</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.618940</td>
-      <td>0.361814</td>
-      <td>0.552561</td>
+      <td>0.696290</td>
+      <td>0.356941</td>
+      <td>0.644474</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.662421</td>
-      <td>0.401308</td>
-      <td>0.590778</td>
+      <td>0.712380</td>
+      <td>0.399261</td>
+      <td>0.654565</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.685946</td>
-      <td>0.431872</td>
-      <td>0.619018</td>
+      <td>0.725122</td>
+      <td>0.434240</td>
+      <td>0.676644</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.712853</td>
-      <td>0.489252</td>
-      <td>0.659609</td>
+      <td>0.753902</td>
+      <td>0.495170</td>
+      <td>0.694800</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
+</section>
+<section id="coefficient-importances">
+<h3>Coefficient importances<a class="headerlink" href="#coefficient-importances" title="Permalink to this headline">#</a></h3>
+<section id="mean">
+<h4>Mean<a class="headerlink" href="#mean" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">coefs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.36678442, 0.76288664])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="std">
+<h4>Std<a class="headerlink" href="#std" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">coefs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.10534984, 0.04842211])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 <section id="plot">
 <h3>Plot<a class="headerlink" href="#plot" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
@@ -1531,8 +1660,6 @@ title="Print to PDF"
 
 <span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">dta_pred</span><span class="p">[</span><span class="s1">&#39;true&#39;</span><span class="p">]),</span><span class="nb">max</span><span class="p">(</span><span class="n">dta_pred</span><span class="p">[</span><span class="s1">&#39;true&#39;</span><span class="p">]))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">xx</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">xx</span><span class="o">-</span><span class="mi">450</span><span class="p">,</span> <span class="s1">&#39;b--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">xx</span><span class="o">+</span><span class="mi">450</span><span class="p">,</span> <span class="s1">&#39;b--&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;True monthly ED attendances per 10,000 people&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted monthly ED attendances per 10,000 people&#39;</span><span class="p">)</span>
@@ -1542,7 +1669,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/stacked_model_34_0.png" src="_images/stacked_model_34_0.png" />
+<img alt="_images/stacked_model_40_0.png" src="_images/stacked_model_40_0.png" />
 </div>
 </div>
 </section>
@@ -1708,21 +1835,9 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#set random seed to make results reproducible</span>
-<span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 
 <span class="n">importances</span> <span class="o">=</span> <span class="n">feature_importance_combined</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [27],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#set random seed to make results reproducible</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">importances</span> <span class="o">=</span> <span class="n">feature_importance_combined</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;numpy&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1776,80 +1891,80 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.652897</td>
-      <td>0.027086</td>
-      <td>0.066191</td>
-      <td>0.144325</td>
-      <td>0.451598</td>
-      <td>0.037677</td>
-      <td>0.029621</td>
-      <td>0.101341</td>
+      <td>0.712527</td>
+      <td>0.013235</td>
+      <td>0.063915</td>
+      <td>0.068951</td>
+      <td>0.349971</td>
+      <td>0.097549</td>
+      <td>0.014294</td>
+      <td>0.140716</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.042571</td>
-      <td>0.018281</td>
-      <td>0.018686</td>
-      <td>0.044304</td>
-      <td>0.065514</td>
-      <td>0.011443</td>
-      <td>0.011564</td>
-      <td>0.039950</td>
+      <td>0.022141</td>
+      <td>0.009803</td>
+      <td>0.027243</td>
+      <td>0.039107</td>
+      <td>0.056355</td>
+      <td>0.038902</td>
+      <td>0.006521</td>
+      <td>0.030197</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.561164</td>
-      <td>0.002236</td>
-      <td>0.033869</td>
-      <td>0.074645</td>
-      <td>0.283854</td>
-      <td>0.021200</td>
-      <td>0.004587</td>
-      <td>0.017951</td>
+      <td>0.664053</td>
+      <td>-0.005824</td>
+      <td>0.020377</td>
+      <td>0.016285</td>
+      <td>0.256957</td>
+      <td>0.010919</td>
+      <td>0.000351</td>
+      <td>0.096899</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.618940</td>
-      <td>0.016875</td>
-      <td>0.056239</td>
-      <td>0.110030</td>
-      <td>0.425416</td>
-      <td>0.028212</td>
-      <td>0.020026</td>
-      <td>0.068663</td>
+      <td>0.696290</td>
+      <td>0.007920</td>
+      <td>0.045883</td>
+      <td>0.046681</td>
+      <td>0.313557</td>
+      <td>0.069662</td>
+      <td>0.010273</td>
+      <td>0.116949</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.662421</td>
-      <td>0.021924</td>
-      <td>0.064825</td>
-      <td>0.138735</td>
-      <td>0.465319</td>
-      <td>0.038463</td>
-      <td>0.028411</td>
-      <td>0.101402</td>
+      <td>0.712380</td>
+      <td>0.012245</td>
+      <td>0.060437</td>
+      <td>0.055817</td>
+      <td>0.337457</td>
+      <td>0.103614</td>
+      <td>0.014528</td>
+      <td>0.141273</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.685946</td>
-      <td>0.033144</td>
-      <td>0.078997</td>
-      <td>0.173100</td>
-      <td>0.493657</td>
-      <td>0.045088</td>
-      <td>0.039828</td>
-      <td>0.132218</td>
+      <td>0.725122</td>
+      <td>0.017571</td>
+      <td>0.074977</td>
+      <td>0.077036</td>
+      <td>0.390045</td>
+      <td>0.122522</td>
+      <td>0.018829</td>
+      <td>0.160813</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.712853</td>
-      <td>0.071461</td>
-      <td>0.110090</td>
-      <td>0.231839</td>
-      <td>0.563205</td>
-      <td>0.065389</td>
-      <td>0.048126</td>
-      <td>0.188220</td>
+      <td>0.753902</td>
+      <td>0.042093</td>
+      <td>0.116276</td>
+      <td>0.181854</td>
+      <td>0.460101</td>
+      <td>0.170926</td>
+      <td>0.025635</td>
+      <td>0.207033</td>
     </tr>
   </tbody>
 </table>
@@ -1877,7 +1992,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/stacked_model_41_0.png" src="_images/stacked_model_41_0.png" />
+<img alt="_images/stacked_model_47_0.png" src="_images/stacked_model_47_0.png" />
 </div>
 </div>
 </section>
@@ -1935,7 +2050,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined training score: 0.8014005341273812
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined training score: 0.7935722670846808
 </pre></div>
 </div>
 </div>

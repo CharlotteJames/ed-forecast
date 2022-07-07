@@ -387,25 +387,31 @@ for i,results in enumerate(scenario_results):
     
     points_series = pd.Series(points)
     
-    plt.plot(points_series.rolling(window=2).mean().to_list()[:], label = f'{scenarios[i]}')
+    plt.plot(points_series.rolling(window=4).mean().to_list()[:], label = f'{scenarios[i]}')
     
     
 points = sum_by_month(scenario_results[0])
 
 points_series = pd.Series(points)
     
-plt.plot(points_series.rolling(window=2).mean().to_list()[:], 'g--', label = f'{scenarios[0]}')
+plt.plot(points_series.rolling(window=4).mean().to_list()[:], 'g--', label = f'{scenarios[0]}')
 
     
 y = np.arange(23500,28000,1000)    
-plt.plot(11*np.ones(len(y)),y, 'k--')
+plt.plot(12*np.ones(len(y)),y, 'k--')
 
-plt.legend(loc = 'lower left', fontsize=10)
+plt.legend(loc = 'lower right', fontsize=12)
 plt.ylabel('Mean monthly ED attendances by CCG', fontsize=14)
 plt.xlabel('Months since January 2019', fontsize=14)
 plt.xlim(0,60)
-plt.ylim(22000,None)
+plt.ylim(24000,27000)
 plt.tight_layout()
 plt.savefig('forecast_scaled.png')
 plt.show()
+
+
+# In[ ]:
+
+
+
 

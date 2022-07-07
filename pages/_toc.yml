@@ -2,11 +2,22 @@
 format: jb-book
 root: intro.md
 parts:
+  - caption: Data
+    chapters:
+    - file: data_sources.md
+  - caption: Exploration
+    chapters:
+    - file: model_comparison.ipynb
+    - file: multi_level_model.ipynb
+    - file: paper_ensemble.ipynb
+    - file: capacity_vs_utility.ipynb
   - caption: Model Development
     chapters:
+    - file: stacked_model_description.md
     - file: capacity_model.ipynb
     - file: population_health_model.ipynb
     - file: stacked_model.ipynb
   - caption: Forecasting Future ED Demand
     chapters:
     - file: stacked_forecast.ipynb
+    - file: ccg_forecast.ipynb

@@ -445,16 +445,16 @@ plt.ylabel('Model Performance')
 plt.show()
 
 
-# The optimal number of trees is 4, beyond which there is no improvement in the training or test set.
+# The optimal number of trees is 6, beyond which there is no improvement in the training or test set.
 
-# ## Final Model
+# ## Final Model for paper
 
 # Fit the Random forest with optimal parameters
 
 # In[26]:
 
 
-model = RandomForestRegressor(max_depth=5, n_estimators=4,
+model = RandomForestRegressor(max_depth=5, n_estimators=6,
                               random_state=0)
 
 
@@ -496,7 +496,7 @@ results['test'] = scores_test
 results.describe()
 
 
-# ### Feature Importance 
+# ### Feature Importance
 
 # In[29]:
 

@@ -1,11 +1,15 @@
 # In _config.yml
-title: Forecasting long-term ED demand
+title: Forecasting Long Term ED Demand
 author: Charlotte James
 execute:
-  execute_notebooks: auto
+  execute_notebooks: force
+bibtex_bibfiles:
+    - references.bib
+#sphinx:
+#  config:
+#    bibtex_reference_style: numeric
 
-launch_buttons:
-  colab_url: https://colab.research.google.com
+#launch_buttons:
 
 # Add a bibtex file so that we can create citations
 #bibtex_bibfiles:

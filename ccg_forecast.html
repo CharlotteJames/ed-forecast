@@ -103,7 +103,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="index.html">
-                    Forecasting Long Term ED Demand
+                    Forecasting Long Term Emergency Department Demand
                 </a>
             </li>
         </ul>
@@ -408,6 +408,11 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -453,6 +458,11 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
  </li>
 </ul>
 
@@ -506,227 +516,9 @@ title="Print to PDF"
 <img alt="_images/ccg_forecast_3_10.png" src="_images/ccg_forecast_3_10.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ccg</th>
-      <th>month</th>
-      <th>2019</th>
-      <th>2020</th>
-      <th>2021</th>
-      <th>2022</th>
-      <th>2023</th>
-      <th>2024</th>
-      <th>2025</th>
-      <th>2026</th>
-      <th>2027</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>00Q</td>
-      <td>Jan</td>
-      <td>15570.0</td>
-      <td>15399.291240</td>
-      <td>15405.690881</td>
-      <td>15407.652062</td>
-      <td>15408.684262</td>
-      <td>15406.206981</td>
-      <td>15401.252421</td>
-      <td>15395.472100</td>
-      <td>15388.762798</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>00Q</td>
-      <td>Feb</td>
-      <td>14493.0</td>
-      <td>15399.291240</td>
-      <td>15405.690881</td>
-      <td>15407.652062</td>
-      <td>15408.684262</td>
-      <td>15406.206981</td>
-      <td>15401.252421</td>
-      <td>15395.472100</td>
-      <td>15388.762798</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>00Q</td>
-      <td>Mar</td>
-      <td>15748.0</td>
-      <td>15399.291240</td>
-      <td>15405.690881</td>
-      <td>15407.652062</td>
-      <td>15408.684262</td>
-      <td>15406.206981</td>
-      <td>15401.252421</td>
-      <td>15395.472100</td>
-      <td>15388.762798</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>00Q</td>
-      <td>Apr</td>
-      <td>15929.0</td>
-      <td>15047.821916</td>
-      <td>15054.075493</td>
-      <td>15055.991912</td>
-      <td>15057.000553</td>
-      <td>15054.579814</td>
-      <td>15049.738334</td>
-      <td>15044.089942</td>
-      <td>15037.533772</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>00Q</td>
-      <td>May</td>
-      <td>16180.0</td>
-      <td>15399.291240</td>
-      <td>15405.690881</td>
-      <td>15407.652062</td>
-      <td>15408.684262</td>
-      <td>15406.206981</td>
-      <td>15401.252421</td>
-      <td>15395.472100</td>
-      <td>15388.762798</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>895</th>
-      <td>X2C4Y</td>
-      <td>Aug</td>
-      <td>17191.0</td>
-      <td>17279.087221</td>
-      <td>20956.813658</td>
-      <td>21016.739728</td>
-      <td>21072.598204</td>
-      <td>21124.389086</td>
-      <td>21173.247516</td>
-      <td>21220.828910</td>
-      <td>21266.423805</td>
-    </tr>
-    <tr>
-      <th>896</th>
-      <td>X2C4Y</td>
-      <td>Sep</td>
-      <td>17115.0</td>
-      <td>17167.702557</td>
-      <td>20845.097439</td>
-      <td>20904.704056</td>
-      <td>20960.264763</td>
-      <td>21011.779558</td>
-      <td>21060.377534</td>
-      <td>21107.705283</td>
-      <td>21153.057121</td>
-    </tr>
-    <tr>
-      <th>897</th>
-      <td>X2C4Y</td>
-      <td>Oct</td>
-      <td>17229.0</td>
-      <td>17167.702557</td>
-      <td>20845.097439</td>
-      <td>20904.704056</td>
-      <td>20960.264763</td>
-      <td>21011.779558</td>
-      <td>21060.377534</td>
-      <td>21107.705283</td>
-      <td>21153.057121</td>
-    </tr>
-    <tr>
-      <th>898</th>
-      <td>X2C4Y</td>
-      <td>Nov</td>
-      <td>17153.0</td>
-      <td>17501.858572</td>
-      <td>21180.248126</td>
-      <td>21240.813107</td>
-      <td>21297.267127</td>
-      <td>21349.610186</td>
-      <td>21398.989528</td>
-      <td>21447.078219</td>
-      <td>21493.159231</td>
-    </tr>
-    <tr>
-      <th>899</th>
-      <td>X2C4Y</td>
-      <td>Dec</td>
-      <td>17813.0</td>
-      <td>17501.858572</td>
-      <td>21180.248126</td>
-      <td>21240.813107</td>
-      <td>21297.267127</td>
-      <td>21349.610186</td>
-      <td>21398.989528</td>
-      <td>21447.078219</td>
-      <td>21493.159231</td>
-    </tr>
-  </tbody>
-</table>
-<p>784 rows × 11 columns</p>
-</div></div></div>
-</div>
 </section>
 <section id="plot-for-ccg">
 <h2>Plot for CCG<a class="headerlink" href="#plot-for-ccg" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">ccg</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;00Q&#39;, &#39;00R&#39;, &#39;00T&#39;, &#39;01E&#39;, &#39;01G&#39;, &#39;01J&#39;, &#39;01K&#39;, &#39;01V&#39;, &#39;01W&#39;,
-       &#39;01Y&#39;, &#39;02E&#39;, &#39;02H&#39;, &#39;02P&#39;, &#39;02X&#39;, &#39;03F&#39;, &#39;03H&#39;, &#39;03L&#39;, &#39;03N&#39;,
-       &#39;03Q&#39;, &#39;03R&#39;, &#39;04C&#39;, &#39;05W&#39;, &#39;06H&#39;, &#39;06K&#39;, &#39;06N&#39;, &#39;06Q&#39;, &#39;06T&#39;,
-       &#39;07H&#39;, &#39;07K&#39;, &#39;09D&#39;, &#39;10Q&#39;, &#39;10R&#39;, &#39;11M&#39;, &#39;11N&#39;, &#39;11X&#39;, &#39;12F&#39;,
-       &#39;13T&#39;, &#39;14L&#39;, &#39;14Y&#39;, &#39;15A&#39;, &#39;15C&#39;, &#39;15E&#39;, &#39;15F&#39;, &#39;16C&#39;, &#39;18C&#39;,
-       &#39;26A&#39;, &#39;27D&#39;, &#39;36J&#39;, &#39;36L&#39;, &#39;42D&#39;, &#39;52R&#39;, &#39;70F&#39;, &#39;71E&#39;, &#39;72Q&#39;,
-       &#39;91Q&#39;, &#39;92A&#39;, &#39;92G&#39;, &#39;93C&#39;, &#39;97R&#39;, &#39;99A&#39;, &#39;99C&#39;, &#39;99G&#39;, &#39;A3A8R&#39;,
-       &#39;B2M3M&#39;, &#39;D2P2L&#39;, &#39;D4U1Y&#39;, &#39;D9Y0V&#39;, &#39;M1J4Y&#39;, &#39;M2L0M&#39;, &#39;W2U3Z&#39;,
-       &#39;X2C4Y&#39;], dtype=object)
-</pre></div>
-</div>
-</div>
-</div>
 <section id="a">
 <h3>26A<a class="headerlink" href="#a" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
@@ -769,7 +561,7 @@ title="Print to PDF"
 <span class="c1">#plt.plot(12*np.ones(len(y)),y, &#39;k--&#39;)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mean monthly ED attendances &#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly ED attendances &#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months since January 2019&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
 <span class="c1">#plt.ylim(24000,27000)</span>
@@ -780,7 +572,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ccg_forecast_9_0.png" src="_images/ccg_forecast_9_0.png" />
+<img alt="_images/ccg_forecast_7_0.png" src="_images/ccg_forecast_7_0.png" />
 </div>
 </div>
 </section>
@@ -826,7 +618,7 @@ title="Print to PDF"
 <span class="c1">#plt.plot(12*np.ones(len(y)),y, &#39;k--&#39;)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mean monthly ED attendances&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly ED attendances&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months since January 2019&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
 <span class="c1">#plt.ylim(24000,27000)</span>
@@ -837,7 +629,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ccg_forecast_12_0.png" src="_images/ccg_forecast_12_0.png" />
+<img alt="_images/ccg_forecast_10_0.png" src="_images/ccg_forecast_10_0.png" />
 </div>
 </div>
 </section>
@@ -883,7 +675,7 @@ title="Print to PDF"
 <span class="c1">#plt.plot(12*np.ones(len(y)),y, &#39;k--&#39;)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mean monthly ED attendances&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly ED attendances&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months since January 2019&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
 <span class="c1">#plt.ylim(24000,27000)</span>
@@ -894,10 +686,16 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ccg_forecast_15_0.png" src="_images/ccg_forecast_15_0.png" />
+<img alt="_images/ccg_forecast_13_0.png" src="_images/ccg_forecast_13_0.png" />
 </div>
 </div>
 </section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<p>It is clear that, when looking at individual CCGs, the forecasts can vary significantly from the mean results presented on the previous page.</p>
+<p>This demonstrates that for each CCG the model is learning different relationships between the different variables.</p>
+<p>Forecasts at the CCG level would be more accurate if local data was fed into the model.</p>
 </section>
 </section>
 

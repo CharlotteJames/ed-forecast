@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Stacked Architecture &#8212; Forecasting Long Term ED Demand</title>
+    <title>KNN imputation &#8212; Forecasting Long Term ED Demand</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Developing the Capacity Model" href="capacity_model.html" />
-    <link rel="prev" title="Separating Capacity and Utility" href="capacity_vs_utility.html" />
+    <link rel="next" title="Model performance with imputed data" href="stacked_model_impute.html" />
+    <link rel="prev" title="Imputing missing data" href="missing_data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -152,9 +152,9 @@ const thebe_selector_output = ".output, .cell_output"
   Model Development
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacked_model_description.html">
    Stacked Architecture
   </a>
  </li>
@@ -201,10 +201,20 @@ const thebe_selector_output = ".output, .cell_output"
   Imputation
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="missing_data.html">
    Imputing missing data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   KNN imputation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacked_model_impute.html">
+   Model performance with imputed data
   </a>
  </li>
 </ul>
@@ -258,6 +268,53 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/CharlotteJames/ed-forecast/master?urlpath=tree/pages/impute.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/CharlotteJames/ed-forecast/blob/master/pages/impute.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -293,7 +350,7 @@ title="Source repository"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/stacked_model_description.md"
+        <a href="_sources/impute.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -304,7 +361,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -330,23 +387,60 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#knn">
+   KNN
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Stacked Architecture</h1>
+                <h1>KNN imputation</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#knn">
+   KNN
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -354,9 +448,207 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="stacked-architecture">
-<h1>Stacked Architecture<a class="headerlink" href="#stacked-architecture" title="Permalink to this headline">#</a></h1>
-<p><img alt="model" src="_images/model.png" /></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="knn-imputation">
+<h1>KNN imputation<a class="headerlink" href="#knn-imputation" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.experimental</span> <span class="kn">import</span> <span class="n">enable_iterative_imputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">IterativeImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">KNNImputer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">master</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_impute.csv&#39;</span><span class="p">,</span>
+                  <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">master</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ccg</th>
+      <th>month</th>
+      <th>111_111_offered</th>
+      <th>111_111_answered</th>
+      <th>amb_sys_made</th>
+      <th>amb_sys_answered</th>
+      <th>gp_appt_attended</th>
+      <th>gp_appt_available</th>
+      <th>ae_attendances_attendances</th>
+      <th>population</th>
+      <th>People</th>
+      <th>Places</th>
+      <th>Lives</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00N</td>
+      <td>Jan</td>
+      <td>568.479362</td>
+      <td>459.899870</td>
+      <td>216.450677</td>
+      <td>148.439545</td>
+      <td>4338.335607</td>
+      <td>4738.295678</td>
+      <td>385.585466</td>
+      <td>15.0265</td>
+      <td>94.8</td>
+      <td>101.7</td>
+      <td>96.8</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>00N</td>
+      <td>Feb</td>
+      <td>472.022555</td>
+      <td>395.194004</td>
+      <td>204.869142</td>
+      <td>147.335865</td>
+      <td>3704.655109</td>
+      <td>4074.002595</td>
+      <td>347.519382</td>
+      <td>15.0265</td>
+      <td>94.8</td>
+      <td>101.7</td>
+      <td>96.8</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00N</td>
+      <td>Mar</td>
+      <td>541.224032</td>
+      <td>453.863381</td>
+      <td>233.092813</td>
+      <td>168.121234</td>
+      <td>3907.696403</td>
+      <td>4321.498686</td>
+      <td>383.389345</td>
+      <td>15.0265</td>
+      <td>94.8</td>
+      <td>101.7</td>
+      <td>96.8</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00N</td>
+      <td>Apr</td>
+      <td>506.059962</td>
+      <td>438.172926</td>
+      <td>210.990836</td>
+      <td>149.848422</td>
+      <td>3721.092736</td>
+      <td>4089.042691</td>
+      <td>396.299870</td>
+      <td>15.0265</td>
+      <td>94.8</td>
+      <td>101.7</td>
+      <td>96.8</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>00N</td>
+      <td>May</td>
+      <td>517.326603</td>
+      <td>452.985246</td>
+      <td>223.273261</td>
+      <td>164.595494</td>
+      <td>3848.800453</td>
+      <td>4224.337005</td>
+      <td>422.187469</td>
+      <td>15.0265</td>
+      <td>94.8</td>
+      <td>101.7</td>
+      <td>96.8</td>
+      <td>2018</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">master</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1920, 14)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="n">master</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="knn">
+<h2>KNN<a class="headerlink" href="#knn" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">12</span><span class="p">):</span>
+    
+    <span class="n">knn</span> <span class="o">=</span> <span class="n">KNNImputer</span><span class="p">(</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">N</span><span class="p">)</span>
+
+    <span class="n">master_imputed</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">master</span><span class="p">[</span><span class="n">cols</span><span class="p">])</span>
+    
+    <span class="n">master_imputed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">master_imputed</span><span class="p">),</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">cols</span> <span class="p">)</span>
+    <span class="n">master_imputed</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">master</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span>
+    <span class="n">master_imputed</span><span class="p">[</span><span class="s1">&#39;ccg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">master</span><span class="p">[</span><span class="s1">&#39;ccg&#39;</span><span class="p">]</span>
+    
+    <span class="n">master_imputed</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../data/imputed/master_imputed_</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.41 s, sys: 771 ms, total: 3.18 s
+Wall time: 857 ms
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -386,17 +678,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="capacity_vs_utility.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="missing_data.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Separating Capacity and Utility</p>
+            <p class="prev-next-title">Imputing missing data</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="capacity_model.html" title="next page">
+    <a class='right-next' id="next-link" href="stacked_model_impute.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Developing the Capacity Model</p>
+        <p class="prev-next-title">Model performance with imputed data</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

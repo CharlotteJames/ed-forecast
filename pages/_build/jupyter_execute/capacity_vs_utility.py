@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Seperating Capacity and Utility 
+# # Separating Capacity and Utility 
 
 # ## Overview 
 
 # The capacity and utility features are highly correlated (see below). This can affect overall model performance and feature importances.
 # 
-# To understand the extent of this effect we fit seperate models to capacity and utility features, and compare performance.
+# To understand the extent of this effect we fit separate models to capacity and utility features, and compare performance.
 # 
 # 
 # - Capacity features: 111 calls offered, Ambulance answered, GP appointments available

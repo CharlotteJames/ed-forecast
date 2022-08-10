@@ -50,7 +50,7 @@ plt.style.use('ggplot')
 # In[3]:
 
 
-dta = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled.csv',
+dta = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_new.csv',
                   index_col=0)
 
 
@@ -330,16 +330,17 @@ feat_imp.describe()
 # 
 # **Random Forest**
 # 
-# - Best performance with mean $R^2$ = 0.6 in test data. 
-# - Performance also variable: minimum $R^2$ = 0.1
+# - Best performance with mean $R^2$ = 0.5 in test data. 
+# - Performance also variable: minimum $R^2$ = -0.8
 # - Feature importance is stable: population is most important, followed by Lives, People then Places. 
 # - The random feature has low importnace which validates the importance of other features.
 # 
 # **Gradient Boosted Trees**
 # 
 # - Doesn't perform as well as a Random Forest, mean $R^2$ = 0.4 in test data
-# - Performance also variable: minimum $R^2$ = 0.04
+# - Performance also variable: minimum $R^2$ = -0.24
 # - Feature importance is not agreement with the Random Forest, with Places more important than People.
+# 
 # 
 
 # ## Hyper parameter tuning 
@@ -409,7 +410,7 @@ plt.ylabel('Model performance')
 plt.show()
 
 
-# A depth of 4 is optimal. After this, there is no improvement in performance on unseen data (test, red dashed line) and performance continues to increase in the training data (blue dashed line) suggesting overfitting.
+# A depth of 5 is optimal. After this, there is no improvement in performance on unseen data (test, red dashed line) and performance continues to increase in the training data (blue dashed line) suggesting overfitting.
 
 # ### Number of Trees
 
@@ -471,7 +472,7 @@ plt.ylabel('Model performance')
 plt.show()
 
 
-# The optimal number of trees is 2, beyond which there is no improvement in the training or test set.
+# The optimal number of trees is 4, beyond which there is no improvement in the training or test set.
 
 # ## Final Model for paper
 
@@ -480,7 +481,7 @@ plt.show()
 # In[26]:
 
 
-model = RandomForestRegressor(max_depth=4, n_estimators=2,
+model = RandomForestRegressor(max_depth=5, n_estimators=4,
                               random_state=0)
 
 y = grouped['ae_attendances_attendances']
@@ -519,15 +520,9 @@ results['test'] = scores_test
 results.describe()
 
 
-# In[29]:
-
-
-X.shape
-
-
 # ### Feature Importance
 
-# In[30]:
+# In[29]:
 
 
 feat_imp = pd.DataFrame()

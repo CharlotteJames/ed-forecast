@@ -11,14 +11,14 @@
 # 2. Increase 111 capacity by 10% in 2020
 # 3. Increase 999 capacity by 10% in 2020
 # 4. Increase GP capacity by 10% in 2020
-# 5. If population health measures (People, Places, Lives) are less than the 2019 average, increase them by 1 point per year until they reach the 2019 average. 
+# 5. If population health measures (People, Places, Lives) are less than the 2019 average, increase them by 0.2 points per year until they reach the 2019 average. 
 
 # In[1]:
 
 
 #turn warnings off to keep notebook tidy
 import warnings
-warnings.filterwarnings('ignore')
+warnings.filterwarnings('ignore') 
 
 
 # ## Import libraries 
@@ -68,7 +68,7 @@ models = [rf1,rf2,final]
 # In[5]:
 
 
-population = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/pop_forecasts_scaled.csv',
+population = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/pop_forecasts_scaled_new.csv',
                   index_col=0)
 
 
@@ -83,7 +83,7 @@ population
 # In[7]:
 
 
-baseline = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_2019.csv',
+baseline = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_2019_new.csv',
                   index_col=0)
 
 
@@ -353,9 +353,9 @@ dta = baseline.copy()
 
 for year in np.arange(2020,2028):
     
-    dta['People'] = [p+1 if p<np.mean(baseline.People.values) else p for p in dta.People.values]
-    dta['Places'] = [p+1 if p<np.mean(baseline.Places.values) else p for p in dta.Places.values]
-    dta['Lives'] = [p+1 if p<np.mean(baseline.Lives.values) else p for p in dta.Lives.values]
+    dta['People'] = [p+0.2 if p<np.mean(baseline.People.values) else p for p in dta.People.values]
+    dta['Places'] = [p+0.2 if p<np.mean(baseline.Places.values) else p for p in dta.Places.values]
+    dta['Lives'] = [p+0.2 if p<np.mean(baseline.Lives.values) else p for p in dta.Lives.values]
 
     preds = forecast(dta,population,year,models,m1_features,m2_features)
     
@@ -400,24 +400,32 @@ for i,results in enumerate(scenario_results):
     
     points_series = pd.Series(points)
     
-    plt.plot(points_series.rolling(window=4).mean().to_list()[:], label = f'{scenarios[i]}')
+    plt.plot(np.arange(-12, 96),
+             points_series.rolling(window=4).mean().to_list()[:], 
+             label = f'{scenarios[i]}')
     
     
 points = sum_by_month(scenario_results[0])
 
 points_series = pd.Series(points)
     
-plt.plot(points_series.rolling(window=4).mean().to_list()[:], 'g--', label = f'{scenarios[0]}')
+plt.plot(np.arange(-12, 96),
+         points_series.rolling(window=4).mean().to_list()[:],
+         'g--', label = f'{scenarios[0]}')
 
     
-y = np.arange(23500,28000,1000)    
-plt.plot(12*np.ones(len(y)),y, 'k--')
+y = np.arange(24000,29000,1000)    
+plt.plot(np.zeros(len(y)),y, 'k--')
 
-plt.legend(loc = 'lower right', fontsize=12)
-plt.ylabel('Mean monthly ED attendances by CCG', fontsize=14)
-plt.xlabel('Months since January 2019', fontsize=14)
-plt.xlim(0,60)
-plt.ylim(24000,27000)
+plt.legend(loc = 'lower left', fontsize=12)
+plt.ylabel('Mean monthly ED attendances per CCG', fontsize=14)
+plt.xlabel('Months since baseline', fontsize=14)
+plt.xlim(0,48)
+
+start, end = ax.get_xlim()
+ax.xaxis.set_ticks(np.arange(-12, 50, 10))
+
+#plt.ylim(24000,27000)
 plt.tight_layout()
 plt.savefig('forecast_scaled.png')
 plt.show()

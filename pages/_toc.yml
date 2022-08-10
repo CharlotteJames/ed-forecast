@@ -1,6 +1,6 @@
 # In _toc.yml
 format: jb-book
-root: intro.md
+root: index.md
 parts:
   - caption: Data
     chapters:
@@ -19,5 +19,11 @@ parts:
     - file: stacked_model.ipynb
   - caption: Forecasting Future ED Demand
     chapters:
+    - file: fit_predict_future.ipynb
     - file: stacked_forecast.ipynb
     - file: ccg_forecast.ipynb
+  - caption: Imputation
+    chapters:
+    - file: missing_data.md
+    - file: impute.ipynb
+    - file: stacked_model_impute.ipynb

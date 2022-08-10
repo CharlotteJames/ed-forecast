@@ -5,7 +5,7 @@
 
 # ## Overview
 # 
-# This notebook contains the code to develop and test the combined model.
+# This notebook contains the code to develop and test the MGSR.
 # 
 # Further details on the development of the population health model can be found [here](./population_health_model.ipynb), and the service capacity model can be found [here](./capacity_model.ipynb).
 
@@ -14,7 +14,7 @@
 
 #turn warnings off to keep notebook tidy
 import warnings
-warnings.filterwarnings('ignore')
+warnings.filterwarnings('ignore') 
 
 
 # ## Import libraries 
@@ -50,7 +50,7 @@ plt.style.use('ggplot')
 # In[3]:
 
 
-dta = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled.csv',
+dta = pd.read_csv('https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_new.csv',
                   index_col=0)
 
 
@@ -419,8 +419,6 @@ scores_final, scores_rf1, scores_rf2, dta_pred, coefs = cv_combined(dta, rf1, rf
 results=pd.DataFrame()
 
 results['final'] = scores_final
-results['capacity'] = scores_rf1
-results['population_health'] = scores_rf2
 
 
 # In[20]:

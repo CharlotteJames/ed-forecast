@@ -106,7 +106,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="index.html">
-                    Forecasting Long Term ED Demand
+                    Forecasting Long Term Emergency Department Demand
                 </a>
             </li>
         </ul>
@@ -145,7 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="capacity_vs_utility.html">
-   Seperating Capacity and Utility
+   Separating Capacity and Utility
   </a>
  </li>
 </ul>
@@ -183,6 +183,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="fit_predict_future.html">
+   Predicting attendances next year
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="stacked_forecast.html">
    Forecasting Future ED Demand
   </a>
@@ -190,6 +195,28 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="ccg_forecast.html">
    Future demand at CCG level
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Imputation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="missing_data.html">
+   Imputing missing data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="impute.html">
+   KNN imputation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacked_model_impute.html">
+   Model performance with imputed data
   </a>
  </li>
 </ul>
@@ -1749,19 +1776,19 @@ model score on testing data: 0.5297111469989744
   <tbody>
     <tr>
       <th>111_111_offered</th>
-      <td>0.469575</td>
+      <td>0.466888</td>
     </tr>
     <tr>
       <th>111_111_answered</th>
-      <td>0.409401</td>
+      <td>0.407830</td>
     </tr>
     <tr>
       <th>amb_sys_made</th>
-      <td>0.567767</td>
+      <td>0.568149</td>
     </tr>
     <tr>
       <th>amb_sys_answered</th>
-      <td>0.659067</td>
+      <td>0.657393</td>
     </tr>
     <tr>
       <th>gp_appt_available</th>
@@ -1769,19 +1796,19 @@ model score on testing data: 0.5297111469989744
     </tr>
     <tr>
       <th>population</th>
-      <td>1.411216</td>
+      <td>1.412199</td>
     </tr>
     <tr>
       <th>People</th>
-      <td>1.275478</td>
+      <td>1.275324</td>
     </tr>
     <tr>
       <th>Places</th>
-      <td>1.373391</td>
+      <td>1.373611</td>
     </tr>
     <tr>
       <th>Lives</th>
-      <td>1.369417</td>
+      <td>1.367832</td>
     </tr>
     <tr>
       <th>year</th>
@@ -1931,35 +1958,35 @@ model score on testing data: 0.5297111469989744
   <tbody>
     <tr>
       <th>population</th>
-      <td>1.515610</td>
+      <td>1.514180</td>
     </tr>
     <tr>
       <th>Lives</th>
-      <td>1.499197</td>
+      <td>1.496159</td>
     </tr>
     <tr>
       <th>Places</th>
-      <td>1.496323</td>
+      <td>1.494923</td>
     </tr>
     <tr>
       <th>People</th>
-      <td>1.443932</td>
+      <td>1.443506</td>
     </tr>
     <tr>
       <th>amb_sys_answered</th>
-      <td>0.680561</td>
+      <td>0.679743</td>
     </tr>
     <tr>
       <th>amb_sys_made</th>
-      <td>0.589813</td>
+      <td>0.589135</td>
     </tr>
     <tr>
       <th>111_111_offered</th>
-      <td>0.445919</td>
+      <td>0.447706</td>
     </tr>
     <tr>
       <th>111_111_answered</th>
-      <td>0.372861</td>
+      <td>0.373565</td>
     </tr>
     <tr>
       <th>gp_appt_available</th>

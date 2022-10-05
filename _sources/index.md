@@ -7,4 +7,4 @@ The model presented here is designed to predict mean monthly ED attendances for 
 
 While the model in its current form can produce forecasts for individual CCGs, if it were to be used at a regional level it would significantly benefit from being re-trained at a lower level of geography (e.g. LSOA) so that the forecasts are tailored to the regional population.
 
-As the data used is publicly available, when vieving pages with code the notebooks can be run on Google Colab by clicking on the rocket icon. 
+As the data used is publicly available, when viewing pages with code the notebooks can be run on Google Colab by clicking on the rocket icon. 

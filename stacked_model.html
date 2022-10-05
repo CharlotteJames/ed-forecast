@@ -218,6 +218,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Additional analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="outlier_analysis.html">
+   Outlier analysis
+  </a>
+ </li>
+</ul>
 
     </div>
 </nav></div>
@@ -634,7 +646,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#turn warnings off to keep notebook tidy</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span> 
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -658,6 +670,7 @@ title="Print to PDF"
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RepeatedKFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span> <span class="k">as</span> <span class="n">r2</span>
 
 
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -687,6 +700,131 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ccg</th>
+      <th>month</th>
+      <th>111_111_offered</th>
+      <th>111_111_answered</th>
+      <th>amb_sys_made</th>
+      <th>amb_sys_answered</th>
+      <th>gp_appt_available</th>
+      <th>ae_attendances_attendances</th>
+      <th>population</th>
+      <th>People</th>
+      <th>Places</th>
+      <th>Lives</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00Q</td>
+      <td>Jan</td>
+      <td>406.655830</td>
+      <td>308.945095</td>
+      <td>310.561801</td>
+      <td>234.716187</td>
+      <td>4568.019766</td>
+      <td>1179.855246</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>00Q</td>
+      <td>Feb</td>
+      <td>349.933603</td>
+      <td>256.872981</td>
+      <td>261.756435</td>
+      <td>205.298797</td>
+      <td>3910.918344</td>
+      <td>1075.452189</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00Q</td>
+      <td>Mar</td>
+      <td>413.247659</td>
+      <td>300.690725</td>
+      <td>303.676215</td>
+      <td>234.716187</td>
+      <td>4051.778545</td>
+      <td>1210.874032</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00Q</td>
+      <td>Apr</td>
+      <td>349.608595</td>
+      <td>278.140171</td>
+      <td>264.973181</td>
+      <td>203.677924</td>
+      <td>3974.433001</td>
+      <td>1186.166427</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>00Q</td>
+      <td>May</td>
+      <td>361.100544</td>
+      <td>284.419492</td>
+      <td>294.361403</td>
+      <td>227.926437</td>
+      <td>4232.385761</td>
+      <td>1299.297713</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -744,7 +882,7 @@ title="Print to PDF"
 <h2>Fit Predict Population Health model<a class="headerlink" href="#fit-predict-population-health-model" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> 
                               <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">pophealth_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
@@ -814,7 +952,7 @@ title="Print to PDF"
       <td>96.000000</td>
       <td>99.500</td>
       <td>94.600000</td>
-      <td>911.450934</td>
+      <td>1011.503891</td>
     </tr>
     <tr>
       <th>1</th>
@@ -822,7 +960,7 @@ title="Print to PDF"
       <td>95.500000</td>
       <td>102.300</td>
       <td>100.300000</td>
-      <td>539.392222</td>
+      <td>599.338614</td>
     </tr>
     <tr>
       <th>2</th>
@@ -830,7 +968,7 @@ title="Print to PDF"
       <td>101.100000</td>
       <td>101.600</td>
       <td>101.300000</td>
-      <td>539.392222</td>
+      <td>469.741217</td>
     </tr>
     <tr>
       <th>3</th>
@@ -838,7 +976,7 @@ title="Print to PDF"
       <td>96.600000</td>
       <td>96.800</td>
       <td>94.600000</td>
-      <td>423.850911</td>
+      <td>428.206400</td>
     </tr>
     <tr>
       <th>4</th>
@@ -846,7 +984,7 @@ title="Print to PDF"
       <td>88.600000</td>
       <td>94.800</td>
       <td>91.900000</td>
-      <td>833.715369</td>
+      <td>951.402716</td>
     </tr>
     <tr>
       <th>...</th>
@@ -862,7 +1000,7 @@ title="Print to PDF"
       <td>93.680000</td>
       <td>98.580</td>
       <td>91.620000</td>
-      <td>489.742472</td>
+      <td>479.895175</td>
     </tr>
     <tr>
       <th>141</th>
@@ -870,7 +1008,7 @@ title="Print to PDF"
       <td>104.566667</td>
       <td>100.850</td>
       <td>104.100000</td>
-      <td>321.867013</td>
+      <td>331.047558</td>
     </tr>
     <tr>
       <th>142</th>
@@ -878,7 +1016,7 @@ title="Print to PDF"
       <td>101.740000</td>
       <td>96.820</td>
       <td>97.540000</td>
-      <td>493.119675</td>
+      <td>459.839991</td>
     </tr>
     <tr>
       <th>143</th>
@@ -886,7 +1024,7 @@ title="Print to PDF"
       <td>100.916667</td>
       <td>97.550</td>
       <td>99.133333</td>
-      <td>493.119675</td>
+      <td>459.839991</td>
     </tr>
     <tr>
       <th>144</th>
@@ -894,7 +1032,7 @@ title="Print to PDF"
       <td>101.100000</td>
       <td>97.825</td>
       <td>102.406250</td>
-      <td>321.867013</td>
+      <td>371.964204</td>
     </tr>
   </tbody>
 </table>
@@ -910,6 +1048,240 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ccg</th>
+      <th>month</th>
+      <th>111_111_offered</th>
+      <th>111_111_answered</th>
+      <th>amb_sys_made</th>
+      <th>amb_sys_answered</th>
+      <th>gp_appt_available</th>
+      <th>ae_attendances_attendances</th>
+      <th>population</th>
+      <th>People</th>
+      <th>Places</th>
+      <th>Lives</th>
+      <th>year</th>
+      <th>ae_predicted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00Q</td>
+      <td>Jan</td>
+      <td>406.655830</td>
+      <td>308.945095</td>
+      <td>310.561801</td>
+      <td>234.716187</td>
+      <td>4568.019766</td>
+      <td>1179.855246</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+      <td>1062.098067</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>00Q</td>
+      <td>Feb</td>
+      <td>349.933603</td>
+      <td>256.872981</td>
+      <td>261.756435</td>
+      <td>205.298797</td>
+      <td>3910.918344</td>
+      <td>1075.452189</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+      <td>1062.098067</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00Q</td>
+      <td>Mar</td>
+      <td>413.247659</td>
+      <td>300.690725</td>
+      <td>303.676215</td>
+      <td>234.716187</td>
+      <td>4051.778545</td>
+      <td>1210.874032</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+      <td>1062.098067</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00Q</td>
+      <td>Apr</td>
+      <td>349.608595</td>
+      <td>278.140171</td>
+      <td>264.973181</td>
+      <td>203.677924</td>
+      <td>3974.433001</td>
+      <td>1186.166427</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+      <td>1062.098067</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>00Q</td>
+      <td>May</td>
+      <td>361.100544</td>
+      <td>284.419492</td>
+      <td>294.361403</td>
+      <td>227.926437</td>
+      <td>4232.385761</td>
+      <td>1299.297713</td>
+      <td>14.8942</td>
+      <td>97.2</td>
+      <td>99.7</td>
+      <td>94.4</td>
+      <td>2018</td>
+      <td>1062.098067</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1613</th>
+      <td>X2C4Y</td>
+      <td>Aug</td>
+      <td>281.008273</td>
+      <td>253.093792</td>
+      <td>459.652700</td>
+      <td>306.843650</td>
+      <td>3982.517935</td>
+      <td>390.405530</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+      <td>2019</td>
+      <td>405.987592</td>
+    </tr>
+    <tr>
+      <th>1614</th>
+      <td>X2C4Y</td>
+      <td>Sep</td>
+      <td>263.936917</td>
+      <td>240.868701</td>
+      <td>453.078703</td>
+      <td>305.262399</td>
+      <td>4598.750502</td>
+      <td>388.679580</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+      <td>2019</td>
+      <td>405.987592</td>
+    </tr>
+    <tr>
+      <th>1615</th>
+      <td>X2C4Y</td>
+      <td>Oct</td>
+      <td>286.454848</td>
+      <td>254.680032</td>
+      <td>488.348051</td>
+      <td>327.202669</td>
+      <td>5225.611293</td>
+      <td>391.268506</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+      <td>2019</td>
+      <td>405.987592</td>
+    </tr>
+    <tr>
+      <th>1616</th>
+      <td>X2C4Y</td>
+      <td>Nov</td>
+      <td>326.984206</td>
+      <td>276.374619</td>
+      <td>499.497654</td>
+      <td>306.953594</td>
+      <td>4606.948769</td>
+      <td>389.542555</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+      <td>2019</td>
+      <td>405.987592</td>
+    </tr>
+    <tr>
+      <th>1617</th>
+      <td>X2C4Y</td>
+      <td>Dec</td>
+      <td>365.414559</td>
+      <td>334.346359</td>
+      <td>532.917357</td>
+      <td>311.645611</td>
+      <td>4160.472547</td>
+      <td>404.531075</td>
+      <td>44.0337</td>
+      <td>93.3</td>
+      <td>98.3</td>
+      <td>97.6</td>
+      <td>2019</td>
+      <td>405.987592</td>
+    </tr>
+  </tbody>
+</table>
+<p>1618 rows × 14 columns</p>
+</div></div></div>
 </div>
 </section>
 </section>
@@ -977,7 +1349,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7360370197755353
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7969177165614729
 </pre></div>
 </div>
 </div>
@@ -986,9 +1358,7 @@ title="Print to PDF"
 <h3>Check performance on held out data<a class="headerlink" href="#check-performance-on-held-out-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span> <span class="k">as</span> <span class="n">r2</span>
-
-<span class="n">y_pred_cu</span> <span class="o">=</span> <span class="n">rf1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">capacity_features</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred_cu</span> <span class="o">=</span> <span class="n">rf1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">capacity_features</span><span class="p">])</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">rf1</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">capacity_features</span><span class="p">],</span> 
                 <span class="n">test</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]))</span>
@@ -1010,8 +1380,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4227235191823048
-0.5791158305719311
-0.6661669967506625
+0.7115831805529126
+0.7596144008785489
 </pre></div>
 </div>
 </div>
@@ -1026,7 +1396,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.51639993, 0.72968426])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.46359103, 0.80014038])
 </pre></div>
 </div>
 </div>
@@ -1200,7 +1570,7 @@ title="Print to PDF"
 <span class="n">rf1</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1">#population health model</span>
-<span class="n">rf2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rf2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">scores_final</span><span class="p">,</span> <span class="n">scores_rf1</span><span class="p">,</span> <span class="n">scores_rf2</span><span class="p">,</span> \
 <span class="n">dta_pred</span><span class="p">,</span> <span class="n">coefs</span> <span class="o">=</span> <span class="n">cv_combined</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">)</span>
@@ -1259,31 +1629,31 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.665444</td>
+      <td>0.746522</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.039768</td>
+      <td>0.029963</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.573507</td>
+      <td>0.696823</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.631816</td>
+      <td>0.714364</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.675520</td>
+      <td>0.751038</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.696484</td>
+      <td>0.773550</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.732708</td>
+      <td>0.796107</td>
     </tr>
   </tbody>
 </table>
@@ -1301,7 +1671,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.45512963, 0.63355856])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.37039636, 0.75446076])
 </pre></div>
 </div>
 </div>
@@ -1316,7 +1686,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.08806844, 0.12641045])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.08350285, 0.08470623])
 </pre></div>
 </div>
 </div>
@@ -1343,13 +1713,13 @@ title="Print to PDF"
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;True monthly ED attendances per 10,000 people&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted monthly ED attendances per 10,000 people&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;true_predicted_combined.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;true_predicted_combined.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/stacked_model_38_0.png" src="_images/stacked_model_38_0.png" />
+<img alt="_images/stacked_model_40_0.png" src="_images/stacked_model_40_0.png" />
 </div>
 </div>
 </section>
@@ -1571,80 +1941,80 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.665444</td>
-      <td>0.038496</td>
-      <td>0.065235</td>
-      <td>0.168881</td>
-      <td>0.314797</td>
-      <td>0.060245</td>
-      <td>0.056963</td>
-      <td>0.136148</td>
+      <td>0.746522</td>
+      <td>0.023766</td>
+      <td>0.047775</td>
+      <td>0.111173</td>
+      <td>0.395951</td>
+      <td>0.055185</td>
+      <td>0.094970</td>
+      <td>0.204409</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.039768</td>
-      <td>0.017823</td>
-      <td>0.023436</td>
-      <td>0.060690</td>
-      <td>0.083262</td>
-      <td>0.020495</td>
-      <td>0.019350</td>
-      <td>0.033684</td>
+      <td>0.029963</td>
+      <td>0.012029</td>
+      <td>0.018008</td>
+      <td>0.041407</td>
+      <td>0.075928</td>
+      <td>0.017929</td>
+      <td>0.025489</td>
+      <td>0.039176</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.573507</td>
-      <td>0.008636</td>
-      <td>0.024123</td>
-      <td>0.008525</td>
-      <td>0.184795</td>
-      <td>0.025377</td>
-      <td>0.032113</td>
-      <td>0.063237</td>
+      <td>0.696823</td>
+      <td>0.004197</td>
+      <td>0.020847</td>
+      <td>0.011944</td>
+      <td>0.279504</td>
+      <td>0.013514</td>
+      <td>0.033753</td>
+      <td>0.135076</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.631816</td>
-      <td>0.022420</td>
-      <td>0.049155</td>
-      <td>0.128301</td>
-      <td>0.261576</td>
-      <td>0.047641</td>
-      <td>0.047347</td>
-      <td>0.109393</td>
+      <td>0.714364</td>
+      <td>0.015708</td>
+      <td>0.033129</td>
+      <td>0.090903</td>
+      <td>0.341758</td>
+      <td>0.049862</td>
+      <td>0.075620</td>
+      <td>0.178278</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.675520</td>
-      <td>0.045330</td>
-      <td>0.064777</td>
-      <td>0.176024</td>
-      <td>0.291522</td>
-      <td>0.057505</td>
-      <td>0.052506</td>
-      <td>0.142293</td>
+      <td>0.751038</td>
+      <td>0.026584</td>
+      <td>0.044910</td>
+      <td>0.111712</td>
+      <td>0.380041</td>
+      <td>0.058859</td>
+      <td>0.094412</td>
+      <td>0.208710</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.696484</td>
-      <td>0.051860</td>
-      <td>0.088824</td>
-      <td>0.200768</td>
-      <td>0.368699</td>
-      <td>0.078592</td>
-      <td>0.061810</td>
-      <td>0.158519</td>
+      <td>0.773550</td>
+      <td>0.032007</td>
+      <td>0.059798</td>
+      <td>0.134969</td>
+      <td>0.436271</td>
+      <td>0.065394</td>
+      <td>0.113475</td>
+      <td>0.224638</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.732708</td>
-      <td>0.071707</td>
-      <td>0.101177</td>
-      <td>0.294804</td>
-      <td>0.519668</td>
-      <td>0.105991</td>
-      <td>0.106355</td>
-      <td>0.194395</td>
+      <td>0.796107</td>
+      <td>0.047882</td>
+      <td>0.082338</td>
+      <td>0.198612</td>
+      <td>0.553440</td>
+      <td>0.086029</td>
+      <td>0.144732</td>
+      <td>0.281627</td>
     </tr>
   </tbody>
 </table>
@@ -1664,15 +2034,15 @@ title="Print to PDF"
 <span class="n">tick_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GP capacity&#39;</span><span class="p">,</span><span class="s1">&#39;111 capacity&#39;</span><span class="p">,</span> <span class="s1">&#39;Ambulance capacity&#39;</span><span class="p">,</span>\
                <span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span> <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">tick_labels</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">tick_labels</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;importance.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;importance.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/stacked_model_45_0.png" src="_images/stacked_model_45_0.png" />
+<img alt="_images/stacked_model_47_0.png" src="_images/stacked_model_47_0.png" />
 </div>
 </div>
 </section>
@@ -1730,7 +2100,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined training score: 0.8171513959512132
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined training score: 0.8795260326236356
 </pre></div>
 </div>
 </div>

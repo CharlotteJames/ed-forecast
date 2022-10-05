@@ -220,6 +220,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Additional analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="outlier_analysis.html">
+   Outlier analysis
+  </a>
+ </li>
+</ul>
 
     </div>
 </nav></div>
@@ -838,7 +850,7 @@ title="Print to PDF"
 <h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled.csv&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_new.csv&#39;</span><span class="p">,</span>
                   <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -859,7 +871,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(73,)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(74,)
 </pre></div>
 </div>
 </div>
@@ -885,7 +897,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1465, 14)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 14)
 </pre></div>
 </div>
 </div>
@@ -934,8 +946,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.557121443870048
-model score on testing data: 0.5297126356091135
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.5440194513191048
+model score on testing data: 0.5336104269604207
 </pre></div>
 </div>
 </div>
@@ -974,8 +986,8 @@ model score on testing data: 0.5297126356091135
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.5568005033396197
-model score on testing data: 0.5281676943384344
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.543812323234377
+model score on testing data: 0.5336184653406383
 </pre></div>
 </div>
 </div>
@@ -1067,7 +1079,7 @@ model score on testing data: 0.5281676943384344
     </tr>
     <tr>
       <th>gp_appt_available</th>
-      <td>True</td>
+      <td>False</td>
     </tr>
     <tr>
       <th>population</th>
@@ -1146,8 +1158,8 @@ model score on testing data: 0.5281676943384344
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.5571200623163794
-model score on testing data: 0.5296152231044429
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.5440180818857432
+model score on testing data: 0.5335852489275236
 </pre></div>
 </div>
 </div>
@@ -1239,7 +1251,7 @@ model score on testing data: 0.5296152231044429
     </tr>
     <tr>
       <th>gp_appt_available</th>
-      <td>True</td>
+      <td>False</td>
     </tr>
     <tr>
       <th>population</th>
@@ -1316,8 +1328,8 @@ model score on testing data: 0.5296152231044429
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.5571215031450133
-model score on testing data: 0.5297111469989744
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.5440195223174749
+model score on testing data: 0.5336193991596547
 </pre></div>
 </div>
 </div>
@@ -1409,7 +1421,7 @@ model score on testing data: 0.5297111469989744
     </tr>
     <tr>
       <th>gp_appt_available</th>
-      <td>True</td>
+      <td>False</td>
     </tr>
     <tr>
       <th>population</th>
@@ -1489,8 +1501,8 @@ model score on testing data: 0.5297111469989744
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.47184162670290575
-model score on testing data: 0.44054895247676895
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.4727309935289348
+model score on testing data: 0.43772822174451687
 </pre></div>
 </div>
 </div>
@@ -1561,8 +1573,8 @@ model score on testing data: 0.44054895247676895
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.49660996575399363
-model score on testing data: 0.47664919905841974
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.4992217993534437
+model score on testing data: 0.4823928451338607
 </pre></div>
 </div>
 </div>
@@ -1655,8 +1667,8 @@ model score on testing data: 0.47664919905841974
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.5571215031450133
-model score on testing data: 0.5297111469989744
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model score on training data: 0.5440195223174749
+model score on testing data: 0.533619399159655
 </pre></div>
 </div>
 </div>
@@ -1776,47 +1788,47 @@ model score on testing data: 0.5297111469989744
   <tbody>
     <tr>
       <th>111_111_offered</th>
-      <td>0.466888</td>
+      <td>0.368889</td>
     </tr>
     <tr>
       <th>111_111_answered</th>
-      <td>0.407830</td>
+      <td>0.342691</td>
     </tr>
     <tr>
       <th>amb_sys_made</th>
-      <td>0.568149</td>
+      <td>0.618272</td>
     </tr>
     <tr>
       <th>amb_sys_answered</th>
-      <td>0.657393</td>
+      <td>0.716384</td>
     </tr>
     <tr>
       <th>gp_appt_available</th>
-      <td>0.103295</td>
+      <td>0.087838</td>
     </tr>
     <tr>
       <th>population</th>
-      <td>1.412199</td>
+      <td>1.394764</td>
     </tr>
     <tr>
       <th>People</th>
-      <td>1.275324</td>
+      <td>1.275716</td>
     </tr>
     <tr>
       <th>Places</th>
-      <td>1.373611</td>
+      <td>1.387013</td>
     </tr>
     <tr>
       <th>Lives</th>
-      <td>1.367832</td>
+      <td>1.317528</td>
     </tr>
     <tr>
       <th>year</th>
-      <td>0.031521</td>
+      <td>0.032590</td>
     </tr>
     <tr>
       <th>rand1</th>
-      <td>0.000000</td>
+      <td>0.038655</td>
     </tr>
   </tbody>
 </table>
@@ -1855,37 +1867,37 @@ model score on testing data: 0.5297111469989744
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;1 0.114 (0.065)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;1 0.077 (0.086)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;2 0.326 (0.166)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;2 0.165 (0.066)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;3 0.493 (0.031)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;3 0.496 (0.036)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;4 0.498 (0.031)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;4 0.501 (0.035)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;5 0.499 (0.031)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;5 0.502 (0.035)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;6 0.511 (0.030)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;6 0.509 (0.035)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;7 0.526 (0.030)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;7 0.524 (0.034)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;8 0.534 (0.030)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;8 0.531 (0.033)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;9 0.539 (0.031)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;9 0.531 (0.033)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;10 0.540 (0.032)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;10 0.534 (0.034)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;11 0.540 (0.032)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;11 0.534 (0.035)
 </pre></div>
 </div>
 </div>
@@ -1957,48 +1969,48 @@ model score on testing data: 0.5297111469989744
   </thead>
   <tbody>
     <tr>
+      <th>Places</th>
+      <td>1.436297</td>
+    </tr>
+    <tr>
       <th>population</th>
-      <td>1.514180</td>
+      <td>1.436055</td>
     </tr>
     <tr>
       <th>Lives</th>
-      <td>1.496159</td>
-    </tr>
-    <tr>
-      <th>Places</th>
-      <td>1.494923</td>
+      <td>1.391061</td>
     </tr>
     <tr>
       <th>People</th>
-      <td>1.443506</td>
+      <td>1.351514</td>
     </tr>
     <tr>
       <th>amb_sys_answered</th>
-      <td>0.679743</td>
+      <td>0.692218</td>
     </tr>
     <tr>
       <th>amb_sys_made</th>
-      <td>0.589135</td>
+      <td>0.628977</td>
     </tr>
     <tr>
       <th>111_111_offered</th>
-      <td>0.447706</td>
+      <td>0.383233</td>
     </tr>
     <tr>
       <th>111_111_answered</th>
-      <td>0.373565</td>
+      <td>0.338584</td>
     </tr>
     <tr>
       <th>gp_appt_available</th>
-      <td>0.097426</td>
+      <td>0.096549</td>
     </tr>
     <tr>
       <th>year</th>
-      <td>0.027058</td>
+      <td>0.021728</td>
     </tr>
     <tr>
       <th>rand1</th>
-      <td>0.000000</td>
+      <td>0.007324</td>
     </tr>
   </tbody>
 </table>

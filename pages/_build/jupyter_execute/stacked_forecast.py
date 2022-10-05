@@ -206,24 +206,12 @@ for year in np.arange(2020,2028):
 # In[16]:
 
 
-points = sum_by_month(results)
-
-fig,ax = plt.subplots(figsize=(6,4))
-
-plt.plot(points[2:])
-
-plt.show()
-
-
-# In[17]:
-
-
 scenario_results.append(results)
 
 
 # ## Scenario 2: increase 111 capacity
 
-# In[18]:
+# In[17]:
 
 
 results = pd.DataFrame()
@@ -242,19 +230,7 @@ for year in np.arange(2020,2028):
     results[str(year)] = preds
 
 
-# In[19]:
-
-
-points = sum_by_month(results)
-
-fig,ax = plt.subplots(figsize=(6,4))
-
-plt.plot(points[2:])
-
-plt.show()
-
-
-# In[20]:
+# In[18]:
 
 
 scenario_results.append(results)
@@ -262,7 +238,7 @@ scenario_results.append(results)
 
 # ## Scenario 3: increase 999 capacity
 
-# In[21]:
+# In[19]:
 
 
 results = pd.DataFrame()
@@ -281,19 +257,7 @@ for year in np.arange(2020,2028):
     results[str(year)] = preds
 
 
-# In[22]:
-
-
-points = sum_by_month(results)
-
-fig,ax = plt.subplots(figsize=(6,4))
-
-plt.plot(points[2:])
-
-plt.show()
-
-
-# In[23]:
+# In[20]:
 
 
 scenario_results.append(results)
@@ -301,7 +265,7 @@ scenario_results.append(results)
 
 # ## Scenario 4: increase GP capacity
 
-# In[24]:
+# In[21]:
 
 
 results = pd.DataFrame()
@@ -320,19 +284,7 @@ for year in np.arange(2020,2028):
     results[str(year)] = preds
 
 
-# In[25]:
-
-
-points = sum_by_month(results)
-
-fig,ax = plt.subplots(figsize=(6,4))
-
-plt.plot(points[2:])
-
-plt.show()
-
-
-# In[26]:
+# In[22]:
 
 
 scenario_results.append(results)
@@ -340,7 +292,7 @@ scenario_results.append(results)
 
 # ## Scenario 5: health of population at 2019
 
-# In[27]:
+# In[23]:
 
 
 results = pd.DataFrame()
@@ -362,19 +314,7 @@ for year in np.arange(2020,2028):
     results[str(year)] = preds
 
 
-# In[28]:
-
-
-points = sum_by_month(results)
-
-fig,ax = plt.subplots(figsize=(6,4))
-
-plt.plot(points[2:])
-
-plt.show()
-
-
-# In[29]:
+# In[24]:
 
 
 scenario_results.append(results)
@@ -382,7 +322,7 @@ scenario_results.append(results)
 
 # ## Plot 
 
-# In[30]:
+# In[25]:
 
 
 fig,ax = plt.subplots(figsize=(8,5))
@@ -423,11 +363,11 @@ plt.xlabel('Months since baseline', fontsize=14)
 plt.xlim(0,48)
 
 start, end = ax.get_xlim()
-ax.xaxis.set_ticks(np.arange(-12, 50, 10))
+ax.xaxis.set_ticks(np.arange(-12, 50, 6))
 
 #plt.ylim(24000,27000)
 plt.tight_layout()
-plt.savefig('forecast_scaled.png')
+plt.savefig('forecast_scaled.png', dpi=300)
 plt.show()
 
 

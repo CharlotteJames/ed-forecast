@@ -218,6 +218,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Additional analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="outlier_analysis.html">
+   Outlier analysis
+  </a>
+ </li>
+</ul>
 
     </div>
 </nav></div>
@@ -524,8 +536,8 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4519048888936743
 0.4227235191823048
-0.5791158305719311
-0.6661669967506625
+0.7115831805529126
+0.7596144008785489
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 14)
@@ -533,20 +545,233 @@ title="Print to PDF"
 </div>
 <img alt="_images/ccg_forecast_3_2.png" src="_images/ccg_forecast_3_2.png" />
 <img alt="_images/ccg_forecast_3_3.png" src="_images/ccg_forecast_3_3.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined training score: 0.8171513959512132
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined training score: 0.8795260326236356
 </pre></div>
 </div>
 <img alt="_images/ccg_forecast_3_5.png" src="_images/ccg_forecast_3_5.png" />
-<img alt="_images/ccg_forecast_3_6.png" src="_images/ccg_forecast_3_6.png" />
-<img alt="_images/ccg_forecast_3_7.png" src="_images/ccg_forecast_3_7.png" />
-<img alt="_images/ccg_forecast_3_8.png" src="_images/ccg_forecast_3_8.png" />
-<img alt="_images/ccg_forecast_3_9.png" src="_images/ccg_forecast_3_9.png" />
-<img alt="_images/ccg_forecast_3_10.png" src="_images/ccg_forecast_3_10.png" />
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ccg</th>
+      <th>month</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>2025</th>
+      <th>2026</th>
+      <th>2027</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00Q</td>
+      <td>Jan</td>
+      <td>15570.0</td>
+      <td>15382.955000</td>
+      <td>15098.926198</td>
+      <td>15100.848326</td>
+      <td>15101.859973</td>
+      <td>15874.355786</td>
+      <td>15869.250671</td>
+      <td>15863.294703</td>
+      <td>15856.381527</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>00Q</td>
+      <td>Feb</td>
+      <td>14493.0</td>
+      <td>15175.861940</td>
+      <td>14891.747074</td>
+      <td>14893.642828</td>
+      <td>14894.640593</td>
+      <td>15667.169722</td>
+      <td>15662.131237</td>
+      <td>15656.253004</td>
+      <td>15649.430055</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00Q</td>
+      <td>Mar</td>
+      <td>15748.0</td>
+      <td>15175.861940</td>
+      <td>14891.747074</td>
+      <td>14893.642828</td>
+      <td>14894.640593</td>
+      <td>15667.169722</td>
+      <td>15662.131237</td>
+      <td>15656.253004</td>
+      <td>15649.430055</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00Q</td>
+      <td>Apr</td>
+      <td>15929.0</td>
+      <td>15252.708754</td>
+      <td>14968.625824</td>
+      <td>14970.531365</td>
+      <td>14971.534281</td>
+      <td>15744.051047</td>
+      <td>15738.987837</td>
+      <td>15733.080759</td>
+      <td>15726.224329</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>00Q</td>
+      <td>May</td>
+      <td>16180.0</td>
+      <td>15321.412964</td>
+      <td>15037.358585</td>
+      <td>15039.272876</td>
+      <td>15040.280398</td>
+      <td>15812.786111</td>
+      <td>15807.700797</td>
+      <td>15801.767930</td>
+      <td>15794.881566</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>907</th>
+      <td>X2C4Y</td>
+      <td>Aug</td>
+      <td>17191.0</td>
+      <td>16211.368152</td>
+      <td>16259.624026</td>
+      <td>16306.118469</td>
+      <td>16349.457014</td>
+      <td>16389.639662</td>
+      <td>16427.547128</td>
+      <td>16464.463788</td>
+      <td>16499.839197</td>
+    </tr>
+    <tr>
+      <th>908</th>
+      <td>X2C4Y</td>
+      <td>Sep</td>
+      <td>17115.0</td>
+      <td>15858.666878</td>
+      <td>15905.872877</td>
+      <td>15951.355767</td>
+      <td>15993.751421</td>
+      <td>16033.059838</td>
+      <td>16070.142574</td>
+      <td>16106.256060</td>
+      <td>16140.861827</td>
+    </tr>
+    <tr>
+      <th>909</th>
+      <td>X2C4Y</td>
+      <td>Oct</td>
+      <td>17229.0</td>
+      <td>15567.474340</td>
+      <td>15613.813555</td>
+      <td>15658.461301</td>
+      <td>15700.078497</td>
+      <td>15738.665144</td>
+      <td>15775.066976</td>
+      <td>15810.517357</td>
+      <td>15844.487702</td>
+    </tr>
+    <tr>
+      <th>910</th>
+      <td>X2C4Y</td>
+      <td>Nov</td>
+      <td>17153.0</td>
+      <td>15474.697068</td>
+      <td>15520.760116</td>
+      <td>15565.141775</td>
+      <td>15606.510946</td>
+      <td>15644.867628</td>
+      <td>15681.052517</td>
+      <td>15716.291624</td>
+      <td>15750.059516</td>
+    </tr>
+    <tr>
+      <th>911</th>
+      <td>X2C4Y</td>
+      <td>Dec</td>
+      <td>17813.0</td>
+      <td>15830.887182</td>
+      <td>15878.010490</td>
+      <td>15923.413707</td>
+      <td>15965.735096</td>
+      <td>16004.974657</td>
+      <td>16041.992434</td>
+      <td>16078.042661</td>
+      <td>16112.587808</td>
+    </tr>
+  </tbody>
+</table>
+<p>812 rows × 11 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="plot-for-ccg">
 <h2>Plot for CCG<a class="headerlink" href="#plot-for-ccg" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">ccg</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;00Q&#39;, &#39;00R&#39;, &#39;00T&#39;, &#39;01E&#39;, &#39;01G&#39;, &#39;01J&#39;, &#39;01K&#39;, &#39;01V&#39;, &#39;01W&#39;,
+       &#39;01Y&#39;, &#39;02E&#39;, &#39;02H&#39;, &#39;02P&#39;, &#39;02X&#39;, &#39;03F&#39;, &#39;03H&#39;, &#39;03L&#39;, &#39;03N&#39;,
+       &#39;03Q&#39;, &#39;03R&#39;, &#39;04C&#39;, &#39;05W&#39;, &#39;06H&#39;, &#39;06K&#39;, &#39;06N&#39;, &#39;06Q&#39;, &#39;06T&#39;,
+       &#39;07H&#39;, &#39;07K&#39;, &#39;09D&#39;, &#39;10Q&#39;, &#39;10R&#39;, &#39;11M&#39;, &#39;11N&#39;, &#39;11X&#39;, &#39;12F&#39;,
+       &#39;13T&#39;, &#39;14L&#39;, &#39;14Y&#39;, &#39;15A&#39;, &#39;15C&#39;, &#39;15E&#39;, &#39;15F&#39;, &#39;15M&#39;, &#39;15N&#39;,
+       &#39;16C&#39;, &#39;18C&#39;, &#39;26A&#39;, &#39;27D&#39;, &#39;36J&#39;, &#39;36L&#39;, &#39;42D&#39;, &#39;52R&#39;, &#39;70F&#39;,
+       &#39;71E&#39;, &#39;72Q&#39;, &#39;91Q&#39;, &#39;92A&#39;, &#39;92G&#39;, &#39;93C&#39;, &#39;97R&#39;, &#39;99A&#39;, &#39;99C&#39;,
+       &#39;99E&#39;, &#39;99G&#39;, &#39;A3A8R&#39;, &#39;B2M3M&#39;, &#39;D2P2L&#39;, &#39;D4U1Y&#39;, &#39;D9Y0V&#39;, &#39;M1J4Y&#39;,
+       &#39;M2L0M&#39;, &#39;W2U3Z&#39;, &#39;X2C4Y&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
 <section id="a">
 <h3>26A<a class="headerlink" href="#a" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
@@ -575,9 +800,8 @@ title="Print to PDF"
     
     <span class="n">points_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
     
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span> 
-             <span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span> 
-             <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span>
+             <span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     
     
 <span class="n">points</span> <span class="o">=</span> <span class="n">sum_by_month</span><span class="p">(</span><span class="n">scenario_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">scenario_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ccg</span><span class="o">==</span><span class="n">ccg</span><span class="p">])</span>
@@ -585,23 +809,21 @@ title="Print to PDF"
 <span class="n">points_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
     
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span>
-         <span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span>
-         <span class="s1">&#39;g--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+         <span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span> <span class="s1">&#39;g--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
     
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">23500</span><span class="p">,</span><span class="mi">28000</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>    
 <span class="c1">#plt.plot(12*np.ones(len(y)),y, &#39;k--&#39;)</span>
 
+
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly ED attendances&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months since baseline&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-
-
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly ED attendances &#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months since Baseline&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">48</span><span class="p">)</span>
 
 <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-<span class="c1">#plt.ylim(24000,27000)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -609,7 +831,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ccg_forecast_7_0.png" src="_images/ccg_forecast_7_0.png" />
+<img alt="_images/ccg_forecast_9_0.png" src="_images/ccg_forecast_9_0.png" />
 </div>
 </div>
 </section>
@@ -641,9 +863,8 @@ title="Print to PDF"
     
     <span class="n">points_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
     
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span> 
-             <span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span> 
-             <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span>
+             <span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     
     
 <span class="n">points</span> <span class="o">=</span> <span class="n">sum_by_month</span><span class="p">(</span><span class="n">scenario_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">scenario_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ccg</span><span class="o">==</span><span class="n">ccg</span><span class="p">])</span>
@@ -651,21 +872,21 @@ title="Print to PDF"
 <span class="n">points_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
     
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span>
-         <span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span>
-         <span class="s1">&#39;g--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+         <span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span> <span class="s1">&#39;g--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
     
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">23500</span><span class="p">,</span><span class="mi">28000</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>    
 <span class="c1">#plt.plot(12*np.ones(len(y)),y, &#39;k--&#39;)</span>
 
+
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly ED attendances&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months since baseline&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly ED attendances &#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months since Baseline&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">48</span><span class="p">)</span>
 
 <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-<span class="c1">#plt.ylim(24000,27000)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -673,7 +894,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ccg_forecast_10_0.png" src="_images/ccg_forecast_10_0.png" />
+<img alt="_images/ccg_forecast_12_0.png" src="_images/ccg_forecast_12_0.png" />
 </div>
 </div>
 </section>
@@ -705,9 +926,8 @@ title="Print to PDF"
     
     <span class="n">points_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
     
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span> 
-             <span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span> 
-             <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span>
+             <span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     
     
 <span class="n">points</span> <span class="o">=</span> <span class="n">sum_by_month</span><span class="p">(</span><span class="n">scenario_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">scenario_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ccg</span><span class="o">==</span><span class="n">ccg</span><span class="p">])</span>
@@ -715,21 +935,22 @@ title="Print to PDF"
 <span class="n">points_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
     
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span>
-         <span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span>
-         <span class="s1">&#39;g--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+         <span class="n">points_series</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[:],</span> <span class="s1">&#39;g--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scenarios</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
     
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">23500</span><span class="p">,</span><span class="mi">28000</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>    
 <span class="c1">#plt.plot(12*np.ones(len(y)),y, &#39;k--&#39;)</span>
 
+
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly ED attendances&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months since baseline&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly ED attendances &#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months since Baseline&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">48</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">78000</span><span class="p">,</span><span class="mi">86000</span><span class="p">)</span>
 
 <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-<span class="c1">#plt.ylim(24000,27000)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -737,7 +958,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ccg_forecast_13_0.png" src="_images/ccg_forecast_13_0.png" />
+<img alt="_images/ccg_forecast_15_0.png" src="_images/ccg_forecast_15_0.png" />
 </div>
 </div>
 </section>
@@ -746,7 +967,7 @@ title="Print to PDF"
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
 <p>It is clear that, when looking at individual CCGs, the forecasts can vary significantly from the mean results presented on the previous page.</p>
 <p>This demonstrates that for each CCG the model is learning different relationships between the different variables.</p>
-<p>Forecasts at the CCG level would be more accurate if local data was fed into the model.</p>
+<p>Forecasts at the CCG level would be more accurate if local data was fed into the model</p>
 </section>
 </section>
 

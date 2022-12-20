@@ -663,7 +663,7 @@ title="Print to PDF"
 <h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/master_scaled_new.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/master_scaled_new_pop.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -714,6 +714,10 @@ title="Print to PDF"
       <th>Places</th>
       <th>Lives</th>
       <th>year</th>
+      <th>%&gt;65</th>
+      <th>%&lt;15</th>
+      <th>N&gt;65</th>
+      <th>N&lt;15</th>
     </tr>
   </thead>
   <tbody>
@@ -732,6 +736,10 @@ title="Print to PDF"
       <td>99.7</td>
       <td>94.4</td>
       <td>2018</td>
+      <td>14.46402</td>
+      <td>21.763505</td>
+      <td>2.1543</td>
+      <td>3.2415</td>
     </tr>
     <tr>
       <th>1</th>
@@ -748,6 +756,10 @@ title="Print to PDF"
       <td>99.7</td>
       <td>94.4</td>
       <td>2018</td>
+      <td>14.46402</td>
+      <td>21.763505</td>
+      <td>2.1543</td>
+      <td>3.2415</td>
     </tr>
     <tr>
       <th>2</th>
@@ -764,6 +776,10 @@ title="Print to PDF"
       <td>99.7</td>
       <td>94.4</td>
       <td>2018</td>
+      <td>14.46402</td>
+      <td>21.763505</td>
+      <td>2.1543</td>
+      <td>3.2415</td>
     </tr>
     <tr>
       <th>3</th>
@@ -780,6 +796,10 @@ title="Print to PDF"
       <td>99.7</td>
       <td>94.4</td>
       <td>2018</td>
+      <td>14.46402</td>
+      <td>21.763505</td>
+      <td>2.1543</td>
+      <td>3.2415</td>
     </tr>
     <tr>
       <th>4</th>
@@ -796,6 +816,10 @@ title="Print to PDF"
       <td>99.7</td>
       <td>94.4</td>
       <td>2018</td>
+      <td>14.46402</td>
+      <td>21.763505</td>
+      <td>2.1543</td>
+      <td>3.2415</td>
     </tr>
   </tbody>
 </table>
@@ -808,7 +832,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 13)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 17)
 </pre></div>
 </div>
 </div>
@@ -820,7 +844,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">group_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
 
-    <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span><span class="s1">&#39;%&gt;65&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
 
@@ -958,7 +982,7 @@ title="Print to PDF"
     <span class="n">capacity_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gp_appt_available&#39;</span><span class="p">,</span>
             <span class="s1">&#39;111_111_offered&#39;</span><span class="p">,</span> <span class="s1">&#39;amb_sys_answered&#39;</span><span class="p">]</span>
 
-    <span class="n">pophealth_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+    <span class="n">pophealth_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span><span class="s1">&#39;%&gt;65&#39;</span><span class="p">,</span>
                             <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span> <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
     
     <span class="n">dta_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -1023,7 +1047,7 @@ title="Print to PDF"
 <span class="n">rf1</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1">#population health model</span>
-<span class="n">rf2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rf2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">scores_final</span><span class="p">,</span> <span class="n">scores_rf1</span><span class="p">,</span> <span class="n">scores_rf2</span><span class="p">,</span> \
 <span class="n">dta_pred</span><span class="p">,</span> <span class="n">coefs</span> <span class="o">=</span> <span class="n">cv_combined</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">rf1</span><span class="p">,</span> <span class="n">rf2</span><span class="p">)</span>
@@ -1031,7 +1055,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 14)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 18)
 </pre></div>
 </div>
 </div>
@@ -1080,31 +1104,31 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.746522</td>
+      <td>0.793439</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.029963</td>
+      <td>0.024965</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.696823</td>
+      <td>0.747330</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.714364</td>
+      <td>0.773945</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.751038</td>
+      <td>0.792260</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.773550</td>
+      <td>0.813894</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.796107</td>
+      <td>0.837230</td>
     </tr>
   </tbody>
 </table>
@@ -1121,7 +1145,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.37039636, 0.75446076])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.22809236, 0.85217576])
 </pre></div>
 </div>
 </div>
@@ -1136,7 +1160,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.08350285, 0.08470623])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.06542627, 0.06053951])
 </pre></div>
 </div>
 </div>
@@ -1214,6 +1238,10 @@ title="Print to PDF"
       <th>Places</th>
       <th>Lives</th>
       <th>year</th>
+      <th>%&gt;65</th>
+      <th>%&lt;15</th>
+      <th>N&gt;65</th>
+      <th>N&lt;15</th>
     </tr>
   </thead>
   <tbody>
@@ -1232,6 +1260,10 @@ title="Print to PDF"
       <td>92.5</td>
       <td>89.1</td>
       <td>2018</td>
+      <td>14.961730</td>
+      <td>18.913848</td>
+      <td>3.8997</td>
+      <td>4.9298</td>
     </tr>
     <tr>
       <th>169</th>
@@ -1248,6 +1280,10 @@ title="Print to PDF"
       <td>92.5</td>
       <td>89.1</td>
       <td>2018</td>
+      <td>14.961730</td>
+      <td>18.913848</td>
+      <td>3.8997</td>
+      <td>4.9298</td>
     </tr>
     <tr>
       <th>170</th>
@@ -1264,6 +1300,10 @@ title="Print to PDF"
       <td>92.5</td>
       <td>89.1</td>
       <td>2018</td>
+      <td>14.961730</td>
+      <td>18.913848</td>
+      <td>3.8997</td>
+      <td>4.9298</td>
     </tr>
     <tr>
       <th>171</th>
@@ -1280,6 +1320,10 @@ title="Print to PDF"
       <td>92.5</td>
       <td>89.1</td>
       <td>2018</td>
+      <td>14.961730</td>
+      <td>18.913848</td>
+      <td>3.8997</td>
+      <td>4.9298</td>
     </tr>
     <tr>
       <th>172</th>
@@ -1296,6 +1340,10 @@ title="Print to PDF"
       <td>92.5</td>
       <td>89.1</td>
       <td>2018</td>
+      <td>14.961730</td>
+      <td>18.913848</td>
+      <td>3.8997</td>
+      <td>4.9298</td>
     </tr>
     <tr>
       <th>173</th>
@@ -1312,6 +1360,10 @@ title="Print to PDF"
       <td>92.5</td>
       <td>89.1</td>
       <td>2018</td>
+      <td>14.961730</td>
+      <td>18.913848</td>
+      <td>3.8997</td>
+      <td>4.9298</td>
     </tr>
     <tr>
       <th>174</th>
@@ -1328,6 +1380,10 @@ title="Print to PDF"
       <td>92.5</td>
       <td>89.1</td>
       <td>2018</td>
+      <td>14.961730</td>
+      <td>18.913848</td>
+      <td>3.8997</td>
+      <td>4.9298</td>
     </tr>
     <tr>
       <th>175</th>
@@ -1344,6 +1400,10 @@ title="Print to PDF"
       <td>92.5</td>
       <td>89.1</td>
       <td>2018</td>
+      <td>14.961730</td>
+      <td>18.913848</td>
+      <td>3.8997</td>
+      <td>4.9298</td>
     </tr>
     <tr>
       <th>176</th>
@@ -1360,6 +1420,10 @@ title="Print to PDF"
       <td>92.5</td>
       <td>89.1</td>
       <td>2018</td>
+      <td>14.961730</td>
+      <td>18.913848</td>
+      <td>3.8997</td>
+      <td>4.9298</td>
     </tr>
     <tr>
       <th>177</th>
@@ -1376,6 +1440,10 @@ title="Print to PDF"
       <td>92.5</td>
       <td>89.1</td>
       <td>2018</td>
+      <td>14.961730</td>
+      <td>18.913848</td>
+      <td>3.8997</td>
+      <td>4.9298</td>
     </tr>
     <tr>
       <th>178</th>
@@ -1392,6 +1460,10 @@ title="Print to PDF"
       <td>92.5</td>
       <td>89.1</td>
       <td>2018</td>
+      <td>14.961730</td>
+      <td>18.913848</td>
+      <td>3.8997</td>
+      <td>4.9298</td>
     </tr>
     <tr>
       <th>179</th>
@@ -1408,6 +1480,10 @@ title="Print to PDF"
       <td>92.5</td>
       <td>89.1</td>
       <td>2018</td>
+      <td>14.961730</td>
+      <td>18.913848</td>
+      <td>3.8997</td>
+      <td>4.9298</td>
     </tr>
     <tr>
       <th>974</th>
@@ -1424,6 +1500,10 @@ title="Print to PDF"
       <td>94.8</td>
       <td>91.9</td>
       <td>2019</td>
+      <td>15.082682</td>
+      <td>18.887923</td>
+      <td>3.9375</td>
+      <td>4.9309</td>
     </tr>
     <tr>
       <th>975</th>
@@ -1440,6 +1520,10 @@ title="Print to PDF"
       <td>94.8</td>
       <td>91.9</td>
       <td>2019</td>
+      <td>15.082682</td>
+      <td>18.887923</td>
+      <td>3.9375</td>
+      <td>4.9309</td>
     </tr>
     <tr>
       <th>976</th>
@@ -1456,6 +1540,10 @@ title="Print to PDF"
       <td>94.8</td>
       <td>91.9</td>
       <td>2019</td>
+      <td>15.082682</td>
+      <td>18.887923</td>
+      <td>3.9375</td>
+      <td>4.9309</td>
     </tr>
     <tr>
       <th>977</th>
@@ -1472,6 +1560,10 @@ title="Print to PDF"
       <td>94.8</td>
       <td>91.9</td>
       <td>2019</td>
+      <td>15.082682</td>
+      <td>18.887923</td>
+      <td>3.9375</td>
+      <td>4.9309</td>
     </tr>
     <tr>
       <th>978</th>
@@ -1488,6 +1580,10 @@ title="Print to PDF"
       <td>94.8</td>
       <td>91.9</td>
       <td>2019</td>
+      <td>15.082682</td>
+      <td>18.887923</td>
+      <td>3.9375</td>
+      <td>4.9309</td>
     </tr>
     <tr>
       <th>979</th>
@@ -1504,6 +1600,10 @@ title="Print to PDF"
       <td>94.8</td>
       <td>91.9</td>
       <td>2019</td>
+      <td>15.082682</td>
+      <td>18.887923</td>
+      <td>3.9375</td>
+      <td>4.9309</td>
     </tr>
     <tr>
       <th>980</th>
@@ -1520,6 +1620,10 @@ title="Print to PDF"
       <td>94.8</td>
       <td>91.9</td>
       <td>2019</td>
+      <td>15.082682</td>
+      <td>18.887923</td>
+      <td>3.9375</td>
+      <td>4.9309</td>
     </tr>
     <tr>
       <th>981</th>
@@ -1536,6 +1640,10 @@ title="Print to PDF"
       <td>94.8</td>
       <td>91.9</td>
       <td>2019</td>
+      <td>15.082682</td>
+      <td>18.887923</td>
+      <td>3.9375</td>
+      <td>4.9309</td>
     </tr>
     <tr>
       <th>982</th>
@@ -1552,6 +1660,10 @@ title="Print to PDF"
       <td>94.8</td>
       <td>91.9</td>
       <td>2019</td>
+      <td>15.082682</td>
+      <td>18.887923</td>
+      <td>3.9375</td>
+      <td>4.9309</td>
     </tr>
     <tr>
       <th>983</th>
@@ -1568,6 +1680,10 @@ title="Print to PDF"
       <td>94.8</td>
       <td>91.9</td>
       <td>2019</td>
+      <td>15.082682</td>
+      <td>18.887923</td>
+      <td>3.9375</td>
+      <td>4.9309</td>
     </tr>
     <tr>
       <th>984</th>
@@ -1584,6 +1700,10 @@ title="Print to PDF"
       <td>94.8</td>
       <td>91.9</td>
       <td>2019</td>
+      <td>15.082682</td>
+      <td>18.887923</td>
+      <td>3.9375</td>
+      <td>4.9309</td>
     </tr>
     <tr>
       <th>985</th>
@@ -1600,6 +1720,10 @@ title="Print to PDF"
       <td>94.8</td>
       <td>91.9</td>
       <td>2019</td>
+      <td>15.082682</td>
+      <td>18.887923</td>
+      <td>3.9375</td>
+      <td>4.9309</td>
     </tr>
   </tbody>
 </table>
@@ -1643,6 +1767,10 @@ title="Print to PDF"
       <th>Places</th>
       <th>Lives</th>
       <th>year</th>
+      <th>%&gt;65</th>
+      <th>%&lt;15</th>
+      <th>N&gt;65</th>
+      <th>N&lt;15</th>
     </tr>
   </thead>
   <tbody>
@@ -1661,6 +1789,10 @@ title="Print to PDF"
       <td>98.6</td>
       <td>91.4</td>
       <td>2018</td>
+      <td>14.673797</td>
+      <td>16.419099</td>
+      <td>7.2608</td>
+      <td>8.1244</td>
     </tr>
     <tr>
       <th>666</th>
@@ -1677,6 +1809,10 @@ title="Print to PDF"
       <td>98.6</td>
       <td>91.4</td>
       <td>2018</td>
+      <td>14.673797</td>
+      <td>16.419099</td>
+      <td>7.2608</td>
+      <td>8.1244</td>
     </tr>
     <tr>
       <th>667</th>
@@ -1693,6 +1829,10 @@ title="Print to PDF"
       <td>98.6</td>
       <td>91.4</td>
       <td>2018</td>
+      <td>14.673797</td>
+      <td>16.419099</td>
+      <td>7.2608</td>
+      <td>8.1244</td>
     </tr>
     <tr>
       <th>668</th>
@@ -1709,6 +1849,10 @@ title="Print to PDF"
       <td>98.6</td>
       <td>91.4</td>
       <td>2018</td>
+      <td>14.673797</td>
+      <td>16.419099</td>
+      <td>7.2608</td>
+      <td>8.1244</td>
     </tr>
     <tr>
       <th>669</th>
@@ -1725,6 +1869,10 @@ title="Print to PDF"
       <td>98.6</td>
       <td>91.4</td>
       <td>2018</td>
+      <td>14.673797</td>
+      <td>16.419099</td>
+      <td>7.2608</td>
+      <td>8.1244</td>
     </tr>
     <tr>
       <th>670</th>
@@ -1741,6 +1889,10 @@ title="Print to PDF"
       <td>98.6</td>
       <td>91.4</td>
       <td>2018</td>
+      <td>14.673797</td>
+      <td>16.419099</td>
+      <td>7.2608</td>
+      <td>8.1244</td>
     </tr>
     <tr>
       <th>671</th>
@@ -1757,6 +1909,10 @@ title="Print to PDF"
       <td>98.6</td>
       <td>91.4</td>
       <td>2018</td>
+      <td>14.673797</td>
+      <td>16.419099</td>
+      <td>7.2608</td>
+      <td>8.1244</td>
     </tr>
     <tr>
       <th>672</th>
@@ -1773,6 +1929,10 @@ title="Print to PDF"
       <td>98.6</td>
       <td>91.4</td>
       <td>2018</td>
+      <td>14.673797</td>
+      <td>16.419099</td>
+      <td>7.2608</td>
+      <td>8.1244</td>
     </tr>
     <tr>
       <th>673</th>
@@ -1789,6 +1949,10 @@ title="Print to PDF"
       <td>98.6</td>
       <td>91.4</td>
       <td>2018</td>
+      <td>14.673797</td>
+      <td>16.419099</td>
+      <td>7.2608</td>
+      <td>8.1244</td>
     </tr>
     <tr>
       <th>674</th>
@@ -1805,6 +1969,10 @@ title="Print to PDF"
       <td>98.6</td>
       <td>91.4</td>
       <td>2018</td>
+      <td>14.673797</td>
+      <td>16.419099</td>
+      <td>7.2608</td>
+      <td>8.1244</td>
     </tr>
     <tr>
       <th>675</th>
@@ -1821,6 +1989,10 @@ title="Print to PDF"
       <td>98.6</td>
       <td>91.4</td>
       <td>2018</td>
+      <td>14.673797</td>
+      <td>16.419099</td>
+      <td>7.2608</td>
+      <td>8.1244</td>
     </tr>
     <tr>
       <th>676</th>
@@ -1837,6 +2009,10 @@ title="Print to PDF"
       <td>98.6</td>
       <td>91.4</td>
       <td>2018</td>
+      <td>14.673797</td>
+      <td>16.419099</td>
+      <td>7.2608</td>
+      <td>8.1244</td>
     </tr>
     <tr>
       <th>1496</th>
@@ -1853,6 +2029,10 @@ title="Print to PDF"
       <td>98.9</td>
       <td>90.0</td>
       <td>2019</td>
+      <td>14.761747</td>
+      <td>16.561144</td>
+      <td>7.3653</td>
+      <td>8.2631</td>
     </tr>
     <tr>
       <th>1497</th>
@@ -1869,6 +2049,10 @@ title="Print to PDF"
       <td>98.9</td>
       <td>90.0</td>
       <td>2019</td>
+      <td>14.761747</td>
+      <td>16.561144</td>
+      <td>7.3653</td>
+      <td>8.2631</td>
     </tr>
     <tr>
       <th>1498</th>
@@ -1885,6 +2069,10 @@ title="Print to PDF"
       <td>98.9</td>
       <td>90.0</td>
       <td>2019</td>
+      <td>14.761747</td>
+      <td>16.561144</td>
+      <td>7.3653</td>
+      <td>8.2631</td>
     </tr>
     <tr>
       <th>1499</th>
@@ -1901,6 +2089,10 @@ title="Print to PDF"
       <td>98.9</td>
       <td>90.0</td>
       <td>2019</td>
+      <td>14.761747</td>
+      <td>16.561144</td>
+      <td>7.3653</td>
+      <td>8.2631</td>
     </tr>
     <tr>
       <th>1500</th>
@@ -1917,6 +2109,10 @@ title="Print to PDF"
       <td>98.9</td>
       <td>90.0</td>
       <td>2019</td>
+      <td>14.761747</td>
+      <td>16.561144</td>
+      <td>7.3653</td>
+      <td>8.2631</td>
     </tr>
     <tr>
       <th>1501</th>
@@ -1933,6 +2129,10 @@ title="Print to PDF"
       <td>98.9</td>
       <td>90.0</td>
       <td>2019</td>
+      <td>14.761747</td>
+      <td>16.561144</td>
+      <td>7.3653</td>
+      <td>8.2631</td>
     </tr>
     <tr>
       <th>1502</th>
@@ -1949,6 +2149,10 @@ title="Print to PDF"
       <td>98.9</td>
       <td>90.0</td>
       <td>2019</td>
+      <td>14.761747</td>
+      <td>16.561144</td>
+      <td>7.3653</td>
+      <td>8.2631</td>
     </tr>
     <tr>
       <th>1503</th>
@@ -1965,6 +2169,10 @@ title="Print to PDF"
       <td>98.9</td>
       <td>90.0</td>
       <td>2019</td>
+      <td>14.761747</td>
+      <td>16.561144</td>
+      <td>7.3653</td>
+      <td>8.2631</td>
     </tr>
     <tr>
       <th>1504</th>
@@ -1981,6 +2189,10 @@ title="Print to PDF"
       <td>98.9</td>
       <td>90.0</td>
       <td>2019</td>
+      <td>14.761747</td>
+      <td>16.561144</td>
+      <td>7.3653</td>
+      <td>8.2631</td>
     </tr>
     <tr>
       <th>1505</th>
@@ -1997,6 +2209,10 @@ title="Print to PDF"
       <td>98.9</td>
       <td>90.0</td>
       <td>2019</td>
+      <td>14.761747</td>
+      <td>16.561144</td>
+      <td>7.3653</td>
+      <td>8.2631</td>
     </tr>
     <tr>
       <th>1506</th>
@@ -2013,6 +2229,10 @@ title="Print to PDF"
       <td>98.9</td>
       <td>90.0</td>
       <td>2019</td>
+      <td>14.761747</td>
+      <td>16.561144</td>
+      <td>7.3653</td>
+      <td>8.2631</td>
     </tr>
     <tr>
       <th>1507</th>
@@ -2029,6 +2249,10 @@ title="Print to PDF"
       <td>98.9</td>
       <td>90.0</td>
       <td>2019</td>
+      <td>14.761747</td>
+      <td>16.561144</td>
+      <td>7.3653</td>
+      <td>8.2631</td>
     </tr>
   </tbody>
 </table>
@@ -2053,7 +2277,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1594, 14)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1594, 18)
 </pre></div>
 </div>
 </div>
@@ -2104,31 +2328,31 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.749989</td>
+      <td>0.764970</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.036317</td>
+      <td>0.030494</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.650637</td>
+      <td>0.699989</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.737499</td>
+      <td>0.749633</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.752755</td>
+      <td>0.769406</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.775938</td>
+      <td>0.791617</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.798717</td>
+      <td>0.807528</td>
     </tr>
   </tbody>
 </table>
@@ -2171,7 +2395,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span> <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
+            <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span> <span class="s1">&#39;Lives&#39;</span><span class="p">,</span> <span class="s1">&#39;%&gt;65&#39;</span><span class="p">]</span>
 
 <span class="n">grouped</span> <span class="o">=</span> <span class="n">group_data</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span>
 </pre></div>
@@ -2204,6 +2428,7 @@ title="Print to PDF"
     <tr style="text-align: right;">
       <th></th>
       <th>population</th>
+      <th>%&gt;65</th>
       <th>People</th>
       <th>Places</th>
       <th>Lives</th>
@@ -2214,6 +2439,7 @@ title="Print to PDF"
     <tr>
       <th>0</th>
       <td>11.6159</td>
+      <td>27.037078</td>
       <td>94.800000</td>
       <td>103.700000</td>
       <td>95.400000</td>
@@ -2222,6 +2448,7 @@ title="Print to PDF"
     <tr>
       <th>1</th>
       <td>11.6571</td>
+      <td>27.403900</td>
       <td>97.400000</td>
       <td>104.200000</td>
       <td>96.300000</td>
@@ -2230,6 +2457,7 @@ title="Print to PDF"
     <tr>
       <th>2</th>
       <td>13.9240</td>
+      <td>20.451020</td>
       <td>84.800000</td>
       <td>98.500000</td>
       <td>88.500000</td>
@@ -2238,6 +2466,7 @@ title="Print to PDF"
     <tr>
       <th>3</th>
       <td>13.9305</td>
+      <td>20.388356</td>
       <td>85.800000</td>
       <td>97.600000</td>
       <td>88.000000</td>
@@ -2246,6 +2475,7 @@ title="Print to PDF"
     <tr>
       <th>4</th>
       <td>14.8942</td>
+      <td>14.464020</td>
       <td>97.200000</td>
       <td>99.700000</td>
       <td>94.400000</td>
@@ -2258,10 +2488,12 @@ title="Print to PDF"
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>140</th>
       <td>186.1075</td>
+      <td>19.590720</td>
       <td>101.100000</td>
       <td>97.825000</td>
       <td>102.406250</td>
@@ -2270,6 +2502,7 @@ title="Print to PDF"
     <tr>
       <th>141</th>
       <td>200.8447</td>
+      <td>10.076840</td>
       <td>103.657143</td>
       <td>96.357143</td>
       <td>94.585714</td>
@@ -2278,6 +2511,7 @@ title="Print to PDF"
     <tr>
       <th>142</th>
       <td>202.9265</td>
+      <td>10.182751</td>
       <td>103.842857</td>
       <td>96.414286</td>
       <td>94.585714</td>
@@ -2286,6 +2520,7 @@ title="Print to PDF"
     <tr>
       <th>143</th>
       <td>209.5479</td>
+      <td>12.973740</td>
       <td>105.755556</td>
       <td>95.666667</td>
       <td>97.155556</td>
@@ -2294,6 +2529,7 @@ title="Print to PDF"
     <tr>
       <th>144</th>
       <td>210.8074</td>
+      <td>13.227097</td>
       <td>104.644444</td>
       <td>96.000000</td>
       <td>97.033333</td>
@@ -2301,7 +2537,7 @@ title="Print to PDF"
     </tr>
   </tbody>
 </table>
-<p>145 rows × 5 columns</p>
+<p>145 rows × 6 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -2312,7 +2548,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 14)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 18)
 </pre></div>
 </div>
 </div>

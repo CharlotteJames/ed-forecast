@@ -632,7 +632,7 @@ title="Print to PDF"
 <h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_new.csv&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_new_pop.csv&#39;</span><span class="p">,</span>
                   <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -684,6 +684,10 @@ title="Print to PDF"
       <th>Places</th>
       <th>Lives</th>
       <th>year</th>
+      <th>%&gt;65</th>
+      <th>%&lt;15</th>
+      <th>N&gt;65</th>
+      <th>N&lt;15</th>
     </tr>
   </thead>
   <tbody>
@@ -702,6 +706,10 @@ title="Print to PDF"
       <td>99.7</td>
       <td>94.4</td>
       <td>2018</td>
+      <td>14.46402</td>
+      <td>21.763505</td>
+      <td>2.1543</td>
+      <td>3.2415</td>
     </tr>
     <tr>
       <th>1</th>
@@ -718,6 +726,10 @@ title="Print to PDF"
       <td>99.7</td>
       <td>94.4</td>
       <td>2018</td>
+      <td>14.46402</td>
+      <td>21.763505</td>
+      <td>2.1543</td>
+      <td>3.2415</td>
     </tr>
     <tr>
       <th>2</th>
@@ -734,6 +746,10 @@ title="Print to PDF"
       <td>99.7</td>
       <td>94.4</td>
       <td>2018</td>
+      <td>14.46402</td>
+      <td>21.763505</td>
+      <td>2.1543</td>
+      <td>3.2415</td>
     </tr>
     <tr>
       <th>3</th>
@@ -750,6 +766,10 @@ title="Print to PDF"
       <td>99.7</td>
       <td>94.4</td>
       <td>2018</td>
+      <td>14.46402</td>
+      <td>21.763505</td>
+      <td>2.1543</td>
+      <td>3.2415</td>
     </tr>
     <tr>
       <th>4</th>
@@ -766,6 +786,10 @@ title="Print to PDF"
       <td>99.7</td>
       <td>94.4</td>
       <td>2018</td>
+      <td>14.46402</td>
+      <td>21.763505</td>
+      <td>2.1543</td>
+      <td>3.2415</td>
     </tr>
   </tbody>
 </table>
@@ -778,7 +802,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 13)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 17)
 </pre></div>
 </div>
 </div>
@@ -790,7 +814,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">group_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
 
-    <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span><span class="s1">&#39;%&gt;65&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
 
@@ -885,7 +909,7 @@ title="Print to PDF"
             <span class="s1">&#39;111_111_offered&#39;</span><span class="p">,</span> <span class="s1">&#39;amb_sys_answered&#39;</span><span class="p">]</span>
 <span class="c1">#            &#39;111_111_answered&#39;, &#39;amb_sys_made&#39;]</span>
 
-<span class="n">pophealth_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+<span class="n">pophealth_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span><span class="s1">&#39;%&gt;65&#39;</span><span class="p">,</span>
                     <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span> <span class="s1">&#39;Lives&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -917,7 +941,7 @@ title="Print to PDF"
 <span class="n">rf1</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1">#population health model</span>
-<span class="n">rf2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rf2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -932,7 +956,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined training score: 0.8665135886906001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined training score: 0.8739643763156378
 </pre></div>
 </div>
 </div>
@@ -975,7 +999,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2539407129802637
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.25631315230223467
 </pre></div>
 </div>
 </div>
@@ -1044,7 +1068,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.03857707492102586
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.034803448980532836
 </pre></div>
 </div>
 </div>
@@ -1054,7 +1078,7 @@ title="Print to PDF"
 <h3>Plot<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">months</span><span class="p">,</span><span class="n">true</span><span class="p">,</span> <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;True&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">months</span><span class="p">,</span><span class="n">pred</span><span class="p">,</span> <span class="s1">&#39;g--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
@@ -1071,6 +1095,18 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/fit_predict_future_35_0.png" src="_images/fit_predict_future_35_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">true</span><span class="p">[:</span><span class="mi">2</span><span class="p">],[</span><span class="n">true</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])),</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">pred</span><span class="p">[:</span><span class="mi">2</span><span class="p">],[</span><span class="n">pred</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.021009352150538733
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -1118,7 +1154,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fit_predict_future_37_0.png" src="_images/fit_predict_future_37_0.png" />
+<img alt="_images/fit_predict_future_38_0.png" src="_images/fit_predict_future_38_0.png" />
 </div>
 </div>
 </section>

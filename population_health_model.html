@@ -787,7 +787,7 @@ title="Print to PDF"
 <h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_new.csv&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_new_pop.csv&#39;</span><span class="p">,</span>
                   <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -808,10 +808,201 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 13)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 17)
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dta</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>111_111_offered</th>
+      <th>111_111_answered</th>
+      <th>amb_sys_made</th>
+      <th>amb_sys_answered</th>
+      <th>gp_appt_available</th>
+      <th>ae_attendances_attendances</th>
+      <th>population</th>
+      <th>People</th>
+      <th>Places</th>
+      <th>Lives</th>
+      <th>year</th>
+      <th>%&gt;65</th>
+      <th>%&lt;15</th>
+      <th>N&gt;65</th>
+      <th>N&lt;15</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+      <td>1618.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>330.444458</td>
+      <td>286.600228</td>
+      <td>455.922757</td>
+      <td>340.097999</td>
+      <td>4359.178114</td>
+      <td>486.615273</td>
+      <td>63.312790</td>
+      <td>99.208970</td>
+      <td>99.656618</td>
+      <td>100.787827</td>
+      <td>2018.501854</td>
+      <td>18.463638</td>
+      <td>18.056074</td>
+      <td>11.219593</td>
+      <td>11.545206</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>153.095006</td>
+      <td>132.348601</td>
+      <td>353.046416</td>
+      <td>275.127125</td>
+      <td>776.297557</td>
+      <td>275.070544</td>
+      <td>47.620833</td>
+      <td>5.817237</td>
+      <td>2.423154</td>
+      <td>5.738246</td>
+      <td>0.500151</td>
+      <td>3.794561</td>
+      <td>1.548570</td>
+      <td>7.767128</td>
+      <td>9.122457</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.707731</td>
+      <td>0.664178</td>
+      <td>141.067451</td>
+      <td>105.089248</td>
+      <td>1299.605358</td>
+      <td>101.447679</td>
+      <td>11.615900</td>
+      <td>84.800000</td>
+      <td>92.500000</td>
+      <td>87.400000</td>
+      <td>2018.000000</td>
+      <td>9.306882</td>
+      <td>14.560279</td>
+      <td>2.154300</td>
+      <td>1.791500</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>265.012202</td>
+      <td>239.420469</td>
+      <td>207.797181</td>
+      <td>149.382117</td>
+      <td>3878.647249</td>
+      <td>302.149393</td>
+      <td>26.529400</td>
+      <td>94.600000</td>
+      <td>98.000000</td>
+      <td>97.000000</td>
+      <td>2018.000000</td>
+      <td>16.073826</td>
+      <td>16.951092</td>
+      <td>4.781900</td>
+      <td>5.036400</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>310.420752</td>
+      <td>265.552822</td>
+      <td>269.156617</td>
+      <td>216.466007</td>
+      <td>4376.215538</td>
+      <td>384.680285</td>
+      <td>50.270400</td>
+      <td>100.150000</td>
+      <td>99.550000</td>
+      <td>101.350000</td>
+      <td>2019.000000</td>
+      <td>18.517093</td>
+      <td>18.153428</td>
+      <td>8.342500</td>
+      <td>8.471700</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>349.608595</td>
+      <td>300.690725</td>
+      <td>628.356628</td>
+      <td>452.675621</td>
+      <td>4829.604169</td>
+      <td>581.037869</td>
+      <td>86.540900</td>
+      <td>103.685714</td>
+      <td>101.400000</td>
+      <td>105.533333</td>
+      <td>2019.000000</td>
+      <td>20.560113</td>
+      <td>19.123772</td>
+      <td>16.364700</td>
+      <td>14.872900</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1281.625143</td>
+      <td>1206.970308</td>
+      <td>1698.974593</td>
+      <td>1377.465562</td>
+      <td>6937.180617</td>
+      <td>1460.369210</td>
+      <td>210.807400</td>
+      <td>111.200000</td>
+      <td>105.200000</td>
+      <td>113.300000</td>
+      <td>2019.000000</td>
+      <td>27.403900</td>
+      <td>21.763505</td>
+      <td>36.459800</td>
+      <td>42.117100</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <section id="add-random-feature">
 <h3>Add random feature<a class="headerlink" href="#add-random-feature" title="Permalink to this headline">#</a></h3>
@@ -833,7 +1024,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 14)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 18)
 </pre></div>
 </div>
 </div>
@@ -882,6 +1073,7 @@ title="Print to PDF"
 <li><p><em>People</em>:</p></li>
 <li><p><em>Places</em>:</p></li>
 <li><p><em>Lives</em>:</p></li>
+<li><p><em>%&gt;65</em>:</p></li>
 </ul>
 <section id="pair-plot">
 <h3>Pair plot<a class="headerlink" href="#pair-plot" title="Permalink to this headline">#</a></h3>
@@ -889,7 +1081,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
             <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;Lives&#39;</span><span class="p">,</span> <span class="s1">&#39;rand1&#39;</span><span class="p">]</span>
+            <span class="s1">&#39;Lives&#39;</span><span class="p">,</span> <span class="s1">&#39;%&gt;65&#39;</span><span class="p">,</span><span class="s1">&#39;rand1&#39;</span><span class="p">]</span>
 
 <span class="n">grouped</span> <span class="o">=</span> <span class="n">group_data</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span>
 
@@ -903,7 +1095,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/population_health_model_18_0.png" src="_images/population_health_model_18_0.png" />
+<img alt="_images/population_health_model_19_0.png" src="_images/population_health_model_19_0.png" />
 </div>
 </div>
 </section>
@@ -915,7 +1107,7 @@ title="Print to PDF"
 
 <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
             <span class="s1">&#39;People&#39;</span><span class="p">,</span> <span class="s1">&#39;Places&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;Lives&#39;</span><span class="p">,</span> <span class="s1">&#39;rand1&#39;</span><span class="p">]</span>
+            <span class="s1">&#39;Lives&#39;</span><span class="p">,</span> <span class="s1">&#39;%&gt;65&#39;</span><span class="p">,</span><span class="s1">&#39;rand1&#39;</span><span class="p">]</span>
 
 <span class="n">grouped</span> <span class="o">=</span> <span class="n">group_data</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span>
     
@@ -988,38 +1180,38 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.540455</td>
-      <td>0.379096</td>
+      <td>0.552068</td>
+      <td>0.371351</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.033633</td>
-      <td>0.336233</td>
+      <td>0.035222</td>
+      <td>0.343497</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.474597</td>
-      <td>-0.964399</td>
+      <td>0.476669</td>
+      <td>-1.013811</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.520654</td>
-      <td>0.368519</td>
+      <td>0.528894</td>
+      <td>0.346533</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.543342</td>
-      <td>0.478593</td>
+      <td>0.556832</td>
+      <td>0.455708</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.565362</td>
-      <td>0.558210</td>
+      <td>0.578657</td>
+      <td>0.556435</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.601924</td>
-      <td>0.630244</td>
+      <td>0.613870</td>
+      <td>0.656112</td>
     </tr>
   </tbody>
 </table>
@@ -1063,6 +1255,7 @@ title="Print to PDF"
       <th>People</th>
       <th>Places</th>
       <th>Lives</th>
+      <th>%&gt;65</th>
       <th>rand1</th>
     </tr>
   </thead>
@@ -1074,62 +1267,70 @@ title="Print to PDF"
       <td>25.000000</td>
       <td>25.000000</td>
       <td>25.000000</td>
+      <td>25.000000</td>
     </tr>
     <tr>
       <th>mean</th>
-      <td>-1.298377</td>
-      <td>7.514601</td>
-      <td>11.947955</td>
-      <td>-38.263529</td>
-      <td>125.767990</td>
+      <td>-1.435290</td>
+      <td>5.844501</td>
+      <td>15.737868</td>
+      <td>-34.576050</td>
+      <td>-9.079814</td>
+      <td>123.746553</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.158027</td>
-      <td>2.832702</td>
-      <td>5.822763</td>
-      <td>3.586429</td>
-      <td>28.831477</td>
+      <td>0.175190</td>
+      <td>3.047085</td>
+      <td>5.660999</td>
+      <td>4.188117</td>
+      <td>3.984531</td>
+      <td>27.108885</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>-1.639090</td>
-      <td>3.472580</td>
-      <td>-0.201465</td>
-      <td>-45.824552</td>
-      <td>84.869775</td>
+      <td>-1.730007</td>
+      <td>1.434910</td>
+      <td>4.349379</td>
+      <td>-43.042262</td>
+      <td>-18.441213</td>
+      <td>88.434422</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>-1.388330</td>
-      <td>5.350478</td>
-      <td>7.071549</td>
-      <td>-40.089392</td>
-      <td>105.625003</td>
+      <td>-1.513520</td>
+      <td>3.678942</td>
+      <td>9.979621</td>
+      <td>-36.339932</td>
+      <td>-11.124901</td>
+      <td>102.146007</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>-1.307197</td>
-      <td>6.589994</td>
-      <td>12.961259</td>
-      <td>-38.358653</td>
-      <td>125.179046</td>
+      <td>-1.421376</td>
+      <td>5.312968</td>
+      <td>16.724959</td>
+      <td>-34.109459</td>
+      <td>-9.472548</td>
+      <td>121.696265</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>-1.218501</td>
-      <td>8.881782</td>
-      <td>16.760270</td>
-      <td>-36.936270</td>
-      <td>142.261655</td>
+      <td>-1.358518</td>
+      <td>7.613663</td>
+      <td>19.380730</td>
+      <td>-32.524713</td>
+      <td>-5.919612</td>
+      <td>136.721486</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>-0.870452</td>
-      <td>14.246297</td>
-      <td>20.242753</td>
-      <td>-30.461520</td>
-      <td>197.732420</td>
+      <td>-0.896284</td>
+      <td>12.445317</td>
+      <td>25.457699</td>
+      <td>-25.979856</td>
+      <td>-1.672032</td>
+      <td>191.783194</td>
     </tr>
   </tbody>
 </table>
@@ -1214,38 +1415,38 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.797940</td>
-      <td>0.530299</td>
+      <td>0.807108</td>
+      <td>0.565794</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.045837</td>
-      <td>0.336113</td>
+      <td>0.042312</td>
+      <td>0.287908</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.714406</td>
-      <td>-0.851795</td>
+      <td>0.720547</td>
+      <td>-0.598879</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.767688</td>
-      <td>0.549337</td>
+      <td>0.776415</td>
+      <td>0.560282</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.805949</td>
-      <td>0.598507</td>
+      <td>0.809265</td>
+      <td>0.629445</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.820594</td>
-      <td>0.683305</td>
+      <td>0.836854</td>
+      <td>0.685060</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.876322</td>
-      <td>0.826358</td>
+      <td>0.890000</td>
+      <td>0.834171</td>
     </tr>
   </tbody>
 </table>
@@ -1289,6 +1490,7 @@ title="Print to PDF"
       <th>People</th>
       <th>Places</th>
       <th>Lives</th>
+      <th>%&gt;65</th>
       <th>rand1</th>
     </tr>
   </thead>
@@ -1300,62 +1502,70 @@ title="Print to PDF"
       <td>25.000000</td>
       <td>25.000000</td>
       <td>25.000000</td>
+      <td>25.000000</td>
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.456247</td>
-      <td>0.084433</td>
-      <td>0.077484</td>
-      <td>0.355720</td>
-      <td>0.026116</td>
+      <td>0.435902</td>
+      <td>0.066185</td>
+      <td>0.062171</td>
+      <td>0.348578</td>
+      <td>0.066302</td>
+      <td>0.020863</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.173910</td>
-      <td>0.094269</td>
-      <td>0.050263</td>
-      <td>0.190689</td>
-      <td>0.021850</td>
+      <td>0.171014</td>
+      <td>0.094662</td>
+      <td>0.052771</td>
+      <td>0.187946</td>
+      <td>0.034714</td>
+      <td>0.021494</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.146310</td>
-      <td>0.005961</td>
-      <td>0.010178</td>
-      <td>0.034775</td>
+      <td>0.117128</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.040872</td>
+      <td>0.009537</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.346103</td>
-      <td>0.028695</td>
-      <td>0.044565</td>
-      <td>0.222511</td>
-      <td>0.006183</td>
+      <td>0.343149</td>
+      <td>0.011843</td>
+      <td>0.020668</td>
+      <td>0.222201</td>
+      <td>0.041677</td>
+      <td>0.000415</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.438064</td>
-      <td>0.048710</td>
-      <td>0.068142</td>
-      <td>0.379977</td>
-      <td>0.023562</td>
+      <td>0.419343</td>
+      <td>0.021413</td>
+      <td>0.052408</td>
+      <td>0.349634</td>
+      <td>0.071220</td>
+      <td>0.012603</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.586481</td>
-      <td>0.106833</td>
-      <td>0.094927</td>
-      <td>0.440977</td>
-      <td>0.048037</td>
+      <td>0.602196</td>
+      <td>0.100430</td>
+      <td>0.093383</td>
+      <td>0.447492</td>
+      <td>0.084021</td>
+      <td>0.030384</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.771119</td>
-      <td>0.328866</td>
-      <td>0.228716</td>
-      <td>0.765357</td>
-      <td>0.072325</td>
+      <td>0.759784</td>
+      <td>0.306692</td>
+      <td>0.223416</td>
+      <td>0.766654</td>
+      <td>0.155546</td>
+      <td>0.075973</td>
     </tr>
   </tbody>
 </table>
@@ -1440,38 +1650,38 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.591351</td>
-      <td>0.375395</td>
+      <td>0.593587</td>
+      <td>0.393527</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.014649</td>
-      <td>0.170331</td>
+      <td>0.014388</td>
+      <td>0.148094</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.556442</td>
-      <td>-0.247993</td>
+      <td>0.564452</td>
+      <td>-0.128025</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.583247</td>
-      <td>0.301704</td>
+      <td>0.584104</td>
+      <td>0.316253</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.590246</td>
-      <td>0.433064</td>
+      <td>0.592172</td>
+      <td>0.401325</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.601433</td>
-      <td>0.487964</td>
+      <td>0.605975</td>
+      <td>0.493652</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.618456</td>
-      <td>0.539789</td>
+      <td>0.625392</td>
+      <td>0.566740</td>
     </tr>
   </tbody>
 </table>
@@ -1515,6 +1725,7 @@ title="Print to PDF"
       <th>People</th>
       <th>Places</th>
       <th>Lives</th>
+      <th>%&gt;65</th>
       <th>rand1</th>
     </tr>
   </thead>
@@ -1526,62 +1737,70 @@ title="Print to PDF"
       <td>25.000000</td>
       <td>25.000000</td>
       <td>25.000000</td>
+      <td>25.000000</td>
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.459397</td>
-      <td>0.078644</td>
-      <td>0.105263</td>
-      <td>0.331099</td>
-      <td>0.025597</td>
+      <td>0.432119</td>
+      <td>0.051428</td>
+      <td>0.073296</td>
+      <td>0.326313</td>
+      <td>0.097161</td>
+      <td>0.019683</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.186142</td>
-      <td>0.051783</td>
-      <td>0.075318</td>
-      <td>0.232194</td>
-      <td>0.015847</td>
+      <td>0.196302</td>
+      <td>0.051212</td>
+      <td>0.073320</td>
+      <td>0.229912</td>
+      <td>0.060103</td>
+      <td>0.014576</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.172220</td>
-      <td>0.013081</td>
-      <td>0.002342</td>
-      <td>0.031901</td>
-      <td>0.003054</td>
+      <td>0.099755</td>
+      <td>0.004335</td>
+      <td>0.002015</td>
+      <td>0.033923</td>
+      <td>0.014763</td>
+      <td>0.000250</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.299999</td>
-      <td>0.049349</td>
-      <td>0.041884</td>
-      <td>0.144045</td>
-      <td>0.010623</td>
+      <td>0.264346</td>
+      <td>0.024739</td>
+      <td>0.017823</td>
+      <td>0.126553</td>
+      <td>0.052532</td>
+      <td>0.005641</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.531181</td>
-      <td>0.060140</td>
-      <td>0.096542</td>
-      <td>0.210499</td>
-      <td>0.026689</td>
+      <td>0.512337</td>
+      <td>0.036215</td>
+      <td>0.048561</td>
+      <td>0.203326</td>
+      <td>0.091596</td>
+      <td>0.015922</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.601243</td>
-      <td>0.087788</td>
-      <td>0.138557</td>
-      <td>0.513216</td>
-      <td>0.037837</td>
+      <td>0.604362</td>
+      <td>0.052902</td>
+      <td>0.091070</td>
+      <td>0.519404</td>
+      <td>0.138055</td>
+      <td>0.031943</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.703193</td>
-      <td>0.213845</td>
-      <td>0.263458</td>
-      <td>0.715445</td>
-      <td>0.054122</td>
+      <td>0.718238</td>
+      <td>0.200017</td>
+      <td>0.264029</td>
+      <td>0.693263</td>
+      <td>0.266472</td>
+      <td>0.049490</td>
     </tr>
   </tbody>
 </table>
@@ -1621,7 +1840,7 @@ title="Print to PDF"
 <h3>Maximum Depth<a class="headerlink" href="#maximum-depth" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
 
 <span class="n">res_train</span><span class="p">,</span><span class="n">res_test</span> <span class="o">=</span> <span class="p">[],[]</span>
 
@@ -1679,10 +1898,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/population_health_model_47_0.png" src="_images/population_health_model_47_0.png" />
+<img alt="_images/population_health_model_48_0.png" src="_images/population_health_model_48_0.png" />
 </div>
 </div>
-<p>A depth of 5 is optimal. After this, there is no improvement in performance on unseen data (test, red dashed line) and performance continues to increase in the training data (blue dashed line) suggesting overfitting.</p>
+<p>A depth of 7 is optimal. After this, there is no improvement in performance on unseen data (test, red dashed line) and performance continues to increase in the training data (blue dashed line) suggesting overfitting.</p>
 </section>
 </section>
 <section id="number-of-trees">
@@ -1695,7 +1914,7 @@ title="Print to PDF"
 
 <span class="k">for</span> <span class="n">est</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
     
-    <span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="n">est</span><span class="p">,</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="n">est</span><span class="p">,</span>
                                   <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="n">y</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>
@@ -1727,14 +1946,14 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_train</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;b--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_test</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_train</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;b--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_test</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_train</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res_train</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)),</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_train</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res_train</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)),</span>
                  <span class="n">y2</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_train</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res_train</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)),</span>
                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_test</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res_test</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)),</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_test</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res_test</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)),</span>
                  <span class="n">y2</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_test</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res_test</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)),</span>
                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
@@ -1747,7 +1966,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/population_health_model_52_0.png" src="_images/population_health_model_52_0.png" />
+<img alt="_images/population_health_model_53_0.png" src="_images/population_health_model_53_0.png" />
 </div>
 </div>
 <p>The optimal number of trees is 4, beyond which there is no improvement in the training or test set.</p>
@@ -1759,7 +1978,7 @@ title="Print to PDF"
 <p>Fit the Random forest with optimal parameters</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
                               <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">y</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">]</span>
@@ -1832,38 +2051,38 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.871501</td>
-      <td>0.606538</td>
+      <td>0.911347</td>
+      <td>0.622299</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.027254</td>
-      <td>0.246910</td>
+      <td>0.021012</td>
+      <td>0.219899</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.801660</td>
-      <td>-0.071323</td>
+      <td>0.866569</td>
+      <td>0.066347</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.857325</td>
-      <td>0.615846</td>
+      <td>0.902049</td>
+      <td>0.552788</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.873249</td>
-      <td>0.683348</td>
+      <td>0.914108</td>
+      <td>0.681962</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.895287</td>
-      <td>0.725724</td>
+      <td>0.926453</td>
+      <td>0.793663</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.913705</td>
-      <td>0.858876</td>
+      <td>0.938922</td>
+      <td>0.874207</td>
     </tr>
   </tbody>
 </table>
@@ -1907,6 +2126,7 @@ title="Print to PDF"
       <th>People</th>
       <th>Places</th>
       <th>Lives</th>
+      <th>%&gt;65</th>
       <th>rand1</th>
     </tr>
   </thead>
@@ -1918,62 +2138,70 @@ title="Print to PDF"
       <td>25.000000</td>
       <td>25.000000</td>
       <td>25.000000</td>
+      <td>25.000000</td>
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.459397</td>
-      <td>0.078644</td>
-      <td>0.105263</td>
-      <td>0.331099</td>
-      <td>0.025597</td>
+      <td>0.432119</td>
+      <td>0.051428</td>
+      <td>0.073296</td>
+      <td>0.326313</td>
+      <td>0.097161</td>
+      <td>0.019683</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.186142</td>
-      <td>0.051783</td>
-      <td>0.075318</td>
-      <td>0.232194</td>
-      <td>0.015847</td>
+      <td>0.196302</td>
+      <td>0.051212</td>
+      <td>0.073320</td>
+      <td>0.229912</td>
+      <td>0.060103</td>
+      <td>0.014576</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.172220</td>
-      <td>0.013081</td>
-      <td>0.002342</td>
-      <td>0.031901</td>
-      <td>0.003054</td>
+      <td>0.099755</td>
+      <td>0.004335</td>
+      <td>0.002015</td>
+      <td>0.033923</td>
+      <td>0.014763</td>
+      <td>0.000250</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.299999</td>
-      <td>0.049349</td>
-      <td>0.041884</td>
-      <td>0.144045</td>
-      <td>0.010623</td>
+      <td>0.264346</td>
+      <td>0.024739</td>
+      <td>0.017823</td>
+      <td>0.126553</td>
+      <td>0.052532</td>
+      <td>0.005641</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.531181</td>
-      <td>0.060140</td>
-      <td>0.096542</td>
-      <td>0.210499</td>
-      <td>0.026689</td>
+      <td>0.512337</td>
+      <td>0.036215</td>
+      <td>0.048561</td>
+      <td>0.203326</td>
+      <td>0.091596</td>
+      <td>0.015922</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.601243</td>
-      <td>0.087788</td>
-      <td>0.138557</td>
-      <td>0.513216</td>
-      <td>0.037837</td>
+      <td>0.604362</td>
+      <td>0.052902</td>
+      <td>0.091070</td>
+      <td>0.519404</td>
+      <td>0.138055</td>
+      <td>0.031943</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>0.703193</td>
-      <td>0.213845</td>
-      <td>0.263458</td>
-      <td>0.715445</td>
-      <td>0.054122</td>
+      <td>0.718238</td>
+      <td>0.200017</td>
+      <td>0.264029</td>
+      <td>0.693263</td>
+      <td>0.266472</td>
+      <td>0.049490</td>
     </tr>
   </tbody>
 </table>

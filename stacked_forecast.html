@@ -663,16 +663,16 @@ Instead, run the following cell:</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4519048888936743
 0.4227235191823048
-0.7115831805529126
-0.7596144008785489
+0.7809961790244568
+0.8028603990777634
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 14)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1618, 18)
 </pre></div>
 </div>
 <img alt="_images/stacked_forecast_9_2.png" src="_images/stacked_forecast_9_2.png" />
 <img alt="_images/stacked_forecast_9_3.png" src="_images/stacked_forecast_9_3.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined training score: 0.8795260326236356
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined training score: 0.9181958242731308
 </pre></div>
 </div>
 </div>
@@ -1006,12 +1006,337 @@ Instead, run the following cell:</p>
 <p>81 rows × 27 columns</p>
 </div></div></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_g65</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/g65_forecasts.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_g65</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>2025</th>
+      <th>2026</th>
+      <th>2027</th>
+      <th>...</th>
+      <th>2035</th>
+      <th>2036</th>
+      <th>2037</th>
+      <th>2038</th>
+      <th>2039</th>
+      <th>2040</th>
+      <th>2041</th>
+      <th>2042</th>
+      <th>2043</th>
+      <th>ccg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20.2388</td>
+      <td>20.6635</td>
+      <td>21.0618</td>
+      <td>21.5045</td>
+      <td>22.0027</td>
+      <td>22.5320</td>
+      <td>23.0877</td>
+      <td>23.6772</td>
+      <td>24.2807</td>
+      <td>24.8923</td>
+      <td>...</td>
+      <td>30.3201</td>
+      <td>30.9727</td>
+      <td>31.5959</td>
+      <td>32.1724</td>
+      <td>32.7359</td>
+      <td>33.3015</td>
+      <td>33.8719</td>
+      <td>34.4506</td>
+      <td>35.0449</td>
+      <td>A3A8R</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>27.1862</td>
+      <td>27.8837</td>
+      <td>28.5918</td>
+      <td>29.3262</td>
+      <td>30.0403</td>
+      <td>30.8135</td>
+      <td>31.5979</td>
+      <td>32.4221</td>
+      <td>33.2414</td>
+      <td>34.1069</td>
+      <td>...</td>
+      <td>41.0640</td>
+      <td>41.8279</td>
+      <td>42.5907</td>
+      <td>43.3212</td>
+      <td>44.0126</td>
+      <td>44.6750</td>
+      <td>45.3063</td>
+      <td>45.9144</td>
+      <td>46.5156</td>
+      <td>W2U3Z</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>19.5244</td>
+      <td>19.8915</td>
+      <td>20.2332</td>
+      <td>20.6187</td>
+      <td>21.0258</td>
+      <td>21.4313</td>
+      <td>21.8943</td>
+      <td>22.3840</td>
+      <td>22.9167</td>
+      <td>23.4920</td>
+      <td>...</td>
+      <td>28.2659</td>
+      <td>28.7972</td>
+      <td>29.3256</td>
+      <td>29.8007</td>
+      <td>30.2389</td>
+      <td>30.6803</td>
+      <td>31.0964</td>
+      <td>31.5105</td>
+      <td>31.9304</td>
+      <td>36L</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>21.0098</td>
+      <td>21.3213</td>
+      <td>21.6398</td>
+      <td>22.0230</td>
+      <td>22.4571</td>
+      <td>22.9487</td>
+      <td>23.4649</td>
+      <td>24.0559</td>
+      <td>24.6942</td>
+      <td>25.3515</td>
+      <td>...</td>
+      <td>30.7090</td>
+      <td>31.2815</td>
+      <td>31.8039</td>
+      <td>32.2985</td>
+      <td>32.7302</td>
+      <td>33.1674</td>
+      <td>33.6041</td>
+      <td>34.0586</td>
+      <td>34.5384</td>
+      <td>72Q</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>17.9621</td>
+      <td>18.3575</td>
+      <td>18.7495</td>
+      <td>19.1965</td>
+      <td>19.6389</td>
+      <td>20.1272</td>
+      <td>20.6242</td>
+      <td>21.1690</td>
+      <td>21.7385</td>
+      <td>22.3233</td>
+      <td>...</td>
+      <td>27.4761</td>
+      <td>28.0851</td>
+      <td>28.6468</td>
+      <td>29.1815</td>
+      <td>29.6886</td>
+      <td>30.1636</td>
+      <td>30.6436</td>
+      <td>31.1056</td>
+      <td>31.5832</td>
+      <td>93C</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>3.0259</td>
+      <td>3.0547</td>
+      <td>3.0857</td>
+      <td>3.1195</td>
+      <td>3.1657</td>
+      <td>3.2209</td>
+      <td>3.2819</td>
+      <td>3.3473</td>
+      <td>3.4182</td>
+      <td>3.4892</td>
+      <td>...</td>
+      <td>4.0243</td>
+      <td>4.0746</td>
+      <td>4.1183</td>
+      <td>4.1523</td>
+      <td>4.1721</td>
+      <td>4.1880</td>
+      <td>4.2006</td>
+      <td>4.2061</td>
+      <td>4.2109</td>
+      <td>10R</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>7.9460</td>
+      <td>8.1037</td>
+      <td>8.2478</td>
+      <td>8.4048</td>
+      <td>8.5756</td>
+      <td>8.7639</td>
+      <td>8.9335</td>
+      <td>9.1132</td>
+      <td>9.3127</td>
+      <td>9.5121</td>
+      <td>...</td>
+      <td>11.0942</td>
+      <td>11.2711</td>
+      <td>11.4332</td>
+      <td>11.5656</td>
+      <td>11.6790</td>
+      <td>11.7874</td>
+      <td>11.8764</td>
+      <td>11.9739</td>
+      <td>12.0688</td>
+      <td>15A</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>14.0208</td>
+      <td>14.3092</td>
+      <td>14.5511</td>
+      <td>14.8208</td>
+      <td>15.1230</td>
+      <td>15.4326</td>
+      <td>15.7556</td>
+      <td>16.0784</td>
+      <td>16.4241</td>
+      <td>16.7932</td>
+      <td>...</td>
+      <td>19.7539</td>
+      <td>20.0748</td>
+      <td>20.3465</td>
+      <td>20.5729</td>
+      <td>20.7435</td>
+      <td>20.8763</td>
+      <td>20.9833</td>
+      <td>21.0689</td>
+      <td>21.1576</td>
+      <td>11N</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>13.6861</td>
+      <td>14.0132</td>
+      <td>14.2861</td>
+      <td>14.5547</td>
+      <td>14.8588</td>
+      <td>15.1808</td>
+      <td>15.5102</td>
+      <td>15.8431</td>
+      <td>16.2210</td>
+      <td>16.6014</td>
+      <td>...</td>
+      <td>19.5537</td>
+      <td>19.8510</td>
+      <td>20.1130</td>
+      <td>20.3116</td>
+      <td>20.4647</td>
+      <td>20.5849</td>
+      <td>20.6686</td>
+      <td>20.7340</td>
+      <td>20.8045</td>
+      <td>11X</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>19.5523</td>
+      <td>19.9050</td>
+      <td>20.2148</td>
+      <td>20.5422</td>
+      <td>20.8799</td>
+      <td>21.2750</td>
+      <td>21.6951</td>
+      <td>22.1096</td>
+      <td>22.5857</td>
+      <td>23.0771</td>
+      <td>...</td>
+      <td>27.1278</td>
+      <td>27.5744</td>
+      <td>27.9708</td>
+      <td>28.3034</td>
+      <td>28.5965</td>
+      <td>28.8453</td>
+      <td>29.0603</td>
+      <td>29.2627</td>
+      <td>29.4873</td>
+      <td>70F</td>
+    </tr>
+  </tbody>
+</table>
+<p>76 rows × 27 columns</p>
+</div></div></div>
+</div>
 </section>
 <section id="import-2019-data-as-baseline">
 <h2>Import 2019 data as baseline<a class="headerlink" href="#import-2019-data-as-baseline" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseline</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_2019_new.csv&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseline</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CharlotteJames/ed-forecast/main/data/master_scaled_new_pop.csv&#39;</span><span class="p">,</span>
                   <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1021,6 +1346,8 @@ Instead, run the following cell:</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseline</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span> 
                     <span class="k">if</span> <span class="s1">&#39;/&#39;</span> <span class="ow">in</span> <span class="n">c</span> <span class="k">else</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">baseline</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="n">baseline</span> <span class="o">=</span> <span class="n">baseline</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">baseline</span><span class="o">.</span><span class="n">year</span><span class="o">==</span><span class="mi">2019</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1062,11 +1389,16 @@ Instead, run the following cell:</p>
       <th>People</th>
       <th>Places</th>
       <th>Lives</th>
+      <th>year</th>
+      <th>%&gt;65</th>
+      <th>%&lt;15</th>
+      <th>N&gt;65</th>
+      <th>N&lt;15</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>806</th>
       <td>00Q</td>
       <td>Jan</td>
       <td>347.450401</td>
@@ -1079,9 +1411,14 @@ Instead, run the following cell:</p>
       <td>96.0</td>
       <td>99.5</td>
       <td>94.6</td>
+      <td>2019</td>
+      <td>14.565614</td>
+      <td>21.714604</td>
+      <td>2.1715</td>
+      <td>3.2373</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>807</th>
       <td>00Q</td>
       <td>Feb</td>
       <td>311.886541</td>
@@ -1094,9 +1431,14 @@ Instead, run the following cell:</p>
       <td>96.0</td>
       <td>99.5</td>
       <td>94.6</td>
+      <td>2019</td>
+      <td>14.565614</td>
+      <td>21.714604</td>
+      <td>2.1715</td>
+      <td>3.2373</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>808</th>
       <td>00Q</td>
       <td>Mar</td>
       <td>317.916884</td>
@@ -1109,9 +1451,14 @@ Instead, run the following cell:</p>
       <td>96.0</td>
       <td>99.5</td>
       <td>94.6</td>
+      <td>2019</td>
+      <td>14.565614</td>
+      <td>21.714604</td>
+      <td>2.1715</td>
+      <td>3.2373</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>809</th>
       <td>00Q</td>
       <td>Apr</td>
       <td>326.639691</td>
@@ -1124,9 +1471,14 @@ Instead, run the following cell:</p>
       <td>96.0</td>
       <td>99.5</td>
       <td>94.6</td>
+      <td>2019</td>
+      <td>14.565614</td>
+      <td>21.714604</td>
+      <td>2.1715</td>
+      <td>3.2373</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>810</th>
       <td>00Q</td>
       <td>May</td>
       <td>331.225629</td>
@@ -1139,6 +1491,11 @@ Instead, run the following cell:</p>
       <td>96.0</td>
       <td>99.5</td>
       <td>94.6</td>
+      <td>2019</td>
+      <td>14.565614</td>
+      <td>21.714604</td>
+      <td>2.1715</td>
+      <td>3.2373</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1154,9 +1511,14 @@ Instead, run the following cell:</p>
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>907</th>
+      <th>1613</th>
       <td>X2C4Y</td>
       <td>Aug</td>
       <td>281.008273</td>
@@ -1169,9 +1531,14 @@ Instead, run the following cell:</p>
       <td>93.3</td>
       <td>98.3</td>
       <td>97.6</td>
+      <td>2019</td>
+      <td>17.721427</td>
+      <td>19.239128</td>
+      <td>7.8034</td>
+      <td>8.4717</td>
     </tr>
     <tr>
-      <th>908</th>
+      <th>1614</th>
       <td>X2C4Y</td>
       <td>Sep</td>
       <td>263.936917</td>
@@ -1184,9 +1551,14 @@ Instead, run the following cell:</p>
       <td>93.3</td>
       <td>98.3</td>
       <td>97.6</td>
+      <td>2019</td>
+      <td>17.721427</td>
+      <td>19.239128</td>
+      <td>7.8034</td>
+      <td>8.4717</td>
     </tr>
     <tr>
-      <th>909</th>
+      <th>1615</th>
       <td>X2C4Y</td>
       <td>Oct</td>
       <td>286.454848</td>
@@ -1199,9 +1571,14 @@ Instead, run the following cell:</p>
       <td>93.3</td>
       <td>98.3</td>
       <td>97.6</td>
+      <td>2019</td>
+      <td>17.721427</td>
+      <td>19.239128</td>
+      <td>7.8034</td>
+      <td>8.4717</td>
     </tr>
     <tr>
-      <th>910</th>
+      <th>1616</th>
       <td>X2C4Y</td>
       <td>Nov</td>
       <td>326.984206</td>
@@ -1214,9 +1591,14 @@ Instead, run the following cell:</p>
       <td>93.3</td>
       <td>98.3</td>
       <td>97.6</td>
+      <td>2019</td>
+      <td>17.721427</td>
+      <td>19.239128</td>
+      <td>7.8034</td>
+      <td>8.4717</td>
     </tr>
     <tr>
-      <th>911</th>
+      <th>1617</th>
       <td>X2C4Y</td>
       <td>Dec</td>
       <td>365.414559</td>
@@ -1229,10 +1611,15 @@ Instead, run the following cell:</p>
       <td>93.3</td>
       <td>98.3</td>
       <td>97.6</td>
+      <td>2019</td>
+      <td>17.721427</td>
+      <td>19.239128</td>
+      <td>7.8034</td>
+      <td>8.4717</td>
     </tr>
   </tbody>
 </table>
-<p>812 rows × 12 columns</p>
+<p>812 rows × 17 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -1261,7 +1648,7 @@ Instead, run the following cell:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">forecast</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">m1_features</span><span class="p">,</span> <span class="n">m2_features</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">forecast</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">pop_g65</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">m1_features</span><span class="p">,</span> <span class="n">m2_features</span><span class="p">):</span>
     
     <span class="c1"># model = reg</span>
     
@@ -1269,6 +1656,14 @@ Instead, run the following cell:</p>
                       <span class="n">left_on</span> <span class="o">=</span> <span class="s1">&#39;ccg&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;ccg&#39;</span><span class="p">)</span>
     
     <span class="n">data</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span><span class="c1">#*10000</span>
+    
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pop_g65</span><span class="p">[[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span><span class="s1">&#39;ccg&#39;</span><span class="p">]],</span> 
+                      <span class="n">left_on</span> <span class="o">=</span> <span class="s1">&#39;ccg&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;ccg&#39;</span><span class="p">)</span>
+    
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;%&gt;65&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span><span class="o">*</span><span class="mi">100</span><span class="o">/</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">])</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;N&gt;65&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span>
     
     <span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;ae_attendances_attendances&#39;</span><span class="p">,</span><span class="s1">&#39;ccg&#39;</span><span class="p">,</span>\
                    <span class="s1">&#39;month&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span><span class="s1">&#39;ccg&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1341,7 +1736,7 @@ Instead, run the following cell:</p>
 
 <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">2028</span><span class="p">):</span>
 
-    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">baseline</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">baseline</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">pop_g65</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
     
     <span class="n">results</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span> <span class="o">=</span> <span class="n">preds</span>
 </pre></div>
@@ -1371,7 +1766,7 @@ Instead, run the following cell:</p>
 
     <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;111_111_offered&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;111_111_offered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">*</span><span class="n">F</span>
 
-    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">pop_g65</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
     
     <span class="n">results</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span> <span class="o">=</span> <span class="n">preds</span>
 </pre></div>
@@ -1401,7 +1796,7 @@ Instead, run the following cell:</p>
     
     <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;amb_sys_answered&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;amb_sys_answered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">*</span><span class="n">F</span>
 
-    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">pop_g65</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
     
     <span class="n">results</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span> <span class="o">=</span> <span class="n">preds</span>
 </pre></div>
@@ -1431,7 +1826,7 @@ Instead, run the following cell:</p>
     
     <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;gp_appt_available&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;gp_appt_available&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">*</span><span class="n">F</span>
 
-    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">pop_g65</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
     
     <span class="n">results</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span> <span class="o">=</span> <span class="n">preds</span>
 </pre></div>
@@ -1464,7 +1859,7 @@ Instead, run the following cell:</p>
     <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;Places&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">+</span><span class="mf">0.2</span> <span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">baseline</span><span class="o">.</span><span class="n">Places</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">else</span> <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dta</span><span class="o">.</span><span class="n">Places</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
     <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;Lives&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">+</span><span class="mf">0.2</span> <span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">baseline</span><span class="o">.</span><span class="n">Lives</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">else</span> <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dta</span><span class="o">.</span><span class="n">Lives</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
 
-    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span><span class="n">population</span><span class="p">,</span><span class="n">pop_g65</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">m1_features</span><span class="p">,</span><span class="n">m2_features</span><span class="p">)</span>
     
     <span class="n">results</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span> <span class="o">=</span> <span class="n">preds</span>
 </pre></div>
@@ -1523,7 +1918,7 @@ Instead, run the following cell:</p>
 <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-<span class="c1">#plt.ylim(24000,27000)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">24500</span><span class="p">,</span><span class="mi">28000</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;forecast_scaled.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1531,7 +1926,7 @@ Instead, run the following cell:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/stacked_forecast_42_0.png" src="_images/stacked_forecast_42_0.png" />
+<img alt="_images/stacked_forecast_44_0.png" src="_images/stacked_forecast_44_0.png" />
 </div>
 </div>
 </section>
